@@ -15,4 +15,27 @@ ActiveRecord::Schema.define(version: 0) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "password"
+  end
+
+  add_index "users", ["user_id"], name: "index_users_on_user_id", using: :btree
+
+  create_table "patterns", force: :cascade do |t|
+    t.integer  "pattern_id"
+    t.datetime "created_at", null: false
+    t.array    "colours"
+    t.integer  "user_id"
+    t.integer  "forked_from_id"
+  end
+
+  add_index "patterns", ["user_id"], name: "index_patterns_on_user_id", using: :btree
+  add_index "patterns", ["pattern_id"], name: "index_patterns_on_pattern_id", using: :btree
+
+  add_foreign_key "patterns", "users"
+  add_foreign_key "patterns", "forked_from_id"
+
 end
