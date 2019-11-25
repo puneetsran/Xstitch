@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 
+import Grid from "./components/Grid";
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -30,6 +32,7 @@ class App extends Component {
         <button onClick={this.fetchData} >
           Fetch Data
         </button>        
+        <Grid/>
       </div>
     );
   }
