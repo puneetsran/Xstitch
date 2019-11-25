@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "users", ["user_id"], name: "index_users_on_user_id", using: :btree
 ​
   create_table "patterns", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
     t.integer  "pattern_id"
     t.datetime "created_at", null: false
     t.array    "colours"

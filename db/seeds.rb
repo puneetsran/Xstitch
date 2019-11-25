@@ -9,3 +9,11 @@
 puts "Seeding Data ..."
 
 puts "Creating Patterns ..."
+
+patterns.create!({
+  title:  'Canada Flag',
+  description: 'Red with white background'
+  colours: [],
+})
+
+puts "DONE!"
