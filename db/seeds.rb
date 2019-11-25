@@ -10,10 +10,10 @@ puts "Seeding Data ..."
 
 puts "Creating Patterns ..."
 
-patterns.create!({
+Pattern.create!({
   title:  'Canada Flag',
-  description: 'Red with white background'
-  colours: [],
+  description: 'Red with white background',
+  colours: []
 })
 
 puts "DONE!"
