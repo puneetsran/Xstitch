@@ -15,8 +15,9 @@ export default function Menu() {
       }}>
       <Navbar.Brand href="#home"
         style={{
-          fontSize: "3.75rem",
-          fontWeight: "bolder"
+          fontSize: "3.00rem",
+          fontWeight: "bolder",
+          fontFamily: "'Press Start 2P', 'cursive'"
         }}>
         Xstitch</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
