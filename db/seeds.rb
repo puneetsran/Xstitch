@@ -11,7 +11,7 @@ puts "Seeding Data ..."
 puts "Eradicating lingering vermin ..." 
 Pattern.destroy_all
 User.destroy_all
-Favourites.destroy_all
+Favourite.destroy_all
 
 puts "Grudgingly permitting the addition of users ... "
 
@@ -29,10 +29,11 @@ user1.patterns.create!({
   colours: []
 })
 
+puts "Creating Favourites ..."
+
 user1.favourites.create!({
-  title:  'My cat',
-  description: 'Black cat',
-  colours: []
+  user_id:  1,
+  pattern_id: 1,
 })
 
 puts "DONE!"
