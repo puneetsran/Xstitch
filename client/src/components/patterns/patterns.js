@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./styles.css";
 
 export default class Patterns extends Component {
   constructor(props) {
@@ -19,14 +20,15 @@ export default class Patterns extends Component {
     const { patterns } = this.state;
 
     return (
-      <ul>
+      <div>
         {patterns.map(pattern => (
           <li key={pattern.id}>
             <p>{pattern.title}</p>
             <p>{pattern.description}</p>
+            <p>{pattern.colours}</p>
           </li>
         ))}
-      </ul>
+      </div>
     );
   }
 }
