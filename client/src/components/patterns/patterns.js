@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import "./styles.css";
+import Button from "react-bootstrap/Button";
 
 const PatternsContainer = styled.div`
   display: flex;
@@ -33,6 +34,7 @@ export default class Patterns extends Component {
               <p>{pattern.title}</p>
               <p>{pattern.description}</p>
               <p>{pattern.colours}</p>
+              <Button>View</Button>
             </li>
           ))}
         </PatternsContainer>
