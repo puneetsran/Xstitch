@@ -31,6 +31,7 @@ export default function Menu(props) {
           <Nav.Link href="#link">Create</Nav.Link>
           <NavDropdown title="Menu" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1"
+              onClick={() => props.setPattern("MY_PATTERN")}
               style={{
                 marginTop: "none",
                 fontSize: "20px",
@@ -61,6 +62,7 @@ export default function Menu(props) {
           <Button variant="outline-success">Search</Button>
         </Form> */}
         <Button variant="outline-success"
+
           style={{
             color: "powderblue",
             background: "#2884a7",
