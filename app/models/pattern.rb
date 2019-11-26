@@ -3,5 +3,5 @@ class Pattern < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :colours, presence: true
+  # validates :colours, presence: true
 end

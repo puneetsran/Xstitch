@@ -1,4 +1,10 @@
 .patterns {
   display: flex;
   border: 1px solid;
+  margin: 1em;
+}
+
+.pattern {
+  margin: 1em;
+  border: 1px solid;
 }

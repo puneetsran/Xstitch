@@ -29,7 +29,7 @@ export default class Patterns extends Component {
       <div className="patterns">
         <PatternsContainer>
           {patterns.map(pattern => (
-            <li key={pattern.id}>
+            <li className="pattern" key={pattern.id}>
               <p>{pattern.title}</p>
               <p>{pattern.description}</p>
               <p>{pattern.colours}</p>
