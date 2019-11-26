@@ -9,9 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default function App() {
-
-  let [pattern, setPatternInfo] = useState(false);
   let content;
+  let [pattern, setPatternInfo] = useState(false);
   let [patterns, setPatterns] = useState([]);
   let [message, setMessage] = useState("Click the button to load data!");
 
@@ -21,6 +20,14 @@ export default function App() {
     if (pattern === true) {
       setPatternInfo(false)
     }
+  }
+
+  //opens side menu 
+  if (pattern === false) {
+    content = <div></div>
+  } else {
+    content = <PatternList
+    />
   }
 
   const fetchData = () => {
@@ -35,13 +42,7 @@ export default function App() {
       });
   };
 
-  //opens side menu 
-  if (pattern === false) {
-    content = <div></div>
-  } else {
-    content = <PatternList
-    />
-  }
+
   console.log("PATTERNS >>>>", patterns);
   return (
     <div className="App" onClick={clickOffMenu}>
