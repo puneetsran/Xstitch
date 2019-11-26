@@ -29,4 +29,10 @@ user1.patterns.create!({
   colours: []
 })
 
+user1.favourites.create!({
+  title:  'My cat',
+  description: 'Black cat',
+  colours: []
+})
+
 puts "DONE!"
