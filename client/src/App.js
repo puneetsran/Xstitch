@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import './components/menu/menu'
 import Menu from './components/menu/menu';
+import MenuList from './components/menu/menuList'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -26,14 +27,14 @@ class App extends Component {
         });
       })
   }
-
   render() {
     return (
       <div className="App">
         <Menu />
+        <MenuList />
         <h1>{this.state.message}</h1>
         <button onClick={this.fetchData} >
-          woooo
+          boop
         </button>
       </div>
     );

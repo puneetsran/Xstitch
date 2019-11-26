@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 
 
-export default function Menu() {
+export default function Menu(props) {
 
   return (
 
@@ -30,8 +30,27 @@ export default function Menu() {
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#link">Create</Nav.Link>
           <NavDropdown title="Menu" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">My Patterns</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Favourites</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.1"
+              style={{
+                marginTop: "none",
+                fontSize: "20px",
+                padding: "15px",
+                fontFamily: "'Press Start 2P', 'cursive'"
+              }}>
+              {/* Need to ad functionality to open and close side menu */}
+              My Patterns
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2"
+              style={{
+                marginBottom: "none",
+                fontSize: "20px",
+                padding: "15px",
+                fontFamily: "'Press Start 2P', 'cursive'"
+
+              }}>
+              {/* Need to ad functionality to open and close side menu */}
+              Favourites
+            </NavDropdown.Item>
             {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
             {/* <NavDropdown.Divider /> */}
             {/* <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item> */}
