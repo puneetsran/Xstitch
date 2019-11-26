@@ -1,27 +1,28 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './App.css';
-import './components/menu/menu'
-import Menu from './components/menu/menu';
-import PatternList from './components/menu/patternList'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./App.css";
+import "./components/menu/menu";
+import Menu from "./components/menu/menu";
+import PatternList from "./components/menu/patternList";
 import Patterns from "./components/patterns";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
-
   let [pattern, setPatternInfo] = useState(false);
   let content;
   let [patterns, setPatterns] = useState([]);
   let [message, setMessage] = useState("Click the button to load data!");
 
-
   //closes side menu when you click away
   function clickOffMenu() {
     if (pattern === true) {
-      setPatternInfo(false)
+      setPatternInfo(false);
     }
   }
+
+  useEffect(() => {
+    axios.get("/api/patterns").then(response => setPatterns(response.data));
+  }, []);
 
   const fetchData = () => {
     axios
@@ -35,20 +36,17 @@ export default function App() {
       });
   };
 
-  //opens side menu 
+  //opens side menu
   if (pattern === false) {
-    content = <div></div>
+    content = <div></div>;
   } else {
-    content = <PatternList
-    />
+    content = <PatternList />;
   }
   console.log("PATTERNS >>>>", patterns);
   return (
     <div className="App" onClick={clickOffMenu}>
-      <Menu
-        setPattern={setPatternInfo}
-      />
-      <Patterns />
+      <Menu setPattern={setPatternInfo} />
+      <Patterns patterns={patterns} />
       <h1>{message}</h1>
       <button onClick={fetchData}>Fetch Data</button>
       {content}
