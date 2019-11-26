@@ -17,7 +17,13 @@ puts "Grudgingly permitting the addition of users ... "
 
 user1 = User.create!({
   name: "John",
-  email: "John@email.com",
+  email: "john@email.com",
+  password: "password"
+})
+
+user2 = User.create!({
+  name: "Bob",
+  email: "bob@email.com",
   password: "password"
 })
 
@@ -29,9 +35,26 @@ user1.patterns.create!({
   colours: []
 })
 
+user1.patterns.create!({
+  title:  'My dog',
+  description: 'Poodle',
+  colours: []
+})
+
+user2.patterns.create!({
+  title:  'School Bus',
+  description: 'Yellow',
+  colours: []
+})
+
 puts "Creating Favourites ..."
 
 user1.favourites.create!({
+  user_id:  1,
+  pattern_id: 1,
+})
+
+user2.favourites.create!({
   user_id:  1,
   pattern_id: 1,
 })

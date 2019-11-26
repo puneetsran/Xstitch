@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from "styled-components";
 import "./styles.css";
+
+const PatternsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 export default class Patterns extends Component {
   constructor(props) {
@@ -20,14 +26,16 @@ export default class Patterns extends Component {
     const { patterns } = this.state;
 
     return (
-      <div>
-        {patterns.map(pattern => (
-          <li key={pattern.id}>
-            <p>{pattern.title}</p>
-            <p>{pattern.description}</p>
-            <p>{pattern.colours}</p>
-          </li>
-        ))}
+      <div className="patterns">
+        <PatternsContainer>
+          {patterns.map(pattern => (
+            <li key={pattern.id}>
+              <p>{pattern.title}</p>
+              <p>{pattern.description}</p>
+              <p>{pattern.colours}</p>
+            </li>
+          ))}
+        </PatternsContainer>
       </div>
     );
   }
