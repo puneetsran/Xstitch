@@ -8,11 +8,24 @@
 
 puts "Seeding Data ..."
 
+puts "Eradicating lingering vermin ..." 
+Pattern.destroy_all
+User.destroy_all
+Favourites.destroy_all
+
+puts "Grudgingly permitting the addition of users ... "
+
+user1 = User.create!({
+  name: "John",
+  email: "John@email.com",
+  password: "password"
+})
+
 puts "Creating Patterns ..."
 
-Pattern.create!({
-  title:  'Canada Flag',
-  description: 'Red with white background',
+user1.patterns.create!({
+  title:  'My cat',
+  description: 'Black cat',
   colours: []
 })
 
