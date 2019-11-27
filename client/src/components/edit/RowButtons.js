@@ -8,7 +8,7 @@ export default function RowButtons(props) {
         <Icon name="plus" />
         Add Row
       </Button>
-      <Button icon labelPosition="left">
+      <Button icon labelPosition="left" onClick={props.deleteRow}>
         Delete Row
         <Icon name="minus" />
       </Button>

@@ -8,7 +8,7 @@ export default function ColumnButtons(props) {
         <Icon name="plus" />
         Add Column
       </Button>
-      <Button icon labelPosition="left">
+      <Button icon labelPosition="left" onClick={props.deleteColumn}>
         Delete Column
         <Icon name="minus" />
       </Button>

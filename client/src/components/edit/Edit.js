@@ -60,7 +60,7 @@ export default function Edit(props) {
     setColor(input.hex);
   }
 
-  function addRow(input) {
+  function addRow() {
     const newRow = [];
     for (let i = 0; i < pattern[0].length; i++) {
       newRow.push("#ffffff");
@@ -68,8 +68,12 @@ export default function Edit(props) {
     updatePattern(prev => [...prev, newRow]);
   }
 
+  function deleteRow() {
+    updatePattern(pattern.slice(0, pattern.length - 1))
+  }
+
   function addColumn() {
-    updatePattern((prev) => {
+    updatePattern(prev => {
       let newPattern = [];
       prev.forEach(row => {
         row.push("#ffffff");
@@ -79,13 +83,24 @@ export default function Edit(props) {
     })
   }
 
+  function deleteColumn() {
+    updatePattern(prev => {
+      let newPattern = [];
+      prev.forEach(row => {
+        row.pop();
+        newPattern.push(row);
+      });
+      return newPattern;
+    });
+  }
+
   return (
     <section className="edit">
       <Grid pattern={pattern} updateColor={updateColor} />
       <div className="controls">
         <ColorPicker color={color} onChangeComplete={handleChangeComplete} />
-        <RowButtons addRow={addRow} />
-        <ColumnButtons addColumn={addColumn} />
+        <RowButtons addRow={addRow} deleteRow={deleteRow}/>
+        <ColumnButtons addColumn={addColumn} deleteColumn={deleteColumn} />
       </div>
     </section>
   );
