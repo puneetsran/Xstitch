@@ -11,7 +11,8 @@ gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
-gem 'bundler', '1.3.0'
+# commented out as not needed
+# gem 'bundler', '1.3.0'
 
 gem 'sprockets', '>= 3.0.0'
 
