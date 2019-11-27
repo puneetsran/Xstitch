@@ -28,6 +28,16 @@ user1.patterns.create!({
   description: 'Black cat',
   colours: []
 })
+user1.patterns.create!({
+  title:  'Flowers',
+  description: 'Is flowers',
+  colours: []
+})
+user1.patterns.create!({
+  title:  'Birbs',
+  description: 'is many birbs',
+  colours: []
+})
 
 puts "Creating Favourites ..."
 
