@@ -7,9 +7,13 @@ export default function PatternListItem(props) {
 
 
   return (
-    <Card style={{ width: '20rem' }}>
+    <Card style={{ width: '20rem', postition: "absolute" }}>
       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-      <Card.Body style={{ background: "#a6c2de", border: "solid", borderColor: "darkgrey" }}>
+      <Card.Body style={{
+        background: "#a6c2de",
+        border: "solid",
+        borderColor: "darkgrey"
+      }}>
         <div>
           <h2>Title</h2>
           {props.title}
