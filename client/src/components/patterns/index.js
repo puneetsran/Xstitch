@@ -1,3 +1,3 @@
-import Patterns from "./Patterns";
+import Patterns from "./patterns";
 
 export default Patterns;
