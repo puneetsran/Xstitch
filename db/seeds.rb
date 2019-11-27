@@ -28,6 +28,7 @@ user1.patterns.create!({
   description: 'Black cat',
   colours: []
 })
+
 user1.patterns.create!({
   title:  'Flowers',
   description: 'Is flowers',
