@@ -1,0 +1,15 @@
+.edit {
+  display: flex;
+  width: 80%;
+  float: right;
+  height: 80vh;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: darkgrey;
+}

@@ -6,12 +6,15 @@ import Menu from "./components/menu/menu";
 import PatternList from "./components/menu/patternList";
 import Patterns from "./components/patterns";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Edit from "./components/edit/Edit"
 
 export default function App() {
   let content;
   let [pattern, setPatternInfo] = useState(false);
   let [patterns, setPatterns] = useState([]);
   let [message, setMessage] = useState("Click the button to load data!");
+
+
 
   //closes side menu when you click away
   function clickOffMenu() {
@@ -50,6 +53,7 @@ export default function App() {
       <h1>{message}</h1>
       <button onClick={fetchData}>Fetch Data</button>
       {content}
+      <Edit />
     </div>
   );
 }
