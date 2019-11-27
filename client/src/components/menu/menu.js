@@ -42,6 +42,9 @@ export default function Menu(props) {
               My Patterns
             </NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2"
+              // onClick needs to show favourites for specific user
+              // is currently showing all patterns
+              onClick={() => props.setPattern(true)}
               style={{
                 marginBottom: "none",
                 fontSize: "20px",
