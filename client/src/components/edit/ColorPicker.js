@@ -1,7 +1,11 @@
-import React from 'react';
-import { SwatchesPicker } from 'react-color';
-
+import React from "react";
+import { SketchPicker } from "react-color";
 
 export default function ColorPicker(props) {
-  return <SwatchesPicker onChangeComplete={props.onChangeComplete}/>
+  return (
+    <SketchPicker
+      color={props.color}
+      onChangeComplete={props.onChangeComplete}
+    />
+  );
 }
