@@ -1,8 +1,38 @@
 .patterns {
-  display: flex;
+  display: inline-block;
+  flex-direction: row;
+  column-count: 3;
+  -webkit-column-break-inside: avoid;
 }
 
-.pattern {
+/* .pattern-container {
+  display: flex;
+} */
+
+/*.pattern {
   margin: 1em;
   border: 1px solid;
+} */
+
+/* div.card-columns {
+  width: 33%;
+} */
+
+svg.heart {
+  color: red;
+  font-size: 2em;
+}
+
+svg.share {
+  color: blue;
+  font-size: 2em;
+}
+
+svg.heart:hover {
+  opacity: 100;
+}
+
+.card-columns {
+  display: inline-block;
+  column-count: 3;
 }

@@ -35,14 +35,33 @@ user1.patterns.create!({
   colours: []
 })
 
+user2.patterns.create!({
+   title:  'My dog',
+   description: 'Poodle',
+   colours: []
+ })
+
+user2.patterns.create!({
+   title:  'School Bus',
+   description: 'Yellow',
+   colours: []
+ })
+
 user1.patterns.create!({
   title:  'Flowers',
   description: 'Is flowers',
   colours: []
 })
+
 user1.patterns.create!({
   title:  'Birbs',
   description: 'is many birbs',
+  colours: []
+})
+
+user2.patterns.create!({
+  title:  'Bumble Bee',
+  description: 'Buzz',
   colours: []
 })
 
@@ -56,6 +75,11 @@ user1.favourites.create!({
 user2.favourites.create!({
   user_id:  1,
   pattern_id: 1,
+})
+
+user2.favourites.create!({
+   user_id:  1,
+   pattern_id: 3,
 })
 
 puts "DONE!"

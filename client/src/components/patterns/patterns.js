@@ -2,20 +2,19 @@ import React, { useEffect, Component, useReducer, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import "./styles.css";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { IoIosHeart, IoIosShareAlt } from "react-icons/io";
 // import reducer from "reducers/application";
 
-const PatternsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+// const PatternsContainer = styled.div``;
 
 export default function Patterns(props) {
   // const [state, setState] = useState();
   // console.log("state here", state);
 
   function viewPattern(pattern) {
-    console.log("pattern here", pattern);
+    // console.log("pattern here", pattern);
     return () => {
       return axios
         .get(`/api/patterns/${pattern.id}`)
@@ -27,17 +26,28 @@ export default function Patterns(props) {
 
   const patterns = props.patterns.map(pattern => {
     return (
-      <li className="pattern" key={pattern.id}>
-        <p>{pattern.title}</p>
-        <p>{pattern.description}</p>
-        <p>{pattern.colours}</p>
-        <Button onClick={viewPattern(pattern)}>View</Button>
-      </li>
+      <div className="card-columns" key={pattern.id}>
+        <div className="card">
+          <div class="card-body">
+            <h5 class="card-title">{pattern.title}</h5>
+            <p class="card-text">{pattern.description}</p>
+            <p>{pattern.colours}Pattern here</p>
+            <IoIosShareAlt
+              class="share"
+              onClick={viewPattern(pattern)}
+            ></IoIosShareAlt>
+            <IoIosHeart
+              class="heart"
+              onClick={viewPattern(pattern)}
+            ></IoIosHeart>
+          </div>
+        </div>
+      </div>
     );
   });
   return (
-    <div className="patterns">
-      <PatternsContainer>{patterns}</PatternsContainer>
+    <div className="pattern-container">
+      <div className="patterns">{patterns}</div>
     </div>
   );
 }
