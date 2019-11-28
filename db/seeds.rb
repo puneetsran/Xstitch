@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'json'
 
 puts "Seeding Data ..."
 
@@ -27,42 +28,70 @@ user2 = User.create!({
   password: "password"
 })
 
+user3 = User.create!({
+  name: "Oprah",
+  email: "oprah@email.com",
+  password: "password"
+})
+
 puts "Creating Patterns ..."
+
+# puts [['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']].to_h
+# puts [['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']].to_h.to_json
 
 user1.patterns.create!({
   title:  'My cat',
   description: 'Black cat',
-  colours: [['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']]
+  # colours: JSON.parse([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
+  colours: JSON.generate([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
 })
 
 user2.patterns.create!({
    title:  'My dog',
    description: 'Poodle',
-   colours: []
+   colours: {}
  })
 
 user2.patterns.create!({
    title:  'School Bus',
    description: 'Yellow',
-   colours: []
+   colours: {}
  })
 
 user1.patterns.create!({
   title:  'Flowers',
   description: 'Is flowers',
-  colours: []
+  colours: {}
 })
 
 user1.patterns.create!({
   title:  'Birbs',
   description: 'is many birbs',
-  colours: []
+  colours: {}
 })
 
 user2.patterns.create!({
   title:  'Bumble Bee',
   description: 'Buzz',
-  colours: []
+  colours: {}
+})
+
+user3.patterns.create!({
+  title:  'Jazz hands',
+  description: 'n/a',
+  colours: {}
+})
+
+user3.patterns.create!({
+  title:  'Wink emoji',
+  description: 'n/a',
+  colours: {}
+})
+
+user3.patterns.create!({
+  title:  'Turtle',
+  description: 'n/a',
+  colours: {}
 })
 
 puts "Creating Favourites ..."
@@ -74,12 +103,27 @@ user1.favourites.create!({
 
 user2.favourites.create!({
   user_id:  1,
-  pattern_id: 1,
+  pattern_id: 4,
 })
 
 user2.favourites.create!({
    user_id:  1,
+   pattern_id: 5,
+})
+
+user3.favourites.create!({
+   user_id:  2,
+   pattern_id: 2,
+})
+
+user3.favourites.create!({
+   user_id:  2,
    pattern_id: 3,
+})
+
+user3.favourites.create!({
+   user_id:  1,
+   pattern_id: 5,
 })
 
 puts "DONE!"

@@ -10,21 +10,35 @@
   .pattern-container {
     /* display: flex; */
     text-align: center;
+    margin: 2em;
   }
 
-  /*.pattern {
-    margin: 1em;
-    border: 1px solid;
-  } */
-
-  /* div.card-columns {
-    width: 33%;
-  } */
+  .card-deck {
+    margin-bottom: 1em;
+  }
 
   .card-body {
-    padding: 1rem;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 10px;
     min-width: 20em;
+    opacity: 70%;
   }
+
+  .view-pattern:hover {
+    cursor: pointer;
+  }
+
+  .card-body:hover {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    min-width: 20em;
+    opacity: 100%;
+  }
+
   .heart {
     color: red;
     font-size: 2em;
@@ -39,14 +53,23 @@
 
   .heart:hover {
     opacity: 100%;
+    cursor: pointer;
   }
   .share:hover {
     opacity: 100%;
+    cursor: pointer;
   }
 
   .card-columns {
     display: inline-block;
     column-count: 3;
+  }
+
+  .card-footer {
+    padding-left: 1px;
+    padding-bottom: 1px;
+    padding-right: 1px;
+    padding-top: 10px;
   }
 }
 
@@ -59,10 +82,36 @@
     -webkit-column-break-inside: avoid;
   }
 
-  .card-body {
-    padding: 1rem;
-    min-width: 20em;
+  .pattern-container {
+    /* display: flex; */
+    text-align: center;
+    margin: 2em;
   }
+
+  .card-deck {
+    margin-bottom: 1em;
+  }
+
+  .card-body {
+    padding-top: 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    min-width: 20em;
+    opacity: 70%;
+  }
+
+  .card-body:hover {
+    padding-top: 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    min-width: 20em;
+    opacity: 100%;
+  }
+
+  .view-pattern:hover {
+    cursor: pointer;
+  }
+
   .heart {
     color: red;
     font-size: 2em;
@@ -77,14 +126,23 @@
 
   .heart:hover {
     opacity: 100%;
+    cursor: pointer;
   }
 
   .share:hover {
     opacity: 100%;
+    cursor: pointer;
   }
 
   .card-columns {
     display: inline-block;
     column-count: 3;
+  }
+
+  .card-footer {
+    padding-left: 1px;
+    padding-bottom: 1px;
+    padding-right: 1px;
+    padding-top: 10px;
   }
 }

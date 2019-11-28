@@ -5,6 +5,7 @@ import "./styles.css";
 // import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { IoIosHeart, IoIosShareAlt } from "react-icons/io";
+import Pixel from "../edit/Pixel";
 // import reducer from "reducers/application";
 
 // const PatternsContainer = styled.div``;
@@ -24,24 +25,45 @@ export default function Patterns(props) {
     };
   }
 
+  function addToFavourites(pattern) {
+    return () => {
+      return axios
+        .get(`/api/patterns/${pattern.id}`)
+        .then(({ data: { pattern } }) => {
+          console.log("add this to favourite", pattern);
+        });
+    };
+  }
+
+  // function parseString(string) {
+  // }
+
+  // const pixelTest = "rgb(0, 0, 0)";
   const patterns = props.patterns.map(pattern => {
     return (
-      <div className="card-deck" key={pattern.id}>
+      <li className="card-deck" key={pattern.id}>
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">{pattern.title}</h5>
             <p className="card-text">{pattern.description}</p>
-            <p>{pattern.colours}Pattern here</p>
-            <div className="text-right">
+            {/* <Pixel color={pixelTest} /> */}
+            {/* <Pixel color={parseString(pattern.colours)} /> */}
+            <p className="view-pattern" onClick={viewPattern(pattern)}>
+              {pattern.colours[0]}Pattern here
+            </p>
+            <div className="card-footer bg-transparent text-right">
               <IoIosShareAlt className="share"></IoIosShareAlt>
               <IoIosHeart
                 className="heart"
-                onClick={viewPattern(pattern)}
+                onClick={addToFavourites(pattern)}
               ></IoIosHeart>
             </div>
+            {/* <div className="text-right"> */}
+
+            {/* </div> */}
           </div>
         </div>
-      </div>
+      </li>
     );
   });
   return (
