@@ -1,38 +1,90 @@
-.patterns {
-  display: inline-block;
-  flex-direction: row;
-  column-count: 3;
-  -webkit-column-break-inside: avoid;
+@media only screen and (min-width: 1024px) {
+  /* for small screen */
+  .patterns {
+    display: inline-block;
+    flex-direction: row;
+    column-count: 3;
+    -webkit-column-break-inside: avoid;
+  }
+
+  .pattern-container {
+    /* display: flex; */
+    text-align: center;
+  }
+
+  /*.pattern {
+    margin: 1em;
+    border: 1px solid;
+  } */
+
+  /* div.card-columns {
+    width: 33%;
+  } */
+
+  .card-body {
+    padding: 1rem;
+    min-width: 20em;
+  }
+  .heart {
+    color: red;
+    font-size: 2em;
+    opacity: 50%;
+  }
+
+  .share {
+    color: blue;
+    font-size: 2em;
+    opacity: 50%;
+  }
+
+  .heart:hover {
+    opacity: 100%;
+  }
+  .share:hover {
+    opacity: 100%;
+  }
+
+  .card-columns {
+    display: inline-block;
+    column-count: 3;
+  }
 }
 
-/* .pattern-container {
-  display: flex;
-} */
+@media only screen and (max-width: 1023px) {
+  /* for wide screen */
+  .patterns {
+    display: inline-block;
+    flex-direction: row;
+    column-count: 1;
+    -webkit-column-break-inside: avoid;
+  }
 
-/*.pattern {
-  margin: 1em;
-  border: 1px solid;
-} */
+  .card-body {
+    padding: 1rem;
+    min-width: 20em;
+  }
+  .heart {
+    color: red;
+    font-size: 2em;
+    opacity: 50%;
+  }
 
-/* div.card-columns {
-  width: 33%;
-} */
+  .share {
+    color: blue;
+    font-size: 2em;
+    opacity: 50%;
+  }
 
-svg.heart {
-  color: red;
-  font-size: 2em;
-}
+  .heart:hover {
+    opacity: 100%;
+  }
 
-svg.share {
-  color: blue;
-  font-size: 2em;
-}
+  .share:hover {
+    opacity: 100%;
+  }
 
-svg.heart:hover {
-  opacity: 100;
-}
-
-.card-columns {
-  display: inline-block;
-  column-count: 3;
+  .card-columns {
+    display: inline-block;
+    column-count: 3;
+  }
 }

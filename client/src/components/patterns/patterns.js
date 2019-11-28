@@ -26,20 +26,19 @@ export default function Patterns(props) {
 
   const patterns = props.patterns.map(pattern => {
     return (
-      <div className="card-columns" key={pattern.id}>
+      <div className="card-deck" key={pattern.id}>
         <div className="card">
-          <div class="card-body">
-            <h5 class="card-title">{pattern.title}</h5>
-            <p class="card-text">{pattern.description}</p>
+          <div className="card-body">
+            <h5 className="card-title">{pattern.title}</h5>
+            <p className="card-text">{pattern.description}</p>
             <p>{pattern.colours}Pattern here</p>
-            <IoIosShareAlt
-              class="share"
-              onClick={viewPattern(pattern)}
-            ></IoIosShareAlt>
-            <IoIosHeart
-              class="heart"
-              onClick={viewPattern(pattern)}
-            ></IoIosHeart>
+            <div className="text-right">
+              <IoIosShareAlt className="share"></IoIosShareAlt>
+              <IoIosHeart
+                className="heart"
+                onClick={viewPattern(pattern)}
+              ></IoIosHeart>
+            </div>
           </div>
         </div>
       </div>

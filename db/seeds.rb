@@ -32,7 +32,7 @@ puts "Creating Patterns ..."
 user1.patterns.create!({
   title:  'My cat',
   description: 'Black cat',
-  colours: []
+  colours: [['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']]
 })
 
 user2.patterns.create!({

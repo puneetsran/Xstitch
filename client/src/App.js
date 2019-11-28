@@ -12,7 +12,8 @@ export default function App() {
   let content;
   let [pattern, setPatternInfo] = useState(false);
   let [patterns, setPatterns] = useState([]);
-  let [message, setMessage] = useState("Click the button to load data!");
+  // let [message, setMessage] = useState("Click the button to load data!");
+  let [message, setMessage] = useState();
 
   //closes side menu when you click away
   function clickOffMenu() {
@@ -51,7 +52,7 @@ export default function App() {
       <h1>{message}</h1>
       <button onClick={fetchData}>Fetch Data</button>
       {content}
-      {/* <Edit /> */}
+      <Edit />
     </div>
   );
 }
