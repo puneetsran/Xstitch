@@ -17,11 +17,11 @@ export default function Patterns(props) {
   // const [state, setState] = useState();
   // console.log("state here", state);
 
-  const currentUser = {
-    name: "John",
-    email: "John@email.com",
-    password: "password"
-  };
+  // const currentUser = {
+  //   name: "John",
+  //   email: "John@email.com",
+  //   password: "password"
+  // };
 
   function viewPattern(pattern) {
     // console.log("pattern here", pattern);
@@ -90,7 +90,7 @@ export default function Patterns(props) {
             <div className="card-footer bg-transparent text-right">
               <IoIosShareAlt
                 className="share"
-                // onClick={sharePattern()}
+              // onClick={sharePattern()}
               ></IoIosShareAlt>
               <IoIosHeart
                 className="heart"
