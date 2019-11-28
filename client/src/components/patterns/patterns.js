@@ -90,7 +90,7 @@ export default function Patterns(props) {
             <div className="card-footer bg-transparent text-right">
               <IoIosShareAlt
                 className="share"
-                onClick={sharePattern()}
+                // onClick={sharePattern()}
               ></IoIosShareAlt>
               <IoIosHeart
                 className="heart"
