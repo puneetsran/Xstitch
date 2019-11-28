@@ -6,7 +6,7 @@ import Menu from "./components/menu/menu";
 import PatternList from "./components/menu/patternList";
 import Patterns from "./components/patterns";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Edit from "./components/edit/Edit"
+import Edit from "./components/edit/Edit";
 
 export default function App() {
   let content;

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     
     resources :patterns
     resources :users, only: [:index, :show]
+    resources :favourites
 
   end
 
