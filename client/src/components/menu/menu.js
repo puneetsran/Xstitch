@@ -1,10 +1,23 @@
 /* eslint-disable no-unused-expressions */
-import React from "react";
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import axios from 'axios'
 
 
 export default function Menu(props) {
+  // const [user, setUser] = useState([])
+
+  function getUser() {
+    axios.get('/api/users')
+      .then((res) => {
+        // console.log("response from users", res)
+        props.setUser(res.data[0])
+      }).catch((err) => {
+        console.log(err)
+
+      })
+  }
 
   return (
 
@@ -74,6 +87,7 @@ export default function Menu(props) {
           Sign Up
         </Button>
         <Button variant="outline-success"
+          onClick={getUser}
           style={{
             color: "powderblue",
             background: "#2884a7",

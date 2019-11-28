@@ -15,7 +15,9 @@ export default function App() {
   let [patterns, setPatterns] = useState([]);
   // let [message, setMessage] = useState("Click the button to load data!");
   let [page, setPage] = useState("home")
+  const [user, setUser] = useState([])
 
+  console.log("this is user", user)
   if (page === "home") {
     showPage = <Patterns patterns={patterns} />
   } else if (page === "create") {
@@ -65,6 +67,7 @@ export default function App() {
       <Menu
         setPattern={setPatternInfo}
         setPage={setPage}
+        setUser={setUser}
       />
       {showPage}
       {/* <Patterns patterns={patterns} /> */}

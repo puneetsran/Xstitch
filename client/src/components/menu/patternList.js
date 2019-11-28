@@ -4,14 +4,13 @@ import axios from "axios";
 
 
 export default function PatternList(props) {
-  //put useEffect in here some how
   const [pattern, setPattern] = useState([])
 
-  const user = {
-    name: "John",
-    email: "John@email.com",
-    password: "password"
-  }
+  // const user = {
+  //   name: "John",
+  //   email: "John@email.com",
+  //   password: "password"
+  // }
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get '/data', to: 'tests#index'
     
     resources :patterns
-    resources :users
+    resources :users, only: [:index, :show]
 
   end
 
