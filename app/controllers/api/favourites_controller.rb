@@ -1,4 +1,4 @@
-class FavouritesController < ApplicationController
+class Api::FavouritesController < ApplicationController
   def create
     @favourite = Favourite.find_or_create_by(
       user_id: params[:user_id],
@@ -9,7 +9,7 @@ class FavouritesController < ApplicationController
 
   def show
     @favourite = Favourite.find params[:id]
-    render: json => {
+    render json: {
       favourite: @favourite
     }
   end

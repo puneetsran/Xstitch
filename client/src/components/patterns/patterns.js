@@ -38,10 +38,12 @@ export default function Patterns(props) {
   function addToFavourites(pattern) {
     return () => {
       return axios
-        .get(`/api/patterns/${pattern.id}`)
-        .then(({ data: { pattern } }) => {
-          console.log("add this to favourite", pattern);
-          console.log("user", pattern.user_id);
+        .post(`/api/favourites/`, {
+          user_id: `1`,
+          pattern_id: pattern.id
+        })
+        .then(response => {
+          console.log("response here", response);
         });
     };
   }
@@ -75,8 +77,6 @@ export default function Patterns(props) {
     );
   }
 
-  // const pixelTest = "rgb(0, 0, 0)";
-
   const patterns = props.patterns.map(pattern => {
     return (
       <li className="card-deck" key={pattern.id}>
@@ -84,8 +84,6 @@ export default function Patterns(props) {
           <div className="card-body">
             <h5 className="card-title">{pattern.title}</h5>
             <p className="card-text">{pattern.description}</p>
-            {/* <Pixel color={pixelTest} /> */}
-            {/* <Pixel color={parseString(pattern.colours)} /> */}
             <p className="view-pattern" onClick={viewPattern(pattern)}>
               {pattern.colours[0]}Pattern here
             </p>
@@ -99,9 +97,6 @@ export default function Patterns(props) {
                 onClick={addToFavourites(pattern)}
               ></IoIosHeart>
             </div>
-            {/* <div className="text-right"> */}
-
-            {/* </div> */}
           </div>
         </div>
       </li>

@@ -13,20 +13,20 @@ class Api::PatternsController < ApplicationController
     render json: { pattern: pattern }, status: 200 and return
   end
 
-  def create_pattern
-    @pattern = Pattern.new(pattern_params)
-    if @pattern.save
-      session[:pattern_id] = @pattern.id
-      redirect_to '/', notice: 'Pattern created successfully'
-    else
-      redirect_to '/home'
-    end
+  def create
+    puts "inside create pattern"
+    @pattern = Pattern.find_or_create_by(
+      user_id: params[:user_id],
+      title: params[:title],
+      description: params[:description],
+      colours: params[:colours]
+    )
+    @pattern.save
   end
 
-  private
-
-  def pattern_params
-    params.require(:pattern).permit(:title, :description)
+  def destroy
+    @pattern = Pattern.find params[:id]
+    @pattern.destroy
   end
 
 end
