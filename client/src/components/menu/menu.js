@@ -27,8 +27,8 @@ export default function Menu(props) {
             fontSize: "1.5em",
             paddingTop: "25px"
           }}>
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#link">Create</Nav.Link>
+          <Nav.Link href="#home" onClick={() => props.setPage("home")}>Home</Nav.Link>
+          <Nav.Link href="#link" onClick={() => props.setPage("create")}>Create</Nav.Link>
           <NavDropdown title="Menu" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1"
               onClick={() => props.setPattern(true)}

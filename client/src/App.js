@@ -10,11 +10,28 @@ import Edit from "./components/edit/Edit"
 
 export default function App() {
   let content;
+  let showPage;
   let [pattern, setPatternInfo] = useState(false);
   let [patterns, setPatterns] = useState([]);
-  let [message, setMessage] = useState("Click the button to load data!");
+  // let [message, setMessage] = useState("Click the button to load data!");
+  let [page, setPage] = useState("home")
+
+  if (page === "home") {
+    showPage = <Patterns patterns={patterns} />
+  } else if (page === "create") {
+    showPage = <Edit />
+  }
+  else {
+    showPage = <div></div>
+  }
 
 
+  //opens side menu
+  if (pattern === false) {
+    content = <div></div>;
+  } else {
+    content = <PatternList />;
+  }
 
   //closes side menu when you click away
   function clickOffMenu() {
@@ -23,37 +40,38 @@ export default function App() {
     }
   }
 
+
   useEffect(() => {
     axios.get("/api/patterns").then(response => setPatterns(response.data));
   }, []);
 
-  const fetchData = () => {
-    axios
-      .get("/api/data") // You can simply make your requests to "/api/whatever you want"
-      .then(response => {
-        // handle success
-        console.log(response.data); // The entire response from the Rails API
+  // const fetchData = () => {
+  //   axios
+  //     .get("/api/data") // You can simply make your requests to "/api/whatever you want"
+  //     .then(response => {
+  //       // handle success
+  //       console.log(response.data); // The entire response from the Rails API
 
-        console.log(response.data.message); // Just the message
-        setMessage(response.data.message);
-      });
-  };
+  //       console.log(response.data.message); // Just the message
+  //       setMessage(response.data.message);
+  //     });
+  // };
 
-  //opens side menu
-  if (pattern === false) {
-    content = <div></div>;
-  } else {
-    content = <PatternList />;
-  }
+
+
   console.log("PATTERNS >>>>", patterns);
   return (
     <div className="App" onClick={clickOffMenu}>
-      <Menu setPattern={setPatternInfo} />
-      <Patterns patterns={patterns} />
-      <h1>{message}</h1>
-      <button onClick={fetchData}>Fetch Data</button>
+      <Menu
+        setPattern={setPatternInfo}
+        setPage={setPage}
+      />
+      {showPage}
+      {/* <Patterns patterns={patterns} /> */}
+      {/* <h1>{message}</h1> */}
+      {/* <button onClick={fetchData}>Fetch Data</button> */}
       {content}
-      <Edit />
+      {/* <Edit /> */}
     </div>
   );
 }
