@@ -16,6 +16,7 @@ export default function App() {
   // let [message, setMessage] = useState("Click the button to load data!");
   let [page, setPage] = useState("home")
   const [user, setUser] = useState([])
+  const [storage, setStorage] = useState([])
 
   console.log("this is user", user)
   if (page === "home") {
@@ -68,6 +69,7 @@ export default function App() {
         setPattern={setPatternInfo}
         setPage={setPage}
         setUser={setUser}
+        setStorage={setStorage}
       />
       {showPage}
       {/* <Patterns patterns={patterns} /> */}

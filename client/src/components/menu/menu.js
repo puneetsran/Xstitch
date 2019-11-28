@@ -11,11 +11,11 @@ export default function Menu(props) {
   function getUser() {
     axios.get('/api/users')
       .then((res) => {
-        // console.log("response from users", res)
         props.setUser(res.data[0])
+        let userObj = JSON.stringify(res.data[0])
+        console.log("stored", window.localStorage.setItem('user', userObj))
       }).catch((err) => {
         console.log(err)
-
       })
   }
 
