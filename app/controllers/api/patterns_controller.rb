@@ -10,7 +10,8 @@ class Api::PatternsController < ApplicationController
     id = params[:id]
     pattern = Pattern.find(id)
     # render json: { test: 'cool' }
-    render json: { pattern: pattern }, status: 200 and return
+    favourite = Favourite.find_by(pattern_id: pattern.id)
+    render json: { pattern: pattern, favourite: favourite }, status: 200 and return
   end
 
   def create
