@@ -23,8 +23,15 @@
     padding-left: 20px;
     padding-bottom: 10px;
     min-width: 20em;
-    opacity: 70%;
     border-style: solid;
+  }
+
+  .view-pattern {
+    vertical-align: middle;
+    border: solid;
+    border-color: black;
+    min-width: 10em;
+    min-height: 15em;
   }
 
   .view-pattern:hover {
@@ -37,27 +44,32 @@
     padding-left: 20px;
     padding-bottom: 10px;
     min-width: 20em;
-    opacity: 100%;
   }
 
   .heart {
-    color: red;
-    font-size: 2em;
-    opacity: 50%;
+    color: transparent;
+    font-size: 1.75em;
+    stroke: red;
+    stroke-width: 35;
   }
 
   .share {
     color: blue;
-    font-size: 2em;
-    opacity: 50%;
+    font-size: 1.75em;
+  }
+
+  .fork-pattern {
+    color: black;
+    font-size: 1.75em;
   }
 
   .heart:hover {
-    opacity: 100%;
     cursor: pointer;
   }
   .share:hover {
-    opacity: 100%;
+    cursor: pointer;
+  }
+  .fork-pattern:hover {
     cursor: pointer;
   }
 
@@ -74,7 +86,11 @@
   }
 
   .is-favourited {
-    color: darkred;
+    color: red;
+  }
+
+  .is-not-favourited {
+    color: transparent;
   }
 }
 
@@ -102,7 +118,7 @@
     padding-right: 1rem;
     padding-left: 1rem;
     min-width: 20em;
-    opacity: 70%;
+    border-style: solid;
   }
 
   .card-body:hover {
@@ -110,7 +126,15 @@
     padding-right: 1rem;
     padding-left: 1rem;
     min-width: 20em;
-    opacity: 100%;
+    box-shadow: lightslategrey;
+  }
+
+  .view-pattern {
+    vertical-align: middle;
+    border: solid;
+    border-color: black;
+    min-width: 10em;
+    min-height: 15em;
   }
 
   .view-pattern:hover {
@@ -118,24 +142,31 @@
   }
 
   .heart {
-    color: red;
-    font-size: 2em;
-    opacity: 50%;
+    color: transparent;
+    font-size: 1.75em;
+    stroke: red;
+    stroke-width: 35;
   }
 
   .share {
     color: blue;
-    font-size: 2em;
-    opacity: 50%;
+    font-size: 1.75em;
+  }
+
+  .fork-pattern {
+    color: black;
+    font-size: 1.75em;
   }
 
   .heart:hover {
-    opacity: 100%;
     cursor: pointer;
   }
 
   .share:hover {
-    opacity: 100%;
+    cursor: pointer;
+  }
+
+  .fork-patterh {
     cursor: pointer;
   }
 
@@ -149,5 +180,9 @@
     padding-bottom: 1px;
     padding-right: 1px;
     padding-top: 10px;
+  }
+
+  .is-favourited {
+    color: red;
   }
 }

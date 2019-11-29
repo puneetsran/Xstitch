@@ -6,37 +6,21 @@ import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { IoIosHeart, IoIosShareAlt } from "react-icons/io";
+import { GoRepoForked } from "react-icons/go";
 
 export default function Pattern(props) {
-  const [isFavourited, setIsFavourited] = useState(false);
-
-  const currentUser = {
-    name: "John",
-    email: "John@email.com",
-    password: "password"
-  };
+  const [isFavourited, setIsFavourited] = useState(undefined);
 
   useEffect(() => {
     axios.get(`/api/patterns/${pattern.id}`).then(res => {
-      console.log("response from useEffect", res);
+      // console.log("response from useEffect", res);
       const favourited = res.data.favourite;
-      setIsFavourited(favourited);
+      // console.log("favourite from get:", favourited);
+      if (favourited) {
+        setIsFavourited(favourited.id);
+      }
     });
   }, []);
-
-  // useEffect(() => {
-  //   Promise.all([
-  //     axios.get("/api/days"),
-  //     axios.get("/api/appointments"),
-  //     axios.get("/api/interviewers")
-  //   ]).then(all => {
-  //     dispatch({
-  //       type: "SET_APPLICATION_DATA",
-  //       days: all[0].data,
-  //       appointments: all[1].data,
-  //       interviewers: all[2].data
-  //     });
-  //   });
 
   function viewPattern(pattern) {
     // console.log("pattern here", pattern);
@@ -44,33 +28,37 @@ export default function Pattern(props) {
       return axios
         .get(`/api/patterns/${pattern.id}`)
         .then(({ data: { pattern } }) => {
-          console.log("res!!!!!!", pattern);
+          // console.log("res!!!!!!", pattern);
         });
     };
   }
 
-  // does not work
   function addToFavourites(pattern) {
-    return () => {
-      return axios
-        .post(`/api/favourites/`, {
-          user_id: `1`,
-          pattern_id: pattern.id
-        })
-        .then(response => {
-          console.log("response here", response);
-          console.log("data here", response.config.data);
-          if (response.config.data) {
-            setIsFavourited(true);
-            addedToFavourite();
-          }
-        });
-    };
+    console.log("axios is posting:", pattern);
+    return axios
+      .post(`/api/favourites/`, {
+        user_id: `1`,
+        pattern_id: pattern.id
+      })
+      .then(response => {
+        // console.log("ID of new favourite:", response.data.id);
+        // console.log("data here", response.config.data);
+        if (response.data.id) {
+          setIsFavourited(response.data.id);
+          addedToFavourite("Added to favourites!");
+        }
+      });
   }
 
-  function addedToFavourite() {
-    return alert("Added to favourites!");
-    // console.log("does this work?");
+  function removeFromFavourites(favouriteID) {
+    // console.log("removing from favourites:", favouriteID);
+    return axios.delete(`/api/favourites/${favouriteID}`).then(response => {
+      setIsFavourited(undefined);
+    });
+  }
+
+  function addedToFavourite(string) {
+    return alert(string);
   }
 
   function sharePattern() {
@@ -102,20 +90,32 @@ export default function Pattern(props) {
       </>
     );
   }
+
   const pattern = props.pattern;
+  // console.log("isFavourited:", isFavourited);
   return (
     <li className="card-deck" key={pattern.id}>
       <div className="card">
         <div className="card-body">
-          <h5 className="card-title">{pattern.title}</h5>
-          <p className="card-text">{pattern.description}</p>
           <p className="view-pattern" onClick={viewPattern(pattern)}>
             {pattern.colours[0]}Pattern here
           </p>
+          <h5 className="card-title">{pattern.title}</h5>
+          <p className="card-text">{pattern.description}</p>
           <div className="card-footer bg-transparent text-right">
+            <GoRepoForked className="fork-pattern"></GoRepoForked>
             <IoIosHeart
-              className={`heart ${isFavourited ? "is-favourited" : ""}`}
-              onClick={addToFavourites(pattern)}
+              className={`heart ${
+                isFavourited ? "is-favourited" : "is-not-favourited"
+              }`}
+              onClick={() => {
+                // console.log("heart clicked - isFavourited:", isFavourited);
+                if (isFavourited) {
+                  removeFromFavourites(isFavourited);
+                } else {
+                  addToFavourites(pattern);
+                }
+              }}
             ></IoIosHeart>
             <IoIosShareAlt
               className="share"

@@ -5,6 +5,10 @@ class Api::FavouritesController < ApplicationController
       pattern_id: params[:pattern_id]
     )
     @favourite.save
+
+    render json: {
+      id: @favourite.id
+    }
   end
 
   def show
@@ -15,6 +19,8 @@ class Api::FavouritesController < ApplicationController
   end
 
   def destroy
+    # puts "Inside favourite controller - destroy"
+    # puts params.to_s
     @favourite = Favourite.find params[:id]
     @favourite.destroy
   end
