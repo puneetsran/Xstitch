@@ -3,11 +3,14 @@ Rails.application.routes.draw do
 
   namespace :api do # /api/data
 
+
+
     get '/data', to: 'tests#index'
     
     resources :patterns
     resources :users, only: [:index, :show]
     resources :favourites
+    resources :checkpoints
 
   end
 
