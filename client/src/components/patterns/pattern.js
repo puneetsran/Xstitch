@@ -103,7 +103,7 @@ export default function Pattern(props) {
           <h5 className="card-title">{pattern.title}</h5>
           <p className="card-text">{pattern.description}</p>
           <div className="card-footer bg-transparent text-right">
-            <GoRepoForked className="fork-pattern"></GoRepoForked>
+            {/* <GoRepoForked className="fork-pattern"></GoRepoForked> */}
             <IoIosHeart
               className={`heart ${
                 isFavourited ? "is-favourited" : "is-not-favourited"
