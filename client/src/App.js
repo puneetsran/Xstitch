@@ -76,7 +76,7 @@ export default function App() {
       {/* <h1>{message}</h1> */}
       {/* <button onClick={fetchData}>Fetch Data</button> */}
       {content}
-      <Edit />
+      {/* <Edit /> */}
     </div>
   );
 }

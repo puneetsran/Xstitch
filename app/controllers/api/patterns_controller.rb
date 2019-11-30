@@ -20,7 +20,7 @@ class Api::PatternsController < ApplicationController
       user_id: params[:user_id],
       title: params[:title],
       description: params[:description],
-      colours: params[:colours]
+      # colours: params[:colours]
     )
     @pattern.save
   end
