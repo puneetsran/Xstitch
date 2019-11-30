@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(version: 2019_11_30_010633) do
     t.datetime "created_at"
     t.jsonb "colours"
     t.string "image_url"
-    t.bigint "users_id"
-    t.bigint "patterns_id"
-    t.index ["patterns_id"], name: "index_checkpoints_on_patterns_id"
-    t.index ["users_id"], name: "index_checkpoints_on_users_id"
+    t.bigint "user_id"
+    t.bigint "pattern_id"
+    t.index ["pattern_id"], name: "index_checkpoints_on_pattern_id"
+    t.index ["user_id"], name: "index_checkpoints_on_user_id"
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 2019_11_30_010633) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "checkpoints", "patterns", column: "patterns_id"
-  add_foreign_key "checkpoints", "users", column: "users_id"
+  add_foreign_key "checkpoints", "patterns"
+  add_foreign_key "checkpoints", "users"
   add_foreign_key "favourites", "patterns"
   add_foreign_key "favourites", "users"
   add_foreign_key "patterns", "users"

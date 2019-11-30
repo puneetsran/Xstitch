@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import PatternListItem from './patternListItem'
+import React, { useEffect, useState } from "react";
+import PatternListItem from "./patternListItem";
 import axios from "axios";
 
-
 export default function PatternList(props) {
-  const [pattern, setPattern] = useState([])
+  const [pattern, setPattern] = useState([]);
 
   // const user = {
   //   name: "John",
@@ -14,25 +13,21 @@ export default function PatternList(props) {
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    axios.get("/api/patterns")
-      .then((res) => {
-        setPattern(res.data)
-      })
+    axios.get("/api/favourites/").then(res => {
+      console.log("favourites here", res.data);
+      setPattern(res.data);
+    });
   }, []);
 
-  let patternCards = pattern.map((item => {
+  let patternCards = pattern.map(item => {
     return (
       <PatternListItem
         key={item.id}
         title={item.title}
         description={item.description}
       />
-    )
-  }))
+    );
+  });
 
-  return (
-    <div>
-      {patternCards}
-    </div>
-  )
+  return <div>{patternCards}</div>;
 }

@@ -13,6 +13,7 @@ puts "Eradicating lingering vermin ..."
 Pattern.destroy_all
 User.destroy_all
 Favourite.destroy_all
+Checkpoint.destroy_all
 
 puts "Grudgingly permitting the addition of users ... "
 
@@ -39,59 +40,51 @@ puts "Creating Patterns ..."
 # puts [['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']].to_h
 # puts [['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']].to_h.to_json
 
-user1.patterns.create!({
+pattern1 = user1.patterns.create!({
   title:  'My cat',
-  description: 'Black cat',
+  description: 'Black cat'
   # colours: JSON.parse([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
-  colours: JSON.generate([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
+  # colours: JSON.generate([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
 })
 
-user2.patterns.create!({
+pattern2 = user2.patterns.create!({
    title:  'My dog',
-   description: 'Poodle',
-   colours: {}
+   description: 'Poodle'
  })
 
-user2.patterns.create!({
+ pattern3 = user2.patterns.create!({
    title:  'School Bus',
-   description: 'Yellow',
-   colours: {}
+   description: 'Yellow'
  })
 
-user1.patterns.create!({
+ pattern4 = user1.patterns.create!({
   title:  'Flowers',
-  description: 'Is flowers',
-  colours: {}
+  description: 'Is flowers'
 })
 
-user1.patterns.create!({
+pattern5 = user1.patterns.create!({
   title:  'Birbs',
-  description: 'is many birbs',
-  colours: {}
+  description: 'is many birbs'
 })
 
-user2.patterns.create!({
+pattern6 = user2.patterns.create!({
   title:  'Bumble Bee',
-  description: 'Buzz',
-  colours: {}
+  description: 'Buzz'
 })
 
-user3.patterns.create!({
+pattern7 = user3.patterns.create!({
   title:  'Jazz hands',
-  description: 'n/a',
-  colours: {}
+  description: 'n/a'
 })
 
-user3.patterns.create!({
+pattern8 = user3.patterns.create!({
   title:  'Wink emoji',
-  description: 'n/a',
-  colours: {}
+  description: 'n/a'
 })
 
-user3.patterns.create!({
+pattern9 = user3.patterns.create!({
   title:  'Turtle',
-  description: 'n/a',
-  colours: {}
+  description: 'n/a'
 })
 
 puts "Creating Favourites ..."
@@ -124,6 +117,71 @@ user3.favourites.create!({
 user3.favourites.create!({
    user_id:  1,
    pattern_id: 5,
+})
+
+puts "Creating Checkpoints ..."
+
+checkpoint1 = Checkpoint.create!({
+  user: user1,
+  pattern: pattern1,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
+
+checkpoint2 = Checkpoint.create!({
+  user: user2,
+  pattern: pattern2,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
+
+checkpoint3 = Checkpoint.create!({
+  user: user2,
+  pattern: pattern3,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
+
+checkpoint4 = Checkpoint.create!({
+  user: user1,
+  pattern: pattern4,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
+
+checkpoint5 = Checkpoint.create!({
+  user: user1,
+  pattern: pattern5,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
+
+checkpoint6 = Checkpoint.create!({
+  user: user2,
+  pattern: pattern6,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
+
+checkpoint7 = Checkpoint.create!({
+  user: user3,
+  pattern: pattern7,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
+
+checkpoint8 = Checkpoint.create!({
+  user: user3,
+  pattern: pattern8,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
+
+checkpoint9 = Checkpoint.create!({
+  user: user3,
+  pattern: pattern9,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
 })
 
 puts "DONE!"

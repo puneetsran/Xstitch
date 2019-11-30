@@ -33,6 +33,34 @@ export default function Pattern(props) {
     };
   }
 
+  function getColours(pattern) {
+    // return () => {
+    return axios
+      .get(`/api/checkpoints/${pattern.id}`)
+      .then(({ data: { checkpoint } }) => {
+        console.log("res from within get colours", checkpoint);
+      });
+    // };
+  }
+
+  function getImageUrl(pattern) {
+    // return () => {
+    return axios
+      .get(`/api/checkpoints/${pattern.id}`)
+      .then(({ data: { checkpoint } }) => {
+        const image_URL = checkpoint.image_url;
+        if (image_URL) {
+          return image_URL;
+        }
+        // console.log("res from within get colours", checkpoint.image_url);
+      });
+    // };
+  }
+
+  function renderImage(string) {
+    return "string";
+  }
+
   function addToFavourites(pattern) {
     console.log("axios is posting:", pattern);
     return axios
@@ -97,8 +125,22 @@ export default function Pattern(props) {
     <li className="card-deck" key={pattern.id}>
       <div className="card">
         <div className="card-body">
-          <p className="view-pattern" onClick={viewPattern(pattern)}>
+          {/* <p className="view-pattern" onClick={viewPattern(pattern)}>
             {pattern.colours[0]}Pattern here
+          </p> */}
+          {/* <p className="view-pattern" onClick={getColours(pattern)}>
+            {pattern}Pattern here
+          </p> */}
+          <p
+            className="view-pattern"
+            onClick={() => {
+              console.log("inside view pattern click");
+              getColours(pattern);
+            }}
+          >
+            <div>
+              <img src={getImageUrl(pattern)} alt=""></img>
+            </div>
           </p>
           <h5 className="card-title">{pattern.title}</h5>
           <p className="card-text">{pattern.description}</p>

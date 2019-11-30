@@ -14,20 +14,18 @@ export default function App() {
   let [pattern, setPatternInfo] = useState(false);
   let [patterns, setPatterns] = useState([]);
   // let [message, setMessage] = useState("Click the button to load data!");
-  let [page, setPage] = useState("home")
-  const [user, setUser] = useState([])
-  const [storage, setStorage] = useState([])
+  let [page, setPage] = useState("home");
+  const [user, setUser] = useState([]);
+  const [storage, setStorage] = useState([]);
 
-  console.log("this is user", user)
+  console.log("this is user", user);
   if (page === "home") {
-    showPage = <Patterns patterns={patterns} />
+    showPage = <Patterns patterns={patterns} />;
   } else if (page === "create") {
-    showPage = <Edit />
+    showPage = <Edit />;
+  } else {
+    showPage = <div></div>;
   }
-  else {
-    showPage = <div></div>
-  }
-
 
   //opens side menu
   if (pattern === false) {
@@ -42,7 +40,6 @@ export default function App() {
       setPatternInfo(false);
     }
   }
-
 
   useEffect(() => {
     axios.get("/api/patterns").then(response => setPatterns(response.data));
@@ -60,8 +57,6 @@ export default function App() {
   //     });
   // };
 
-
-
   console.log("PATTERNS >>>>", patterns);
   return (
     <div className="App" onClick={clickOffMenu}>
@@ -76,7 +71,7 @@ export default function App() {
       {/* <h1>{message}</h1> */}
       {/* <button onClick={fetchData}>Fetch Data</button> */}
       {content}
-      <Edit />
+      {/* <Edit /> */}
     </div>
   );
 }
