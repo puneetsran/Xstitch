@@ -11,8 +11,11 @@ puts "Seeding Data ..."
 
 puts "Eradicating lingering vermin ..." 
 Pattern.destroy_all
+puts "destroyed patterns"
 User.destroy_all
+puts "destroyed users"
 Favourite.destroy_all
+puts "destroyed favorites"
 
 puts "Grudgingly permitting the addition of users ... "
 
@@ -33,6 +36,9 @@ user3 = User.create!({
   email: "oprah@email.com",
   password: "password"
 })
+
+
+
 
 puts "Creating Patterns ..."
 
@@ -95,7 +101,7 @@ user3.patterns.create!({
 puts "Creating Favourites ..."
 
 user1.favourites.create!({
-  user_id:  1,
+  user_id:  user1.id,
   pattern_id: 1
 })
 
@@ -122,6 +128,11 @@ user3.favourites.create!({
 user3.favourites.create!({
    user_id:  1,
    pattern_id: 5
+})
+
+Checkpoint.create!({
+  patterns_id: 1,
+  users_id: 1
 })
 
 puts "DONE!"

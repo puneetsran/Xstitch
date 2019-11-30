@@ -1,6 +1,6 @@
 class Pattern < ApplicationRecord
   belongs_to :user
-  has_many :favourites
+  has_many :favourites, :dependent => :destroy
   has_many :checkpoints
 
   validates :title, presence: true
