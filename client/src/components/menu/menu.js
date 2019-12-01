@@ -10,6 +10,8 @@ import {
   Button
 } from "react-bootstrap";
 import axios from "axios";
+import FavouriteList from "./FavouriteList";
+import PatternList from "./patternList";
 
 export default function Menu(props) {
   // const [user, setUser] = useState([])
@@ -64,7 +66,11 @@ export default function Menu(props) {
           <NavDropdown title="Menu" id="basic-nav-dropdown">
             <NavDropdown.Item
               href="#action/3.1"
-              onClick={() => props.setPattern(true)}
+              onClick={() => {
+                console.log("clicked mypatterns");
+                // getPatterns(props.patterns);
+                props.setPattern(true);
+              }}
               style={{
                 marginTop: "none",
                 fontSize: "20px",
@@ -77,9 +83,10 @@ export default function Menu(props) {
             </NavDropdown.Item>
             <NavDropdown.Item
               href="#action/3.2"
-              // onClick needs to show favourites for specific user
-              // is currently showing all patterns
-              onClick={() => props.setPattern(true)}
+              onClick={() => {
+                console.log("clicked myfavourites");
+                props.setPattern(true);
+              }}
               style={{
                 marginBottom: "none",
                 fontSize: "20px",

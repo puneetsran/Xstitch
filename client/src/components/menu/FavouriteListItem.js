@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 // import axios from 'axios'
 
-export default function PatternListItem(props) {
+export default function FavouriteListItem(props) {
   return (
     <Card style={{ width: "20rem", postition: "absolute" }}>
       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
@@ -14,10 +14,8 @@ export default function PatternListItem(props) {
         }}
       >
         <div>
-          <h2>Title</h2>
-          {props.title}
-          <h3>Description</h3>
-          {props.description}
+          <h2>{props.title}</h2>
+          <h3>{props.description}</h3>
         </div>
         <Button
           variant="primary"

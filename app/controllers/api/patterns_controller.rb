@@ -5,13 +5,27 @@ class Api::PatternsController < ApplicationController
   end
 
   def show
+
+  #   //From favourites we need to get the user_id and pattern_id
+  # //from the Pattern table we need to get the title and description
+  
     puts "INSIDE SHOW!!!!!"
     p params
     id = params[:id]
+    
     pattern = Pattern.find(id)
+
+    # @favourites_all = Favourite.joins('join patterns on favourites.pattern_id=patterns.id').where(patterns: {user_id:1})
+    @patterns_all = Pattern.joins('join favourites on patterns.user_id = favourites.user_id').where(patterns: {user_id:1})
+    
+    # where(articles: { author: author }
+    puts "puneet"
+    puts @patterns_all.inspect
+
     # render json: { test: 'cool' }
     favourite = Favourite.find_by(pattern_id: pattern.id)
-    render json: { pattern: pattern, favourite: favourite }, status: 200 and return
+    # Favourite.find_by(user_id: 1)
+    render json: { pattern: pattern, favourite: favourite, patterns: @patterns_all}, status: 200 and return
   end
 
   def create
