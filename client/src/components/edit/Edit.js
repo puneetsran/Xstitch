@@ -535,14 +535,18 @@ export default function Edit(props) {
       return newPattern;
     });
   }
-  function createPattern() {
-    let patternData = {
+
+  //creates new pattern in the database when save is clicked
+  function save() {
+    let saveData = {
       description: "derp",
       title: "is very derp",
       colours: pattern
     }
-    props.createPattern(patternData)
+    props.saveHandler(saveData)
   }
+
+  //edits and creates anoher checkpoint "version" in the database when
   return (
     <section className="edit">
       <Grid pattern={pattern} updateColor={updateColor} />
@@ -550,8 +554,7 @@ export default function Edit(props) {
         <ColorPicker color={color} onChangeComplete={handleChangeComplete} />
         <RowButtons addRow={addRow} deleteRow={deleteRow} />
         <ColumnButtons addColumn={addColumn} deleteColumn={deleteColumn} />
-        <Button onClick={(() => { createPattern() })}>Save</Button>
-
+        <Button onClick={(() => { save() })}>Save</Button>
       </div>
     </section>
   );

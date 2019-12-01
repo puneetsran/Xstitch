@@ -1,5 +1,5 @@
 class Api::PatternsController < ApplicationController
-  require 'json'
+
   def index
     render json: Pattern.all
   end

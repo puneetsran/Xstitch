@@ -12,12 +12,12 @@ export default function App() {
   let content;
   let showPage;
   let [showMenu, setShowMenu] = useState(false);
-
   let [patternCards, setPatternCards] = useState([]);
-  // let [message, setMessage] = useState("Click the button to load data!");
-  let [page, setPage] = useState("home")
-  const [user, setUser] = useState([])
-  const [storage, setStorage] = useState([])
+  let [page, setPage] = useState("home");
+  const [user, setUser] = useState([]);
+  const [storage, setStorage] = useState([]);
+  const [pattern, setPattern] = useState(null);
+  const [checkpoint, setCheckpoint] = useState({});
 
   // console.log("this is user", user)
   //puts initial pattern and checkpoint in the database
@@ -32,13 +32,42 @@ export default function App() {
       title: patternData.title,
       colours: patternData.colours
     }
+
     axios.post("api/patterns", reqData)
       .then((res) => {
-        debugger;
-        // res.data.pattern
-        // res.data.checkpoint
-        console.log("put to patterns res", res)
+        setPattern(res.data.pattern)
+        setCheckpoint(res.data.checkpoint)
+      }).catch((error) => {
+        return alert("Could not save pattern because: ", error)
       })
+  }
+  function createCheckpoint(saveData) {
+    let currentPattern = pattern.id
+    if (!currentPattern) {
+      return alert("You must choose an existing pattern to edit")
+    }
+    if (user.id !== pattern.user_id) {
+      return alert("You must fork a pattern before editing!")
+    }
+    let reqData = {
+      pattern_id: pattern.id,
+      colours: saveData.colours
+    }
+    axios.post("api/checkpoints", reqData)
+      .then((res) => {
+        setCheckpoint(res.data)
+      }).catch((error) => {
+        return alert("Could not update because: ", error)
+      })
+  }
+
+  // This decides what the save button does on it's click handler
+  function saveHandler(data) {
+    if (pattern && checkpoint) {
+      createCheckpoint(data)
+    } else {
+      createPattern(data)
+    }
   }
 
   //renders either homepage or grid based on click
@@ -46,12 +75,14 @@ export default function App() {
     showPage = <Patterns patterns={patternCards} />
   } else if (page === "create") {
     showPage = <Edit
-      createPattern={createPattern}
+      saveHandler={saveHandler}
     />
   }
   else {
     showPage = <div></div>
   }
+
+
 
 
   //opens side menu
@@ -66,6 +97,14 @@ export default function App() {
     if (showMenu === true) {
       setShowMenu(false);
     }
+  }
+
+  //clears pattern and resets state when create button is clicked
+  //TODO does not yet reset grid bc grid state lives in sub component
+  function clearAndSetCreate() {
+    setPattern(null)
+    setCheckpoint({})
+    setPage("create")
   }
 
 
@@ -93,6 +132,7 @@ export default function App() {
       <Menu
         setShowMenu={setShowMenu}
         setPage={setPage}
+        clearAndSetCreate={clearAndSetCreate}
         setUser={setUser}
         setStorage={setStorage}
       />
