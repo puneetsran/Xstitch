@@ -139,7 +139,7 @@ export default function Pattern(props) {
             }}
           >
             <div>
-              <img src={getImageUrl(pattern)} alt=""></img>
+              <img src={getImageUrl(pattern).toString()} alt=""></img>
             </div>
           </p>
           <h5 className="card-title">{pattern.title}</h5>

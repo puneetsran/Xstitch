@@ -5,7 +5,7 @@ import "./components/menu/menu";
 import Menu from "./components/menu/menu";
 import PatternList from "./components/menu/patternList";
 import Patterns from "./components/patterns";
-import FavouriteList from "./components/menu/FavouriteList";
+import FavouritesList from "./components/menu/FavouritesList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Edit from "./components/edit/Edit";
 
@@ -32,7 +32,9 @@ export default function App() {
   if (pattern === false) {
     content = <div></div>;
   } else {
-    content = [<PatternList />, <FavouriteList />];
+    // content = [<PatternList />, <FavouritesList />];
+    // content = [<PatternList />];
+    content = [<FavouritesList />];
   }
 
   //closes side menu when you click away
@@ -58,7 +60,7 @@ export default function App() {
   //     });
   // };
 
-  console.log("PATTERNS >>>>", patterns);
+  // console.log("PATTERNS >>>>", patterns);
   return (
     <div className="App" onClick={clickOffMenu}>
       <Menu

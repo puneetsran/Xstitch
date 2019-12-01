@@ -14,10 +14,8 @@ export default function PatternListItem(props) {
         }}
       >
         <div>
-          <h2>Title</h2>
-          {props.title}
-          <h3>Description</h3>
-          {props.description}
+          <h2>{props.title}</h2>
+          <h3>{props.description}</h3>
         </div>
         <Button
           variant="primary"

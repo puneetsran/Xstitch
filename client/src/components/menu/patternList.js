@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PatternListItem from "./patternListItem";
 import axios from "axios";
+import "./styles.css";
 
 export default function PatternList(props) {
-  const [pattern, setPattern] = useState([]);
+  const [patterns, setPatterns] = useState([]);
 
   // const user = {
   //   name: "John",
@@ -12,14 +13,42 @@ export default function PatternList(props) {
   // }
 
   // Similar to componentDidMount and componentDidUpdate:
+  // useEffect(() => {
+  //   axios.get("/api/favourites/").then(res => {
+  //     const patterns_id = res.data.map(pattern => {
+  //       return pattern.pattern_id;
+  //     });
+  //     console.log("patterns_id", patterns_id);
+  //     patterns_id.map(fav => {
+  //       return getPattern(fav);
+  //     });
+  //   });
+  // }, []);
 
   useEffect(() => {
-    axios.get(`/api/patterns/${pattern.id}`).then(res => {
-      setPattern(res.data);
+    axios.get(`/api/patterns/1}`).then(res => {
+      // const patterns_id = res.map(pattern => {
+      //   console.log("patterns_idsss", pattern);
+      //   // return patterns_id
+      // });
+      let patternArray = [];
+      patternArray.push(res.data.pattern);
+      // console.log(
+      //   "inside get patterns for pattern list",
+      //   res.data.patterns.splice(
+      //     res.data.patterns.length - res.data.patterns.length / 2
+      //   )
+      // );
+      setPatterns(
+        res.data.patterns.splice(
+          res.data.patterns.length - res.data.patterns.length / 2
+        )
+      );
     });
   }, []);
 
-  let patternCards = pattern.map(item => {
+  let patternCards = patterns.map(item => {
+    console.log("hi", item);
     return (
       <PatternListItem
         key={item.id}
@@ -29,50 +58,5 @@ export default function PatternList(props) {
     );
   });
 
-  return <div>{patternCards}</div>;
+  return <div className="sidebar">{patternCards}</div>;
 }
-
-// import React, { useEffect, useState } from "react";
-// import FavouriteListItem from "./FavouriteListItem";
-// import axios from "axios";
-
-// export default function FavouriteList(props) {
-//   const [patterns, setPatterns] = useState([]);
-
-//   function getPattern(pattern) {
-//     return axios
-//       .get(`/api/patterns/${pattern}`)
-//       .then(({ data: { pattern } }) => {
-//         console.log("res from within get pattern", pattern);
-//         const title = pattern.title;
-//         const description = pattern.description;
-//         // setPatterns(pattern);
-//         // return { title, description };
-//       });
-//     // };
-//   }
-
-//   useEffect(() => {
-//     axios.get("/api/favourites/").then(res => {
-//       const patterns_id = res.data.map(pattern => {
-//         return pattern.pattern_id;
-//       });
-//       console.log("favourits here", res.data);
-//       console.log("favourite ids here", patterns_id);
-//       setPatterns(patterns_id);
-//       getPattern(patterns_id);
-//     });
-//   }, []);
-
-//   let patternCards = patterns.map(pattern => {
-//     return (
-//       <FavouriteListItem
-//         key={pattern.id}
-//         title={pattern.title}
-//         description={pattern.description}
-//       />
-//     );
-//   });
-
-//   return <div>{patternCards}</div>;
-// }

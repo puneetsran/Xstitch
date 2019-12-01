@@ -10,7 +10,7 @@ import {
   Button
 } from "react-bootstrap";
 import axios from "axios";
-import FavouriteList from "./FavouriteList";
+import FavouritesList from "./FavouritesList";
 import PatternList from "./patternList";
 
 export default function Menu(props) {
