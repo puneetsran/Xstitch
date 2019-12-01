@@ -34,7 +34,7 @@ export default function Pattern(props) {
   }
 
   function addToFavourites(pattern) {
-    console.log("axios is posting:", pattern);
+    // console.log("axios is posting:", pattern);
     return axios
       .post(`/api/favourites/`, {
         user_id: `1`,

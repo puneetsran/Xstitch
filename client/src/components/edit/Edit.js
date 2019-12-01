@@ -4,6 +4,7 @@ import Grid from "./Grid";
 import RowButtons from "./RowButtons";
 import ColumnButtons from "./ColumnButtons";
 import "./Edit.css";
+import { Button } from "semantic-ui-react"
 
 //array for testing grid component
 //will eventually come from database
@@ -534,7 +535,14 @@ export default function Edit(props) {
       return newPattern;
     });
   }
-
+  function createPattern() {
+    let patternData = {
+      description: "derp",
+      title: "is very derp",
+      colours: pattern
+    }
+    props.createPattern(patternData)
+  }
   return (
     <section className="edit">
       <Grid pattern={pattern} updateColor={updateColor} />
@@ -542,6 +550,8 @@ export default function Edit(props) {
         <ColorPicker color={color} onChangeComplete={handleChangeComplete} />
         <RowButtons addRow={addRow} deleteRow={deleteRow} />
         <ColumnButtons addColumn={addColumn} deleteColumn={deleteColumn} />
+        <Button onClick={(() => { createPattern() })}>Save</Button>
+
       </div>
     </section>
   );

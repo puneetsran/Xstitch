@@ -11,18 +11,43 @@ import Edit from "./components/edit/Edit";
 export default function App() {
   let content;
   let showPage;
-  let [pattern, setPatternInfo] = useState(false);
-  let [patterns, setPatterns] = useState([]);
+  let [showMenu, setShowMenu] = useState(false);
+
+  let [patternCards, setPatternCards] = useState([]);
   // let [message, setMessage] = useState("Click the button to load data!");
   let [page, setPage] = useState("home")
   const [user, setUser] = useState([])
   const [storage, setStorage] = useState([])
 
-  console.log("this is user", user)
+  // console.log("this is user", user)
+  //puts initial pattern and checkpoint in the database
+  function createPattern(patternData) {
+    let currentUser = user.id
+    if (!currentUser) {
+      return alert("You must log in")
+    }
+    let reqData = {
+      user_id: currentUser,
+      description: patternData.description,
+      title: patternData.title,
+      colours: patternData.colours
+    }
+    axios.post("api/patterns", reqData)
+      .then((res) => {
+        debugger;
+        // res.data.pattern
+        // res.data.checkpoint
+        console.log("put to patterns res", res)
+      })
+  }
+
+  //renders either homepage or grid based on click
   if (page === "home") {
-    showPage = <Patterns patterns={patterns} />
+    showPage = <Patterns patterns={patternCards} />
   } else if (page === "create") {
-    showPage = <Edit />
+    showPage = <Edit
+      createPattern={createPattern}
+    />
   }
   else {
     showPage = <div></div>
@@ -30,7 +55,7 @@ export default function App() {
 
 
   //opens side menu
-  if (pattern === false) {
+  if (showMenu === false) {
     content = <div></div>;
   } else {
     content = <PatternList />;
@@ -38,14 +63,14 @@ export default function App() {
 
   //closes side menu when you click away
   function clickOffMenu() {
-    if (pattern === true) {
-      setPatternInfo(false);
+    if (showMenu === true) {
+      setShowMenu(false);
     }
   }
 
 
   useEffect(() => {
-    axios.get("/api/patterns").then(response => setPatterns(response.data));
+    axios.get("/api/patterns").then(response => setPatternCards(response.data));
   }, []);
 
   // const fetchData = () => {
@@ -62,11 +87,11 @@ export default function App() {
 
 
 
-  console.log("PATTERNS >>>>", patterns);
+  // console.log("PATTERNS >>>>", patterns);
   return (
     <div className="App" onClick={clickOffMenu}>
       <Menu
-        setPattern={setPatternInfo}
+        setShowMenu={setShowMenu}
         setPage={setPage}
         setUser={setUser}
         setStorage={setStorage}
