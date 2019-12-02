@@ -8,6 +8,7 @@ import Patterns from "./components/patterns";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Edit from "./components/edit/Edit";
 import View from "./components/view/View";
+import HistoryCard from "./components/edit/HistoryCard";
 
 export default function App() {
   let content;
@@ -24,10 +25,16 @@ export default function App() {
 
   function getCheckpointHistory() {
 
-    axios.get(`api/checkpoints/${checkpoint.patterns_id}`)
+    axios.get("api/checkpoints")
       .then((res) => {
-        console.log("this is res from get CP", res.data)
 
+        // console.log("this is res from get CP", res.data)
+        const checkpointHistory = res.data.filter((item) => {
+          // console.log("this is item", item.patterns_id)
+          // console.log("this is current cp pattern_id", checkpoint.patterns_id)
+          return item.patterns_id === checkpoint.patterns_id
+        })
+        console.log("this is cp history", checkpointHistory)
       })
       .catch((err) => {
         console.log("CPhitsory get failed because", err)
@@ -74,7 +81,7 @@ export default function App() {
     axios.post("api/checkpoints", reqData)
       .then((res) => {
         setCheckpoint(res.data)
-        console.log("this is current checkpoint in state", checkpoint)
+        // console.log("this is current checkpoint in state", checkpoint)
 
       }).catch((error) => {
         return alert("Could not update because: ", error)
@@ -90,6 +97,7 @@ export default function App() {
 
     } else {
       createPattern(data)
+      // getCheckpointHistory()
 
     }
   }
