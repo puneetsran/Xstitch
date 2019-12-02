@@ -5,8 +5,8 @@ class Api::PatternsController < ApplicationController
   end
 
   def show
-    puts "INSIDE SHOW!!!!!"
-    p params
+    # puts "INSIDE SHOW!!!!!"
+    # p params
     id = params[:id]
     pattern = Pattern.find(id)
     # render json: { test: 'cool' }
@@ -15,7 +15,7 @@ class Api::PatternsController < ApplicationController
   end
 
   def create
-    puts "inside create pattern"
+    # puts "inside create pattern"
     @pattern = Pattern.create(
       user_id: params[:user_id],
       title: params[:title],

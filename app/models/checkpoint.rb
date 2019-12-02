@@ -1,4 +1,3 @@
 class Checkpoint < ApplicationRecord
 
-
 end

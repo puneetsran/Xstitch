@@ -19,6 +19,20 @@ export default function App() {
   const [pattern, setPattern] = useState(null);
   const [checkpoint, setCheckpoint] = useState({});
 
+
+
+  function getCheckpointHistory() {
+
+    axios.get(`api/checkpoints/${checkpoint.patterns_id}`)
+      .then((res) => {
+        console.log("this is res from get CP", res.data)
+
+      })
+      .catch((err) => {
+        console.log("CPhitsory get failed because", err)
+      })
+  }
+
   // console.log("this is user", user)
   //puts initial pattern and checkpoint in the database
   function createPattern(patternData) {
@@ -41,6 +55,9 @@ export default function App() {
         return alert("Could not save pattern because: ", error)
       })
   }
+
+
+
   function createCheckpoint(saveData) {
     let currentPattern = pattern.id
     if (!currentPattern) {
@@ -56,19 +73,26 @@ export default function App() {
     axios.post("api/checkpoints", reqData)
       .then((res) => {
         setCheckpoint(res.data)
+        console.log("this is current checkpoint in state", checkpoint)
+
       }).catch((error) => {
         return alert("Could not update because: ", error)
       })
   }
 
+
   // This decides what the save button does on it's click handler
   function saveHandler(data) {
     if (pattern && checkpoint) {
       createCheckpoint(data)
+      getCheckpointHistory()
+
     } else {
       createPattern(data)
+
     }
   }
+
 
   //renders either homepage or grid based on click
   if (page === "home") {
@@ -76,6 +100,8 @@ export default function App() {
   } else if (page === "create") {
     showPage = <Edit
       saveHandler={saveHandler}
+    // getCheckpointHistory={getCheckpointHistory}
+
     />
   }
   else {
@@ -108,7 +134,9 @@ export default function App() {
   }
 
 
+
   useEffect(() => {
+
     axios.get("/api/patterns").then(response => setPatternCards(response.data));
   }, []);
 
