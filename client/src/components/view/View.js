@@ -4,6 +4,7 @@ import "./View.css";
 import { Button, Icon } from "semantic-ui-react";
 
 //default array for rendering grid
+// will need to change to be props.pattern
 const blankPattern = [];
 for (let i = 0; i < 20; i++) {
   blankPattern.push([]);
@@ -12,18 +13,11 @@ for (let i = 0; i < 20; i++) {
   }
 }
 
-// needs to be set up with html2canvas to generate the preview
-function print() {
-  return;
-}
-
 export default function View(props) {
-  // will need to change this to load pattern passed in from props
-  const [pattern, updatePattern] = useState(blankPattern);
 
   return (
     <section className="view">
-      <ViewGrid pattern={pattern} />
+      <ViewGrid pattern={blankPattern} />
       <div className="view-buttons">
         <Button.Group vertical>
           <Button icon labelPosition="left" onClick={props.addColumn}>
