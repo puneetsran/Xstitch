@@ -7,6 +7,7 @@ import PatternList from "./components/menu/patternList";
 import Patterns from "./components/patterns";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Edit from "./components/edit/Edit";
+import View from "./components/view/View";
 
 export default function App() {
   let content;
@@ -14,20 +15,20 @@ export default function App() {
   let [pattern, setPatternInfo] = useState(false);
   let [patterns, setPatterns] = useState([]);
   // let [message, setMessage] = useState("Click the button to load data!");
-  let [page, setPage] = useState("home")
-  const [user, setUser] = useState([])
-  const [storage, setStorage] = useState([])
+  let [page, setPage] = useState("home");
+  const [user, setUser] = useState([]);
+  const [storage, setStorage] = useState([]);
 
-  console.log("this is user", user)
+  console.log("this is user", user);
   if (page === "home") {
-    showPage = <Patterns patterns={patterns} />
+    showPage = <Patterns patterns={patterns} />;
   } else if (page === "create") {
-    showPage = <Edit />
+    showPage = <Edit />;
+  } else if (page === "view") {
+    showPage = <View />;
+  } else {
+    showPage = <div></div>;
   }
-  else {
-    showPage = <div></div>
-  }
-
 
   //opens side menu
   if (pattern === false) {
@@ -43,24 +44,9 @@ export default function App() {
     }
   }
 
-
   useEffect(() => {
     axios.get("/api/patterns").then(response => setPatterns(response.data));
   }, []);
-
-  // const fetchData = () => {
-  //   axios
-  //     .get("/api/data") // You can simply make your requests to "/api/whatever you want"
-  //     .then(response => {
-  //       // handle success
-  //       console.log(response.data); // The entire response from the Rails API
-
-  //       console.log(response.data.message); // Just the message
-  //       setMessage(response.data.message);
-  //     });
-  // };
-
-
 
   console.log("PATTERNS >>>>", patterns);
   return (
@@ -71,12 +57,10 @@ export default function App() {
         setUser={setUser}
         setStorage={setStorage}
       />
-      {showPage}
-      {/* <Patterns patterns={patterns} /> */}
-      {/* <h1>{message}</h1> */}
-      {/* <button onClick={fetchData}>Fetch Data</button> */}
-      {content}
-      {/* <Edit /> */}
+      <div className="main">
+        {content}
+        {showPage}
+      </div>
     </div>
   );
 }
