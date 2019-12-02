@@ -38,6 +38,10 @@ export default function View(props) {
             <Icon name="image" />
             Save
           </Button>
+          <Button icon color="blue" labelPosition="left" onClick={print} floated="right">
+            Edit
+            <Icon name="edit" />
+          </Button>
           <Button icon color="green" labelPosition="left" onClick={print} floated="right">
             Fork
             <Icon name="fork" />
