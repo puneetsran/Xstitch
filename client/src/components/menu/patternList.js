@@ -20,6 +20,7 @@ export default function PatternList(props) {
       })
   }, []);
 
+
   let patternCards = pattern.map((item => {
     return (
       <PatternListItem

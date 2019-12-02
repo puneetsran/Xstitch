@@ -125,6 +125,18 @@ export default function Edit(props) {
     });
   }
 
+  //creates new pattern or checkpoint in the database when save is clicked
+  function save() {
+    let saveData = {
+      description: "derp",
+      title: "is very derp",
+      colours: pattern
+    }
+    props.saveHandler(saveData)
+    // props.getCheckpointHistory()
+  }
+
+  //edits and creates anoher checkpoint "version" in the database when
   return (
     <section className="edit">
       <div className="grid-history">
@@ -137,6 +149,7 @@ export default function Edit(props) {
         <ColumnButtons addColumn={addColumn} deleteColumn={deleteColumn} />
         <Button content="Version history" onClick={toggleHistory} />
         <Button content="Create image" onClick={createImage} />
+        <Button onClick={(() => { save() })}>Save</Button>
       </div>
     </section>
   );

@@ -13,7 +13,7 @@ export default function Menu(props) {
       .then((res) => {
         props.setUser(res.data[0])
         let userObj = JSON.stringify(res.data[0])
-        console.log("stored", window.localStorage.setItem('user', userObj))
+        window.localStorage.setItem('user', userObj)
       }).catch((err) => {
         console.log(err)
       })
@@ -41,10 +41,10 @@ export default function Menu(props) {
             paddingTop: "25px"
           }}>
           <Nav.Link href="#home" onClick={() => props.setPage("home")}>Home</Nav.Link>
-          <Nav.Link href="#link" onClick={() => props.setPage("create")}>Create</Nav.Link>
+          <Nav.Link href="#link" onClick={() => props.clearAndSetCreate()}>Create</Nav.Link>
           <NavDropdown title="Menu" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1"
-              onClick={() => props.setPattern(true)}
+              onClick={() => props.setShowMenu(true)}
               style={{
                 marginTop: "none",
                 fontSize: "20px",
@@ -57,7 +57,7 @@ export default function Menu(props) {
             <NavDropdown.Item href="#action/3.2"
               // onClick needs to show favourites for specific user
               // is currently showing all patterns
-              onClick={() => props.setPattern(true)}
+              onClick={() => props.setShowMenu(true)}
               style={{
                 marginBottom: "none",
                 fontSize: "20px",

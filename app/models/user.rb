@@ -3,7 +3,6 @@ class User < ApplicationRecord
   has_many :favourites
   has_many :checkpoints
 
-
     # def new
     #  @user = User.find_by(id: params[:id])
   

@@ -5,8 +5,8 @@ class Api::PatternsController < ApplicationController
   end
 
   def show
-    puts "INSIDE SHOW!!!!!"
-    p params
+    # puts "INSIDE SHOW!!!!!"
+    # p params
     id = params[:id]
     pattern = Pattern.find(id)
     # render json: { test: 'cool' }
@@ -15,14 +15,30 @@ class Api::PatternsController < ApplicationController
   end
 
   def create
-    puts "inside create pattern"
-    @pattern = Pattern.find_or_create_by(
+    # puts "inside create pattern"
+    @pattern = Pattern.create(
       user_id: params[:user_id],
       title: params[:title],
-      description: params[:description],
-      # colours: params[:colours]
-    )
-    @pattern.save
+      description: params[:description]
+    )    
+    if @pattern.save
+      @checkpoint = Checkpoint.create(
+        patterns_id: @pattern.id,
+        colours: params[:colours],
+        users_id: params[:user_id]
+      )
+      if @checkpoint.save 
+        render json: { pattern: @pattern, checkpoint: @checkpoint}, status: 200 and return
+      else
+        puts "Failed save"
+        puts @checkpoint.errors
+        render json: { error: @checkpoint.errors}, status: 500
+      end
+    else
+      puts "Failed save"
+      puts @pattern.errors
+      render json: { error: @pattern.errors}, status: 500
+    end
   end
 
   def destroy
