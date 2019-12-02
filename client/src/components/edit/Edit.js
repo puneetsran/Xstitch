@@ -38,7 +38,7 @@ const fakeHistory = [
 ];
 
 export default function Edit(props) {
-  const [color, setColor] = useState("#000000");
+  const [color, setColor] = useState("#9B9B9B");
   const [pattern, updatePattern] = useState(blankPattern);
   // const [image, setImage] = useState(null)
 
@@ -131,8 +131,8 @@ export default function Edit(props) {
       description: "derp",
       title: "is very derp",
       colours: pattern
-    }
-    props.saveHandler(saveData)
+    };
+    props.saveHandler(saveData);
     // props.getCheckpointHistory()
   }
 
@@ -143,13 +143,19 @@ export default function Edit(props) {
         <Grid pattern={pattern} updateColor={updateColor} />
         {historyTab}
       </div>
-      <div className="controls">
+      <div className="controls" style={{ backgroundColor: color }}>
         <ColorPicker color={color} onChangeComplete={handleChangeComplete} />
         <RowButtons addRow={addRow} deleteRow={deleteRow} />
         <ColumnButtons addColumn={addColumn} deleteColumn={deleteColumn} />
         <Button content="Version history" onClick={toggleHistory} />
         <Button content="Create image" onClick={createImage} />
-        <Button onClick={(() => { save() })}>Save</Button>
+        <Button
+          onClick={() => {
+            save();
+          }}
+        >
+          Save
+        </Button>
       </div>
     </section>
   );
