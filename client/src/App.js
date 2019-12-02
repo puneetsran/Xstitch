@@ -27,7 +27,6 @@ export default function App() {
 
     axios.get("api/checkpoints")
       .then((res) => {
-
         // console.log("this is res from get CP", res.data)
         const checkpointHistory = res.data.filter((item) => {
           // console.log("this is item", item.patterns_id)
