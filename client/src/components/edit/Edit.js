@@ -6,6 +6,7 @@ import ColumnButtons from "./ColumnButtons";
 import History from "./History";
 import "./Edit.css";
 import { Button } from "semantic-ui-react";
+import html2canvas from "html2canvas";
 
 //default array for rendering grid
 const blankPattern = [];
@@ -39,6 +40,9 @@ const fakeHistory = [
 export default function Edit(props) {
   const [color, setColor] = useState("#000000");
   const [pattern, updatePattern] = useState(blankPattern);
+  // const [image, setImage] = useState(null)
+
+  // used to show/hide the history tab
   const [history, viewHistory] = useState("hide");
   let historyTab;
 
@@ -99,17 +103,26 @@ export default function Edit(props) {
 
   function toggleHistory() {
     if (history === "hide") {
-      console.log("in hide")
-      viewHistory("show")
+      viewHistory("show");
     } else {
-      viewHistory("hide")
+      viewHistory("hide");
     }
   }
 
   if (history === "hide") {
     historyTab = <div></div>;
   } else {
-    historyTab = <History history={fakeHistory}/>;
+    historyTab = <History history={fakeHistory} />;
+  }
+
+  function createImage() {
+    const input = document.getElementById("capture");
+    html2canvas(input, {
+      backgroundColor: "grey"
+    }).then(canvas => {
+      const imgData = canvas.toDataURL("image/png");
+      console.log(imgData);
+    });
   }
 
   return (
@@ -122,7 +135,8 @@ export default function Edit(props) {
         <ColorPicker color={color} onChangeComplete={handleChangeComplete} />
         <RowButtons addRow={addRow} deleteRow={deleteRow} />
         <ColumnButtons addColumn={addColumn} deleteColumn={deleteColumn} />
-        <Button content="Version history" onClick={toggleHistory}/>
+        <Button content="Version history" onClick={toggleHistory} />
+        <Button content="Create image" onClick={createImage} />
       </div>
     </section>
   );
