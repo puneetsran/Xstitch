@@ -4,7 +4,7 @@ import Row from "./Row";
 
 export default function Grid(props) {
   
-  const [dragging, setDragging] = useState(false);
+  const [dragging, setDragging] = useState("false");
   const rows = props.pattern.map((row, index) => {
     return (
       <Row
@@ -18,11 +18,11 @@ export default function Grid(props) {
   });
 
   function mouseDown() {
-    setDragging(true);
+    setDragging("true");
   }
 
   function mouseUp() {
-    setDragging(false);
+    setDragging("false");
   }
   return (
     <section className="grid">
