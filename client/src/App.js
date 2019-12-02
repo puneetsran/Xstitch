@@ -15,11 +15,17 @@ export default function App() {
   let showPage;
   let [showMenu, setShowMenu] = useState(false);
   let [patternCards, setPatternCards] = useState([]);
+  //sets state to conditionally render home/edit pages
   let [page, setPage] = useState("home");
+  //sets current user in state
   const [user, setUser] = useState([]);
   const [storage, setStorage] = useState([]);
+  //sets current pattern in state
   const [pattern, setPattern] = useState(null);
+  //sets current checkpoint in state
   const [checkpoint, setCheckpoint] = useState({});
+  //sets current version history in state
+  const [history, setHistory] = useState([])
 
 
 
@@ -34,6 +40,7 @@ export default function App() {
           return item.patterns_id === checkpoint.patterns_id
         })
         console.log("this is cp history", checkpointHistory)
+        setHistory([...checkpointHistory])
       })
       .catch((err) => {
         console.log("CPhitsory get failed because", err)
@@ -108,14 +115,12 @@ export default function App() {
   } else if (page === "create") {
     showPage = <Edit
       saveHandler={saveHandler}
-    // getCheckpointHistory={getCheckpointHistory}
-
+      checkpointHistory={history}
     />
   }
   else {
     showPage = <div></div>
   }
-
 
 
 
