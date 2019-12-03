@@ -10,6 +10,7 @@ import { GoRepoForked } from "react-icons/go";
 
 export default function Pattern(props) {
   const [isFavourited, setIsFavourited] = useState(undefined);
+  const [imageURL, setImageURL] = useState("");
 
   useEffect(() => {
     axios.get(`/api/patterns/${pattern.id}`).then(res => {
@@ -38,7 +39,9 @@ export default function Pattern(props) {
     return axios
       .get(`/api/checkpoints/${pattern.id}`)
       .then(({ data: { checkpoint } }) => {
-        console.log("res from within get colours", checkpoint);
+        setImageURL(checkpoint.image_url);
+        // console.log()
+        // console.log("res from within get colours", checkpoint);
       });
     // };
   }
@@ -52,13 +55,9 @@ export default function Pattern(props) {
         if (image_URL) {
           return image_URL;
         }
-        // console.log("res from within get colours", checkpoint.image_url);
+        // console.log("res from within get image url", checkpoint.image_url);
       });
     // };
-  }
-
-  function renderImage(string) {
-    return "string";
   }
 
   function addToFavourites(pattern) {
@@ -118,29 +117,32 @@ export default function Pattern(props) {
       </>
     );
   }
+  const [showImage, setShowImage] = useState("show");
+  let imageDiv;
+  if (showImage === "show") {
+    getColours(props.pattern);
+    imageDiv = (
+      <div>
+        <img src={imageURL} alt=""></img>
+      </div>
+    );
+  }
 
   const pattern = props.pattern;
+  console.log("imageURL", imageURL);
   // console.log("isFavourited:", isFavourited);
   return (
     <li className="card-deck" key={pattern.id}>
       <div className="card">
         <div className="card-body">
-          {/* <p className="view-pattern" onClick={viewPattern(pattern)}>
-            {pattern.colours[0]}Pattern here
-          </p> */}
-          {/* <p className="view-pattern" onClick={getColours(pattern)}>
-            {pattern}Pattern here
-          </p> */}
           <p
             className="view-pattern"
             onClick={() => {
-              console.log("inside view pattern click");
+              // console.log("inside view pattern click");
               getColours(pattern);
             }}
           >
-            <div>
-              <img src={getImageUrl(pattern).toString()} alt=""></img>
-            </div>
+            {imageDiv}
           </p>
           <h5 className="card-title">{pattern.title}</h5>
           <p className="card-text">{pattern.description}</p>

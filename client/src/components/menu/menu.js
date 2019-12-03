@@ -70,6 +70,7 @@ export default function Menu(props) {
                 console.log("clicked mypatterns");
                 // getPatterns(props.patterns);
                 props.setPattern(true);
+                // props.setPattern(patterns);
               }}
               style={{
                 marginTop: "none",
@@ -86,6 +87,7 @@ export default function Menu(props) {
               onClick={() => {
                 console.log("clicked myfavourites");
                 props.setPattern(true);
+                // props.setPattern(favourites);
               }}
               style={{
                 marginBottom: "none",

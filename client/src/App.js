@@ -12,14 +12,17 @@ import Edit from "./components/edit/Edit";
 export default function App() {
   let content;
   let showPage;
-  let [pattern, setPatternInfo] = useState(false);
+  let [sideMenuState, setSideMenuState] = useState(false);
+
+  // let [sideMenuState, setSideMenuState] = useState(null);   // can be null or 'fav' or 'mypatt';
+
   let [patterns, setPatterns] = useState([]);
   // let [message, setMessage] = useState("Click the button to load data!");
   let [page, setPage] = useState("home");
   const [user, setUser] = useState([]);
   const [storage, setStorage] = useState([]);
 
-  console.log("this is user", user);
+  // console.log("this is user", user);
   if (page === "home") {
     showPage = <Patterns patterns={patterns} />;
   } else if (page === "create") {
@@ -29,18 +32,25 @@ export default function App() {
   }
 
   //opens side menu
-  if (pattern === false) {
+  if (sideMenuState === false) {
     content = <div></div>;
   } else {
-    // content = [<PatternList />, <FavouritesList />];
-    // content = [<PatternList />];
-    content = [<FavouritesList />];
+    content = [<FavouritesList allPatterns={patterns} />];
   }
+
+  // if (sideMenuState === false) {
+  //   content = <div></div>;
+  // } else if (sideMenuState === "action/3.1") {
+  //   // content = [<PatternList />, <FavouritesList />];
+  //   content = [<PatternList patterns={patterns} />];
+  // } else if (sideMenuState === "#action/3.2") {
+  //   content = [<FavouritesList allPatterns={patterns} />];
+  // }
 
   //closes side menu when you click away
   function clickOffMenu() {
-    if (pattern === true) {
-      setPatternInfo(false);
+    if (sideMenuState === true) {
+      setSideMenuState(false);
     }
   }
 
@@ -64,7 +74,7 @@ export default function App() {
   return (
     <div className="App" onClick={clickOffMenu}>
       <Menu
-        setPattern={setPatternInfo}
+        setPattern={setSideMenuState}
         setPage={setPage}
         setUser={setUser}
         setStorage={setStorage}

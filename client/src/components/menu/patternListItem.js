@@ -1,6 +1,16 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-// import axios from 'axios'
+import axios from "axios";
+
+function getColours(pattern) {
+  // return () => {
+  return axios
+    .get(`/api/checkpoints/${pattern.id}`)
+    .then(({ data: { checkpoint } }) => {
+      console.log("res from within get colours", checkpoint);
+    });
+  // };
+}
 
 export default function PatternListItem(props) {
   return (
@@ -18,6 +28,8 @@ export default function PatternListItem(props) {
           <h3>{props.description}</h3>
         </div>
         <Button
+          // className="view-pattern"
+          // onClick={console.log("click")}
           variant="primary"
           style={{
             padding: "7px",
