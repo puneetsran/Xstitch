@@ -33,7 +33,7 @@ export default function App() {
 
     axios.get("api/checkpoints")
       .then((res) => {
-        // console.log("this is res from get CP", res.data)
+        console.log("this is res from get CP", res.data)
         const checkpointHistory = res.data.filter((item) => {
           // console.log("this is item", item.patterns_id)
           // console.log("this is current cp pattern_id", checkpoint.patterns_id)
@@ -69,7 +69,6 @@ export default function App() {
         return alert("Could not save pattern because: ", error)
       })
   }
-
 
 
   function createCheckpoint(saveData) {
