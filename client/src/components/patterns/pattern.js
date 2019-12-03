@@ -34,31 +34,31 @@ export default function Pattern(props) {
     };
   }
 
-  function getColours(pattern) {
-    // return () => {
-    return axios
-      .get(`/api/checkpoints/${pattern.id}`)
-      .then(({ data: { checkpoint } }) => {
-        setImageURL(checkpoint.image_url);
-        // console.log()
-        // console.log("res from within get colours", checkpoint);
-      });
-    // };
-  }
+  // function getColours(pattern) {
+  //   // return () => {
+  //   return axios
+  //     .get(`/api/checkpoints/${pattern.id}`)
+  //     .then(({ data: { checkpoint } }) => {
+  //       setImageURL(checkpoint.image_url);
+  //       // console.log()
+  //       // console.log("res from within get colours", checkpoint);
+  //     });
+  //   // };
+  // }
 
-  function getImageUrl(pattern) {
-    // return () => {
-    return axios
-      .get(`/api/checkpoints/${pattern.id}`)
-      .then(({ data: { checkpoint } }) => {
-        const image_URL = checkpoint.image_url;
-        if (image_URL) {
-          return image_URL;
-        }
-        // console.log("res from within get image url", checkpoint.image_url);
-      });
-    // };
-  }
+  // function getImageUrl(pattern) {
+  //   // return () => {
+  //   return axios
+  //     .get(`/api/checkpoints/${pattern.id}`)
+  //     .then(({ data: { checkpoint } }) => {
+  //       const image_URL = checkpoint.image_url;
+  //       if (image_URL) {
+  //         return image_URL;
+  //       }
+  //       // console.log("res from within get image url", checkpoint.image_url);
+  //     });
+  //   // };
+  // }
 
   function addToFavourites(pattern) {
     // console.log("axios is posting:", pattern);
@@ -117,16 +117,16 @@ export default function Pattern(props) {
       </>
     );
   }
-  const [showImage, setShowImage] = useState("show");
-  let imageDiv;
-  if (showImage === "show") {
-    getColours(props.pattern);
-    imageDiv = (
-      <div>
-        <img src={imageURL} alt=""></img>
-      </div>
-    );
-  }
+  // const [showImage, setShowImage] = useState("show");
+  // let imageDiv;
+  // if (showImage === "show") {
+  //   getColours(props.pattern);
+  //   imageDiv = (
+  //     <div>
+  //       <img src={imageURL} alt=""></img>
+  //     </div>
+  //   );
+  // }
 
   const pattern = props.pattern;
   console.log("imageURL", imageURL);
@@ -136,13 +136,13 @@ export default function Pattern(props) {
       <div className="card">
         <div className="card-body">
           <p
-            className="view-pattern"
-            onClick={() => {
-              // console.log("inside view pattern click");
-              getColours(pattern);
-            }}
+          // className="view-pattern"
+          // onClick={() => {
+          //   // console.log("inside view pattern click");
+          //   getColours(pattern);
+          // }}
           >
-            {imageDiv}
+            {/* {imageDiv} */}
           </p>
           <h5 className="card-title">{pattern.title}</h5>
           <p className="card-text">{pattern.description}</p>

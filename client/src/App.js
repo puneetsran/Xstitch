@@ -25,7 +25,7 @@ export default function App() {
 
   function getCheckpointHistory() {
 
-    axios.get(`api/checkpoints/${checkpoint.patterns_id}`)
+    axios.get(`api/checkpoints/${checkpoint.pattern_id}`)
       .then((res) => {
         console.log("this is res from get CP", res.data)
 
@@ -117,8 +117,14 @@ export default function App() {
   if (showMenu === false) {
     content = <div></div>;
   } else {
-    content = [<FavouritesList allPatterns={patterns} />];
+    content = <PatternList />;
   }
+  // if (showMenu === false) {
+  //   content = <div></div>;
+  // } else {
+  //   content = <PatternList />
+  //   // content = [<FavouritesList allPatterns={patternCards} />];
+  // }
 
   // if (sideMenuState === false) {
   //   content = <div></div>;

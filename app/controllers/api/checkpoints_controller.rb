@@ -1,5 +1,5 @@
 class Api::CheckpointsController < ApplicationController
-  # def index
+  def index
  
 
 
@@ -12,13 +12,13 @@ class Api::CheckpointsController < ApplicationController
     #   @checkpoint = Checkpoint.where(patterns_id:params[:patterns_id])
     #   render json: @checkpoint, status: 200 and return
     # end
-    # render json: Checkpoint.all
-  # end
+    render json: Checkpoint.all
+  end
 
   def show
     puts "this is params"
     puts params
-    @checkpoint = Checkpoint.where(params[:patterns_id])
+    @checkpoint = Checkpoint.find(params[:pattern_id])
 
     # @pattern = Pattern.find(params[:patterns_id])
     # if @checkpoint.nil?
@@ -39,9 +39,9 @@ class Api::CheckpointsController < ApplicationController
       render json: {error: {message: "No Pattern Found"}}, status: 500 and return
     else
       @checkpoint = Checkpoint.create(
-        patterns_id: @pattern.id,
+        pattern_id: @pattern.id,
         colours: params[:colours],
-        users_id: @pattern.user.id
+        user_id: @pattern.user.id
       )
       if @checkpoint.save
         render json: @checkpoint, status: 200 and return
