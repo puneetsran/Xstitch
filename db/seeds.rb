@@ -135,69 +135,69 @@ puts "Creating Patterns ..."
 #   users_id: 1
 # })
 
-puts "Creating Checkpoints ..."
+# puts "Creating Checkpoints ..."
 
-checkpoint1 = Checkpoint.create!({
-  user: user1,
-  pattern: pattern1,
-  colours: {},
-  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
-})
+# checkpoint1 = Checkpoint.create!({
+#   user: user1,
+#   pattern: pattern1,
+#   colours: {},
+#   image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+# })
 
-checkpoint2 = Checkpoint.create!({
-  user: user2,
-  pattern: pattern2,
-  colours: {},
-  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
-})
+# checkpoint2 = Checkpoint.create!({
+#   user: user2,
+#   pattern: pattern2,
+#   colours: {},
+#   image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+# })
 
-checkpoint3 = Checkpoint.create!({
-  user: user2,
-  pattern: pattern3,
-  colours: {},
-  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
-})
+# checkpoint3 = Checkpoint.create!({
+#   user: user2,
+#   pattern: pattern3,
+#   colours: {},
+#   image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+# })
 
-checkpoint4 = Checkpoint.create!({
-  user: user1,
-  pattern: pattern4,
-  colours: {},
-  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
-})
+# checkpoint4 = Checkpoint.create!({
+#   user: user1,
+#   pattern: pattern4,
+#   colours: {},
+#   image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+# })
 
-checkpoint5 = Checkpoint.create!({
-  user: user1,
-  pattern: pattern5,
-  colours: {},
-  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
-})
+# checkpoint5 = Checkpoint.create!({
+#   user: user1,
+#   pattern: pattern5,
+#   colours: {},
+#   image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+# })
 
-checkpoint6 = Checkpoint.create!({
-  user: user2,
-  pattern: pattern6,
-  colours: {},
-  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
-})
+# checkpoint6 = Checkpoint.create!({
+#   user: user2,
+#   pattern: pattern6,
+#   colours: {},
+#   image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+# })
 
-checkpoint7 = Checkpoint.create!({
-  user: user3,
-  pattern: pattern7,
-  colours: {},
-  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
-})
+# checkpoint7 = Checkpoint.create!({
+#   user: user3,
+#   pattern: pattern7,
+#   colours: {},
+#   image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+# })
 
-checkpoint8 = Checkpoint.create!({
-  user: user3,
-  pattern: pattern8,
-  colours: {},
-  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
-})
+# checkpoint8 = Checkpoint.create!({
+#   user: user3,
+#   pattern: pattern8,
+#   colours: {},
+#   image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+# })
 
-checkpoint9 = Checkpoint.create!({
-  user: user3,
-  pattern: pattern9,
-  colours: {},
-  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
-})
+# checkpoint9 = Checkpoint.create!({
+#   user: user3,
+#   pattern: pattern9,
+#   colours: {},
+#   image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+# })
 
 puts "DONE!"
