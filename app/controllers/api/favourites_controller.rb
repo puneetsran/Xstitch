@@ -1,4 +1,8 @@
 class Api::FavouritesController < ApplicationController
+  def index
+    render json: Favourite.all
+  end
+
   def create
     @favourite = Favourite.find_or_create_by(
       user_id: params[:user_id],

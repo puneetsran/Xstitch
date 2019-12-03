@@ -8,10 +8,20 @@ class Api::PatternsController < ApplicationController
     # puts "INSIDE SHOW!!!!!"
     # p params
     id = params[:id]
+    
     pattern = Pattern.find(id)
+
+    # @favourites_all = Favourite.joins('join patterns on favourites.pattern_id=patterns.id').where(patterns: {user_id:1})
+    # @patterns_all = Pattern.joins('join favourites on patterns.user_id = favourites.user_id').where(patterns: {user_id:1})
+    
+    # where(articles: { author: author }
+    puts "puneet"
+    # puts @patterns_all.inspect
+
     # render json: { test: 'cool' }
-    favourite = Favourite.find_by(pattern_id: pattern.id)
-    render json: { pattern: pattern, favourite: favourite }, status: 200 and return
+    #favourite = Favourite.find_by(pattern_id: pattern.id)   # TODO: just finds any one example.  probaby a bug.
+    # Favourite.find_by(user_id: 1)
+    render json: { pattern: pattern, favourite: favourite}, status: 200 and return
   end
 
   def create
@@ -30,12 +40,12 @@ class Api::PatternsController < ApplicationController
       if @checkpoint.save 
         render json: { pattern: @pattern, checkpoint: @checkpoint}, status: 200 and return
       else
-        puts "Failed save"
+        puts "Failed save checkpoint"
         puts @checkpoint.errors
         render json: { error: @checkpoint.errors}, status: 500
       end
     else
-      puts "Failed save"
+      puts "Failed save pattern"
       puts @pattern.errors
       render json: { error: @pattern.errors}, status: 500
     end

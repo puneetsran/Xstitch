@@ -8,8 +8,8 @@
   }
 
   .pattern-container {
-    /* display: flex; */
-    text-align: center;
+    display: flex;
+    justify-content: center;
     margin: 2em;
   }
 
@@ -104,8 +104,8 @@
   }
 
   .pattern-container {
-    /* display: flex; */
-    text-align: center;
+    display: flex;
+    justify-content: center;
     margin: 2em;
   }
 

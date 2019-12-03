@@ -16,6 +16,7 @@ User.destroy_all
 puts "destroyed users"
 Favourite.destroy_all
 puts "destroyed favorites"
+Checkpoint.destroy_all
 
 puts "Grudgingly permitting the addition of users ... "
 
@@ -38,101 +39,138 @@ user3 = User.create!({
 })
 
 
+pattern1 = user1.patterns.create!({
+  title:  'My cat',
+  description: 'Black cat'
+  # colours: JSON.parse([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
+  # colours: JSON.generate([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
+})
 
+pattern2 = user2.patterns.create!({
+   title:  'My dog',
+   description: 'Poodle'
+ })
 
-puts "Creating Patterns ..."
+ pattern3 = user2.patterns.create!({
+   title:  'School Bus',
+   description: 'Yellow'
+ })
 
-# puts [['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']].to_h
-# puts [['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']].to_h.to_json
+ pattern4 = user1.patterns.create!({
+  title:  'Flowers',
+  description: 'Is flowers'
+})
 
-# user1.patterns.create!({
-#   title:  'My cat',
-#   description: 'Black cat'
-#   # colours: JSON.parse([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
-#   # colours: JSON.generate([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
-# })
+pattern5 = user1.patterns.create!({
+  title:  'Birbs',
+  description: 'is many birbs'
+})
 
-# user2.patterns.create!({
-#    title:  'My dog',
-#    description: 'Poodle'
-#   #  colours: {}
-#  })
+pattern6 = user2.patterns.create!({
+  title:  'Bumble Bee',
+  description: 'Buzz'
+})
 
-# user2.patterns.create!({
-#    title:  'School Bus',
-#    description: 'Yellow'
-#   #  colours: {}
-#  })
+pattern7 = user3.patterns.create!({
+  title:  'Jazz hands',
+  description: 'n/a'
+})
 
-# user1.patterns.create!({
-#   title:  'Flowers',
-#   description: 'Is flowers'
-#   # colours: {}
-# })
+pattern8 = user3.patterns.create!({
+  title:  'Wink emoji',
+  description: 'n/a'
+})
 
-# user1.patterns.create!({
-#   title:  'Birbs',
-#   description: 'is many birbs'
-#   # colours: {}
-# })
+pattern9 = user3.patterns.create!({
+  title:  'Turtle',
+  description: 'n/a'
+})
 
-# user2.patterns.create!({
-#   title:  'Bumble Bee',
-#   description: 'Buzz'
-#   # colours: {}
-# })
+puts "Creating Favourites ..."
 
-# user3.patterns.create!({
-#   title:  'Jazz hands',
-#   description: 'n/a'
-#   # colours: {}
-# })
+user1.favourites.create!({
+  user_id:  1,
+  pattern_id: 1,
+})
 
-# user3.patterns.create!({
-#   title:  'Wink emoji',
-#   description: 'n/a'
-# })
+user2.favourites.create!({
+  user_id:  1,
+  pattern_id: 4,
+})
 
-# user3.patterns.create!({
-#   title:  'Turtle',
-#   description: 'n/a'
-# })
+user2.favourites.create!({
+   user_id:  1,
+   pattern_id: 5,
+})
 
-# puts "Creating Favourites ..."
+user3.favourites.create!({
+   user_id:  2,
+   pattern_id: 2,
+})
 
-# user1.favourites.create!({
-#   user_id:  user1.id,
-#   pattern_id: 1
-# })
+puts "Creating Checkpoints ..."
 
-# user2.favourites.create!({
-#   user_id:  1,
-#   pattern_id: 4
-# })
+checkpoint1 = Checkpoint.create!({
+  user: user1,
+  pattern: pattern1,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
 
-# user2.favourites.create!({
-#    user_id:  1,
-#    pattern_id: 5
-# })
+checkpoint2 = Checkpoint.create!({
+  user: user2,
+  pattern: pattern2,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
 
-# user3.favourites.create!({
-#    user_id:  2,
-#    pattern_id: 2
-# })
+checkpoint3 = Checkpoint.create!({
+  user: user2,
+  pattern: pattern3,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
 
-# user3.favourites.create!({
-#    user_id:  2,
-#    pattern_id: 3
-# })
+checkpoint4 = Checkpoint.create!({
+  user: user1,
+  pattern: pattern4,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
 
-# user3.favourites.create!({
-#    user_id:  1,
-#    pattern_id: 5
-# })
+checkpoint5 = Checkpoint.create!({
+  user: user1,
+  pattern: pattern5,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
 
-# Checkpoint.create!({
-#   patterns_id: 1,
-#   users_id: 1
-# })
+checkpoint6 = Checkpoint.create!({
+  user: user2,
+  pattern: pattern6,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
+
+checkpoint7 = Checkpoint.create!({
+  user: user3,
+  pattern: pattern7,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
+
+checkpoint8 = Checkpoint.create!({
+  user: user3,
+  pattern: pattern8,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
+
+checkpoint9 = Checkpoint.create!({
+  user: user3,
+  pattern: pattern9,
+  colours: {},
+  image_url: 'https://github.com/user956/tweeter/blob/master/docs/water-melon.png?raw=true'
+})
 
 puts "DONE!"

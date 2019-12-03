@@ -1,9 +1,17 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
-import axios from 'axios'
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  Nav,
+  Navbar,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button
+} from "react-bootstrap";
+import axios from "axios";
+import FavouritesList from "./FavouritesList";
+import PatternList from "./patternList";
 
 export default function Menu(props) {
   // const [user, setUser] = useState([])
@@ -16,12 +24,12 @@ export default function Menu(props) {
         window.localStorage.setItem('user', userObj)
       }).catch((err) => {
         console.log(err)
-      })
+      });
   }
 
   return (
-
-    <Navbar expand="lg"
+    <Navbar
+      expand="lg"
       style={{
         background: "radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)",
         height: "100px"
@@ -31,11 +39,14 @@ export default function Menu(props) {
           fontSize: "3.00rem",
           fontWeight: "bolder",
           fontFamily: "'Press Start 2P', 'cursive'"
-        }}>
-        Xstitch</Navbar.Brand>
+        }}
+      >
+        Xstitch
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto"
+        <Nav
+          className="mr-auto"
           style={{
             fontSize: "1.5em",
             paddingTop: "25px"
@@ -50,7 +61,8 @@ export default function Menu(props) {
                 fontSize: "20px",
                 padding: "15px",
                 fontFamily: "'Press Start 2P', 'cursive'"
-              }}>
+              }}
+            >
               {/* Need to ad functionality to open and close side menu */}
               My Patterns
             </NavDropdown.Item>
@@ -63,17 +75,16 @@ export default function Menu(props) {
                 fontSize: "20px",
                 padding: "15px",
                 fontFamily: "'Press Start 2P', 'cursive'"
-
-              }}>
+              }}
+            >
               {/* Need to ad functionality to open and close side menu */}
-              Favourites
+              My Favourites
             </NavDropdown.Item>
-
           </NavDropdown>
         </Nav>
 
-        <Button variant="outline-success"
-
+        <Button
+          variant="outline-success"
           style={{
             color: "powderblue",
             background: "#2884a7",
@@ -83,10 +94,12 @@ export default function Menu(props) {
             fontWeight: "bolder",
             marginTop: "40px",
             borderColor: "none"
-          }}>
+          }}
+        >
           Sign Up
         </Button>
-        <Button variant="outline-success"
+        <Button
+          variant="outline-success"
           onClick={getUser}
           style={{
             color: "powderblue",
@@ -97,10 +110,11 @@ export default function Menu(props) {
             fontWeight: "bolder",
             marginTop: "40px",
             borderColor: "none"
-          }}>
+          }}
+        >
           Login
         </Button>
       </Navbar.Collapse>
     </Navbar >
-  )
+  );
 }

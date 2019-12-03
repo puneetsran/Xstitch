@@ -5,6 +5,7 @@ import "./components/menu/menu";
 import Menu from "./components/menu/menu";
 import PatternList from "./components/menu/patternList";
 import Patterns from "./components/patterns";
+import FavouritesList from "./components/menu/FavouritesList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Edit from "./components/edit/Edit";
 import View from "./components/view/View";
@@ -71,6 +72,7 @@ export default function App() {
   }
 
 
+
   function createCheckpoint(saveData) {
     let currentPattern = pattern.id
     if (!currentPattern) {
@@ -127,8 +129,17 @@ export default function App() {
   if (showMenu === false) {
     content = <div></div>;
   } else {
-    content = <PatternList />;
+    content = [<FavouritesList allPatterns={patternCards} />];
   }
+
+  // if (sideMenuState === false) {
+  //   content = <div></div>;
+  // } else if (sideMenuState === "action/3.1") {
+  //   // content = [<PatternList />, <FavouritesList />];
+  //   content = [<PatternList patterns={patterns} />];
+  // } else if (sideMenuState === "#action/3.2") {
+  //   content = [<FavouritesList allPatterns={patterns} />];
+  // }
 
   //closes side menu when you click away
   function clickOffMenu() {
