@@ -135,7 +135,6 @@ export default function Pattern(props) {
     <li className="card-deck" key={pattern.id}>
       <div className="card">
         <div className="card-body">
-<<<<<<< HEAD
           <p
             className="view-pattern"
             onClick={() => {
@@ -145,11 +144,6 @@ export default function Pattern(props) {
           >
             {imageDiv}
           </p>
-=======
-          {/* <p className="view-pattern" onClick={viewPattern(pattern)}>
-            {pattern.colours[0]}Pattern here
-          </p> */}
->>>>>>> merge
           <h5 className="card-title">{pattern.title}</h5>
           <p className="card-text">{pattern.description}</p>
           <div className="card-footer bg-transparent text-right">
