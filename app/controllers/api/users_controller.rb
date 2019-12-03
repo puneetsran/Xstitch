@@ -1,9 +1,9 @@
 class Api::UsersController < ApplicationController
 
   def index
-    puts 'hi'
-    puts User.all
-    puts 'bye'
+    # puts 'hi'
+    # puts User.all
+    # puts 'bye'
     render json: User.all
   end
 

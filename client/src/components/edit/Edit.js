@@ -18,24 +18,24 @@ for (let i = 0; i < 25; i++) {
 }
 
 //fake history array for testing cards
-const fakeHistory = [
-  {
-    img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-    dateCreated: "couple days ago"
-  },
-  {
-    img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-    dateCreated: "second card"
-  },
-  {
-    img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-    dateCreated: "couple days ago"
-  },
-  {
-    img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-    dateCreated: "couple days ago"
-  }
-];
+// const fakeHistory = [
+//   {
+//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
+//     dateCreated: "couple days ago"
+//   },
+//   {
+//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
+//     dateCreated: "second card"
+//   },
+//   {
+//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
+//     dateCreated: "couple days ago"
+//   },
+//   {
+//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
+//     dateCreated: "couple days ago"
+//   }
+// ];
 
 export default function Edit(props) {
   const [color, setColor] = useState("#000000");
@@ -112,7 +112,7 @@ export default function Edit(props) {
   if (history === "hide") {
     historyTab = <div></div>;
   } else {
-    historyTab = <History history={fakeHistory} />;
+    historyTab = <History history={props.checkpointHistory} />;
   }
 
   function createImage() {
