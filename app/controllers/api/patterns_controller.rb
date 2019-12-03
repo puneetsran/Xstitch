@@ -5,17 +5,8 @@ class Api::PatternsController < ApplicationController
   end
 
   def show
-<<<<<<< HEAD
-
-  #   //From favourites we need to get the user_id and pattern_id
-  # //from the Pattern table we need to get the title and description
-  
-    puts "INSIDE SHOW!!!!!"
-    p params
-=======
     # puts "INSIDE SHOW!!!!!"
     # p params
->>>>>>> merge
     id = params[:id]
     
     pattern = Pattern.find(id)
@@ -38,12 +29,6 @@ class Api::PatternsController < ApplicationController
     @pattern = Pattern.create(
       user_id: params[:user_id],
       title: params[:title],
-<<<<<<< HEAD
-      description: params[:description],
-      # colours: params[:colours]
-    )
-    @pattern.save
-=======
       description: params[:description]
     )    
     if @pattern.save
@@ -64,7 +49,6 @@ class Api::PatternsController < ApplicationController
       puts @pattern.errors
       render json: { error: @pattern.errors}, status: 500
     end
->>>>>>> merge
   end
 
   def destroy
