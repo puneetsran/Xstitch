@@ -3,482 +3,48 @@ import ColorPicker from "./ColorPicker";
 import Grid from "./Grid";
 import RowButtons from "./RowButtons";
 import ColumnButtons from "./ColumnButtons";
+import History from "./History";
 import "./Edit.css";
+import { Button } from "semantic-ui-react";
+import html2canvas from "html2canvas";
 
-//array for testing grid component
-//will eventually come from database
-const blankPattern = [
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ],
-  [
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff",
-    "#ffffff"
-  ]
+//default array for rendering grid
+const blankPattern = [];
+for (let i = 0; i < 25; i++) {
+  blankPattern.push([]);
+  for (let j = 0; j < 25; j++) {
+    blankPattern[i].push("#fff");
+  }
+}
+
+//fake history array for testing cards
+const fakeHistory = [
+  {
+    img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
+    dateCreated: "couple days ago"
+  },
+  {
+    img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
+    dateCreated: "second card"
+  },
+  {
+    img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
+    dateCreated: "couple days ago"
+  },
+  {
+    img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
+    dateCreated: "couple days ago"
+  }
 ];
-
-//if number of rows is increased, add row to the bottom
-//  do this by adding an array of transparent values the same length as the other arrays
-//if number of columns is increased, add a transparent value to the end of each array in the grid
 
 export default function Edit(props) {
   const [color, setColor] = useState("#000000");
   const [pattern, updatePattern] = useState(blankPattern);
+  // const [image, setImage] = useState(null)
+
+  // used to show/hide the history tab
+  const [history, viewHistory] = useState("hide");
+  let historyTab;
 
   function updateColor(input) {
     const newPattern = pattern.map((row, rowIndex) => {
@@ -535,13 +101,55 @@ export default function Edit(props) {
     });
   }
 
+  function toggleHistory() {
+    if (history === "hide") {
+      viewHistory("show");
+    } else {
+      viewHistory("hide");
+    }
+  }
+
+  if (history === "hide") {
+    historyTab = <div></div>;
+  } else {
+    historyTab = <History history={fakeHistory} />;
+  }
+
+  function createImage() {
+    const input = document.getElementById("capture");
+    html2canvas(input, {
+      backgroundColor: "grey"
+    }).then(canvas => {
+      const imgData = canvas.toDataURL("image/png");
+      console.log(imgData);
+    });
+  }
+
+  //creates new pattern or checkpoint in the database when save is clicked
+  function save() {
+    let saveData = {
+      description: "derp",
+      title: "is very derp",
+      colours: pattern
+    }
+    props.saveHandler(saveData)
+    // props.getCheckpointHistory()
+  }
+
+  //edits and creates anoher checkpoint "version" in the database when
   return (
     <section className="edit">
-      <Grid pattern={pattern} updateColor={updateColor} />
+      <div className="grid-history">
+        <Grid pattern={pattern} updateColor={updateColor} />
+        {historyTab}
+      </div>
       <div className="controls">
         <ColorPicker color={color} onChangeComplete={handleChangeComplete} />
         <RowButtons addRow={addRow} deleteRow={deleteRow} />
         <ColumnButtons addColumn={addColumn} deleteColumn={deleteColumn} />
+        <Button content="Version history" onClick={toggleHistory} />
+        <Button content="Create image" onClick={createImage} />
+        <Button onClick={(() => { save() })}>Save</Button>
       </div>
     </section>
   );

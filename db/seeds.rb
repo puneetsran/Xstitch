@@ -11,7 +11,9 @@ puts "Seeding Data ..."
 
 puts "Eradicating lingering vermin ..." 
 Pattern.destroy_all
+puts "destroyed patterns"
 User.destroy_all
+puts "destroyed users"
 Favourite.destroy_all
 Checkpoint.destroy_all
 
@@ -35,89 +37,103 @@ user3 = User.create!({
   password: "password"
 })
 
+
+
+
 puts "Creating Patterns ..."
 
 # puts [['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']].to_h
 # puts [['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']].to_h.to_json
 
-pattern1 = user1.patterns.create!({
-  title:  'My cat',
-  description: 'Black cat'
-  # colours: JSON.parse([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
-  # colours: JSON.generate([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
-})
+# user1.patterns.create!({
+#   title:  'My cat',
+#   description: 'Black cat'
+#   # colours: JSON.parse([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
+#   # colours: JSON.generate([['#000', '#f00', '#000'], ['#000', '#000', '#f00'], ['#000', '#f00', '#000']])
+# })
 
-pattern2 = user2.patterns.create!({
-   title:  'My dog',
-   description: 'Poodle'
- })
+# user2.patterns.create!({
+#    title:  'My dog',
+#    description: 'Poodle'
+#   #  colours: {}
+#  })
 
- pattern3 = user2.patterns.create!({
-   title:  'School Bus',
-   description: 'Yellow'
- })
+# user2.patterns.create!({
+#    title:  'School Bus',
+#    description: 'Yellow'
+#   #  colours: {}
+#  })
 
- pattern4 = user1.patterns.create!({
-  title:  'Flowers',
-  description: 'Is flowers'
-})
+# user1.patterns.create!({
+#   title:  'Flowers',
+#   description: 'Is flowers'
+#   # colours: {}
+# })
 
-pattern5 = user1.patterns.create!({
-  title:  'Birbs',
-  description: 'is many birbs'
-})
+# user1.patterns.create!({
+#   title:  'Birbs',
+#   description: 'is many birbs'
+#   # colours: {}
+# })
 
-pattern6 = user2.patterns.create!({
-  title:  'Bumble Bee',
-  description: 'Buzz'
-})
+# user2.patterns.create!({
+#   title:  'Bumble Bee',
+#   description: 'Buzz'
+#   # colours: {}
+# })
 
-pattern7 = user3.patterns.create!({
-  title:  'Jazz hands',
-  description: 'n/a'
-})
+# user3.patterns.create!({
+#   title:  'Jazz hands',
+#   description: 'n/a'
+#   # colours: {}
+# })
 
-pattern8 = user3.patterns.create!({
-  title:  'Wink emoji',
-  description: 'n/a'
-})
+# user3.patterns.create!({
+#   title:  'Wink emoji',
+#   description: 'n/a'
+# })
 
-pattern9 = user3.patterns.create!({
-  title:  'Turtle',
-  description: 'n/a'
-})
+# user3.patterns.create!({
+#   title:  'Turtle',
+#   description: 'n/a'
+# })
 
-puts "Creating Favourites ..."
+# puts "Creating Favourites ..."
 
-user1.favourites.create!({
-  user_id:  1,
-  pattern_id: 1,
-})
+# user1.favourites.create!({
+#   user_id:  user1.id,
+#   pattern_id: 1
+# })
 
-user2.favourites.create!({
-  user_id:  1,
-  pattern_id: 4,
-})
+# user2.favourites.create!({
+#   user_id:  1,
+#   pattern_id: 4
+# })
 
-user2.favourites.create!({
-   user_id:  1,
-   pattern_id: 5,
-})
+# user2.favourites.create!({
+#    user_id:  1,
+#    pattern_id: 5
+# })
 
-user3.favourites.create!({
-   user_id:  2,
-   pattern_id: 2,
-})
+# user3.favourites.create!({
+#    user_id:  2,
+#    pattern_id: 2
+# })
 
-user3.favourites.create!({
-   user_id:  2,
-   pattern_id: 3,
-})
+# user3.favourites.create!({
+#    user_id:  2,
+#    pattern_id: 3
+# })
 
-user3.favourites.create!({
-   user_id:  1,
-   pattern_id: 5,
-})
+# user3.favourites.create!({
+#    user_id:  1,
+#    pattern_id: 5
+# })
+
+# Checkpoint.create!({
+#   patterns_id: 1,
+#   users_id: 1
+# })
 
 puts "Creating Checkpoints ..."
 

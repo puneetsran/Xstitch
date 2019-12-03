@@ -17,12 +17,22 @@ export default function Menu(props) {
   // const [user, setUser] = useState([])
 
   function getUser() {
+<<<<<<< HEAD
     axios
       .get("/api/users")
       .then(res => {
         props.setUser(res.data[0]);
         let userObj = JSON.stringify(res.data[0]);
         console.log("stored", window.localStorage.setItem("user", userObj));
+=======
+    axios.get('/api/users')
+      .then((res) => {
+        props.setUser(res.data[0])
+        let userObj = JSON.stringify(res.data[0])
+        window.localStorage.setItem('user', userObj)
+      }).catch((err) => {
+        console.log(err)
+>>>>>>> merge
       })
       .catch(err => {
         console.log(err);
@@ -33,6 +43,7 @@ export default function Menu(props) {
     <Navbar
       expand="lg"
       style={{
+<<<<<<< HEAD
         background:
           "radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)",
         height: "150px"
@@ -40,6 +51,12 @@ export default function Menu(props) {
     >
       <Navbar.Brand
         href="#home"
+=======
+        background: "radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)",
+        height: "100px"
+      }}>
+      <Navbar.Brand href="#home"
+>>>>>>> merge
         style={{
           fontSize: "3.00rem",
           fontWeight: "bolder",
@@ -55,6 +72,7 @@ export default function Menu(props) {
           style={{
             fontSize: "1.5em",
             paddingTop: "25px"
+<<<<<<< HEAD
           }}
         >
           <Nav.Link href="#home" onClick={() => props.setPage("home")}>
@@ -72,6 +90,14 @@ export default function Menu(props) {
                 props.setPattern(true);
                 // props.setPattern(patterns);
               }}
+=======
+          }}>
+          <Nav.Link href="#home" onClick={() => props.setPage("home")}>Home</Nav.Link>
+          <Nav.Link href="#link" onClick={() => props.clearAndSetCreate()}>Create</Nav.Link>
+          <NavDropdown title="Menu" id="basic-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1"
+              onClick={() => props.setShowMenu(true)}
+>>>>>>> merge
               style={{
                 marginTop: "none",
                 fontSize: "20px",
@@ -82,6 +108,7 @@ export default function Menu(props) {
               {/* Need to ad functionality to open and close side menu */}
               My Patterns
             </NavDropdown.Item>
+<<<<<<< HEAD
             <NavDropdown.Item
               href="#action/3.2"
               onClick={() => {
@@ -89,6 +116,12 @@ export default function Menu(props) {
                 props.setPattern(true);
                 // props.setPattern(favourites);
               }}
+=======
+            <NavDropdown.Item href="#action/3.2"
+              // onClick needs to show favourites for specific user
+              // is currently showing all patterns
+              onClick={() => props.setShowMenu(true)}
+>>>>>>> merge
               style={{
                 marginBottom: "none",
                 fontSize: "20px",
