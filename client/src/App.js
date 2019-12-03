@@ -13,29 +13,6 @@ import View from "./components/view/View";
 export default function App() {
   let content;
   let showPage;
-<<<<<<< HEAD
-  let [sideMenuState, setSideMenuState] = useState(false);
-
-  // let [sideMenuState, setSideMenuState] = useState(null);   // can be null or 'fav' or 'mypatt';
-
-  let [patterns, setPatterns] = useState([]);
-  // let [message, setMessage] = useState("Click the button to load data!");
-  let [page, setPage] = useState("home");
-  const [user, setUser] = useState([]);
-  const [storage, setStorage] = useState([]);
-
-  // console.log("this is user", user);
-  if (page === "home") {
-    showPage = <Patterns patterns={patterns} />;
-  } else if (page === "create") {
-    showPage = <Edit />;
-  } else {
-    showPage = <div></div>;
-  }
-
-  //opens side menu
-  if (sideMenuState === false) {
-=======
   let [showMenu, setShowMenu] = useState(false);
   let [patternCards, setPatternCards] = useState([]);
   let [page, setPage] = useState("home");
@@ -138,7 +115,6 @@ export default function App() {
 
   //opens side menu
   if (showMenu === false) {
->>>>>>> merge
     content = <div></div>;
   } else {
     content = [<FavouritesList allPatterns={patterns} />];
@@ -155,23 +131,6 @@ export default function App() {
 
   //closes side menu when you click away
   function clickOffMenu() {
-<<<<<<< HEAD
-    if (sideMenuState === true) {
-      setSideMenuState(false);
-    }
-  }
-
-  useEffect(() => {
-    axios.get("/api/patterns").then(response => setPatterns(response.data));
-  }, []);
-
-  // const fetchData = () => {
-  //   axios
-  //     .get("/api/data") // You can simply make your requests to "/api/whatever you want"
-  //     .then(response => {
-  //       // handle success
-  //       console.log(response.data); // The entire response from the Rails API
-=======
     if (showMenu === true) {
       setShowMenu(false);
     }
@@ -185,16 +144,8 @@ export default function App() {
     setPage("create")
   }
 
->>>>>>> merge
 
 
-<<<<<<< HEAD
-  // console.log("PATTERNS >>>>", patterns);
-  return (
-    <div className="App" onClick={clickOffMenu}>
-      <Menu
-        setPattern={setSideMenuState}
-=======
   useEffect(() => {
 
     axios.get("/api/patterns").then(response => setPatternCards(response.data));
@@ -204,25 +155,15 @@ export default function App() {
     <div className="App" onClick={clickOffMenu}>
       <Menu
         setShowMenu={setShowMenu}
->>>>>>> merge
         setPage={setPage}
         clearAndSetCreate={clearAndSetCreate}
         setUser={setUser}
         setStorage={setStorage}
       />
-<<<<<<< HEAD
-      {showPage}
-      {/* <Patterns patterns={patterns} /> */}
-      {/* <h1>{message}</h1> */}
-      {/* <button onClick={fetchData}>Fetch Data</button> */}
-      {content}
-      {/* <Edit /> */}
-=======
       <div className="main">
         {content}
         {showPage}
       </div>
->>>>>>> merge
     </div>
   );
 }
