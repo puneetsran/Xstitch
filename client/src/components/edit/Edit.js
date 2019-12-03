@@ -7,6 +7,7 @@ import History from "./History";
 import "./Edit.css";
 import { Button } from "semantic-ui-react";
 import html2canvas from "html2canvas";
+import PixelSizeButtons from "./PixelSizeButtons";
 
 //default array for rendering grid
 const blankPattern = [];
@@ -38,8 +39,9 @@ for (let i = 0; i < 25; i++) {
 // ];
 
 export default function Edit(props) {
-  const [color, setColor] = useState("#000000");
+  const [color, setColor] = useState("#9B9B9B");
   const [pattern, updatePattern] = useState(blankPattern);
+  const [pixelSize, setPixelSize] = useState("medium");
   // const [image, setImage] = useState(null)
 
   // used to show/hide the history tab
@@ -131,25 +133,38 @@ export default function Edit(props) {
       description: "derp",
       title: "is very derp",
       colours: pattern
-    }
-    props.saveHandler(saveData)
+    };
+    props.saveHandler(saveData);
     // props.getCheckpointHistory()
+  }
+
+  function setSize(input) {
+    setPixelSize(input);
   }
 
   //edits and creates anoher checkpoint "version" in the database when
   return (
     <section className="edit">
       <div className="grid-history">
-        <Grid pattern={pattern} updateColor={updateColor} />
+        <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} />
         {historyTab}
       </div>
-      <div className="controls">
+      <div className="controls" style={{ backgroundColor: color }}>
         <ColorPicker color={color} onChangeComplete={handleChangeComplete} />
-        <RowButtons addRow={addRow} deleteRow={deleteRow} />
-        <ColumnButtons addColumn={addColumn} deleteColumn={deleteColumn} />
+        <div className="size-controls">
+          <RowButtons addRow={addRow} deleteRow={deleteRow} />
+          <ColumnButtons addColumn={addColumn} deleteColumn={deleteColumn} />
+        </div>
+        <PixelSizeButtons setSize={setSize} />
         <Button content="Version history" onClick={toggleHistory} />
         <Button content="Create image" onClick={createImage} />
-        <Button onClick={(() => { save() })}>Save</Button>
+        <Button
+          onClick={() => {
+            save();
+          }}
+        >
+          Save
+        </Button>
       </div>
     </section>
   );
