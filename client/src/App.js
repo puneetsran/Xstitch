@@ -108,14 +108,22 @@ export default function App() {
     }
   }
 
+  // function renderSavedPattern () {
+  //   axios
+  // }
 
   //renders either homepage or grid based on click
   if (page === "home") {
-    showPage = <Patterns patterns={patternCards} />
+    showPage = <Patterns
+      patterns={patternCards} />
   } else if (page === "create") {
     showPage = <Edit
       saveHandler={saveHandler}
       checkpointHistory={history}
+    />
+  } else if (page === "view") {
+    showPage = <View
+    // setPage={setPage}
     />
   }
   else {
@@ -128,7 +136,9 @@ export default function App() {
   if (showMenu === false) {
     content = <div></div>;
   } else {
-    content = <PatternList />;
+    content = <PatternList
+      setPage={setPage}
+    />;
   }
   // if (showMenu === false) {
   //   content = <div></div>;

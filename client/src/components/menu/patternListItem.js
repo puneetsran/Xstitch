@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import axios from "axios";
+import View from "../view/View";
 
 function getColours(pattern) {
   // return () => {
@@ -13,6 +14,9 @@ function getColours(pattern) {
 }
 
 export default function PatternListItem(props) {
+  function getViewpage() {
+    props.viewPage("view")
+  }
   return (
     <Card style={{ width: "20rem", postition: "absolute" }}>
       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
@@ -29,7 +33,7 @@ export default function PatternListItem(props) {
         </div>
         <Button
           // className="view-pattern"
-          // onClick={console.log("click")}
+          onClick={getViewpage}
           variant="primary"
           style={{
             padding: "7px",

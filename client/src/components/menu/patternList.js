@@ -20,6 +20,7 @@ export default function PatternList(props) {
         key={item.id}
         title={item.title}
         description={item.description}
+        viewPage={props.setPage}
       />
     )
   }))
