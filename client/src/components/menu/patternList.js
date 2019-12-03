@@ -15,21 +15,8 @@ export default function PatternList(props) {
   //   });
   // }, []);
 
-<<<<<<< HEAD
-  let patternCards = props.patterns
-    .filter(pattern => pattern.id === 1 || pattern.id === 4 || pattern.id === 5)
-    .map(item => {
-      return (
-        <PatternListItem
-          key={item.id}
-          title={item.title}
-          description={item.description}
-        />
-      );
-    });
-=======
-
-  let patternCards = pattern.map((item => {
+  // removed filter function for now
+  let patternCards = props.pattern.map((item => {
     return (
       <PatternListItem
         key={item.id}
@@ -38,7 +25,6 @@ export default function PatternList(props) {
       />
     )
   }))
->>>>>>> merge
 
   return <div className="sidebar">{patternCards}</div>;
 }
