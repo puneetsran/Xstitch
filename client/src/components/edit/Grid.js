@@ -13,6 +13,7 @@ export default function Grid(props) {
         values={row}
         updateColor={props.updateColor}
         dragging={dragging}
+        size={props.size}
       />
     );
   });

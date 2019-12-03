@@ -9,6 +9,7 @@ export default function Row(props) {
         color={pixel}
         onClick={() => props.updateColor([props.row, index])}
         dragging={props.dragging}
+        size={props.size}
       />
     );
   });
