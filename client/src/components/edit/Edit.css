@@ -22,6 +22,7 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  overflow: scroll;
 }
 
 .hidden {
@@ -52,9 +53,21 @@
   justify-content: center;
 }
 
-.pixel {
+.small {
+  width: 8px;
+  height: 8px;
+  margin: 0.5px;
+}
+
+.medium {
   width: 15px;
   height: 15px;
+  margin: 0.5px;
+}
+
+.large {
+  width: 30px;
+  height: 30px;
   margin: 0.5px;
 }
 
@@ -66,4 +79,19 @@
   padding: 10px;
   background-color: darkgrey;
   width: 20%;
+}
+
+#capture {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.size-controls {
+  display: flex
+}
+
+.row {
+  flex-wrap: nowrap;
+  height: 15px
 }
