@@ -115,7 +115,7 @@ export default function App() {
     if (pattern && checkpoint) {
       createCheckpoint(data);
       console.log("data here from save handler", data);
-      createPattern(data);
+      // createPattern(data);
       getCheckpointHistory();
     } else {
       console.log("data in the else", data);
