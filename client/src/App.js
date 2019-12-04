@@ -157,7 +157,7 @@ export default function App() {
       checkpointHistory={history}
       currentPattern={pattern}
       setClickedView={clickedView}
-      // setPage={setPage}
+      setPage={setPage}
       renderSavedPattern={renderSavedPattern}
     />
   }
