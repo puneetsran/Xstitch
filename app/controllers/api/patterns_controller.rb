@@ -35,7 +35,8 @@ class Api::PatternsController < ApplicationController
       @checkpoint = Checkpoint.create(
         pattern_id: @pattern.id,
         colours: params[:colours],
-        user_id: params[:user_id]
+        user_id: params[:user_id],
+        image_url: params[:image_url]
       )
       if @checkpoint.save 
         render json: { pattern: @pattern, checkpoint: @checkpoint}, status: 200 and return
