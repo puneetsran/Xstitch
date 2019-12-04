@@ -113,8 +113,6 @@ export default function App() {
         let currentViewOnPage = currentView[currentView.length - 1]
         setClickedView(currentViewOnPage)
         setCheckpoint(currentViewOnPage)
-        // setPattern(currentViewOnPage.pattern_id)
-
       }).catch((err) => {
         console.log("current view for checkpoint failed because", err)
       })
