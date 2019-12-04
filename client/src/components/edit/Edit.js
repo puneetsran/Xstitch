@@ -11,30 +11,10 @@ import PixelSizeButtons from "./PixelSizeButtons";
 
 //default array for rendering grid
 
-//fake history array for testing cards
-// const fakeHistory = [
-//   {
-//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-//     dateCreated: "couple days ago"
-//   },
-//   {
-//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-//     dateCreated: "second card"
-//   },
-//   {
-//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-//     dateCreated: "couple days ago"
-//   },
-//   {
-//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-//     dateCreated: "couple days ago"
-//   }
-// ];
-
 export default function Edit(props) {
   const blankPattern = [];
   const [color, setColor] = useState("#9B9B9B");
-  const [pattern, updatePattern] = useState(blankPattern);
+  const [pattern, updatePattern] = useState(props.setClickedView.colours || blankPattern);
   const [pixelSize, setPixelSize] = useState("medium");
 
   for (let i = 0; i < 25; i++) {
@@ -52,6 +32,7 @@ export default function Edit(props) {
   let historyTab;
 
   function updateColor(input) {
+    console.log("oh hey i'm here")
     const newPattern = pattern.map((row, rowIndex) => {
       if (rowIndex === input[0]) {
         return row.map((pixel, pixelIndex) => {
@@ -121,23 +102,25 @@ export default function Edit(props) {
   }
 
   function createImage() {
-    const input = document.getElementById("capture");
-    html2canvas(input, {
+    let input = document.getElementById("capture");
+    return html2canvas(input, {
       backgroundColor: "grey"
     }).then(canvas => {
-      const imgData = canvas.toDataURL("image/png");
-      console.log(imgData);
+      return canvas.toDataURL("image/png");
     });
   }
 
+  //creates new pattern or checkpoint in the database when save is clicked
   function save(title, description) {
-    let saveData = {
-      title: title,
-      description: description,
-      colours: pattern
-    };
-    props.saveHandler(saveData);
-    // props.getCheckpointHistory()
+    return createImage().then(image => {
+      let saveData = {
+        description: description,
+        title: title,
+        colours: pattern,
+        image_url: image
+      };
+      props.saveHandler(saveData);
+    });
   }
 
   function setSize(input) {
@@ -154,11 +137,22 @@ export default function Edit(props) {
     // console.log("description here", event.target.value);
   }
 
+  let renderGrid;
+
+  if (props.setPage === "create") {
+    renderGrid = <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} />
+  } else if (props.setPage === "edit") {
+    // updatePattern(props.setClickedView.colours)
+    renderGrid = <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} />
+    console.log("pattern object", props.paternObj)
+  }
+  // console.log("this is pattern id", pattern.id)
   //edits and creates anoher checkpoint "version" in the database when
   return (
     <section className="edit">
       <div className="grid-history">
-        <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} />
+        {renderGrid}
+        {/* <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} /> */}
         {historyTab}
       </div>
       <div className="controls" style={{ backgroundColor: color }}>

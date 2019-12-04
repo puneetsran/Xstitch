@@ -4,22 +4,21 @@ import axios from "axios";
 import "./styles.css";
 
 export default function PatternList(props) {
-  const [patterns, setPatterns] = useState([]);
+  const [patternCardsArr, setPatternCards] = useState([]);
 
   useEffect(() => {
     axios.get("/api/patterns")
       .then((res) => {
-        setPatterns(res.data)
+        setPatternCards(res.data)
       })
   }, []);
 
 
   // removed filter function for now
-  let patternCards = patterns.map((item => {
+  let patternCards = patternCardsArr.map((item => {
     return (
       <PatternListItem
         key={item.id}
-
         id={item.id}
         title={item.title}
         description={item.description}

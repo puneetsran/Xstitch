@@ -34,7 +34,6 @@ export default function PatternListItem(props) {
     props.viewPage("view")
     props.renderSavedPattern(props.id)
     // renderSavedPattern()
-
   }
   return (
     <Card style={{ width: "20rem", postition: "absolute" }}>

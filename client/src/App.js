@@ -32,21 +32,15 @@ export default function App() {
     axios
       .get("api/checkpoints")
       .then(res => {
-        console.log("this is res from get CP", res.data);
         const checkpointHistory = res.data.filter(item => {
-          // console.log("this is item", item.patterns_id)
-          // console.log("this is current cp pattern_id", checkpoint.patterns_id)
           return item.pattern_id === checkpoint.pattern_id;
         });
-        console.log("this is cp history", checkpointHistory);
         setHistory([...checkpointHistory]);
       })
       .catch(err => {
         console.log("CPhitsory get failed because", err);
       });
   }
-
-  // console.log("this is user", user)
   //puts initial pattern and checkpoint in the database
   function createPattern(patternData) {
     let currentUser = user.id;
@@ -57,7 +51,8 @@ export default function App() {
       user_id: currentUser,
       description: patternData.description,
       title: patternData.title,
-      colours: patternData.colours
+      colours: patternData.colours,
+      image_url: patternData.image_url
     };
     console.log("reqData here", reqData);
 
@@ -84,41 +79,25 @@ export default function App() {
     }
     let reqData = {
       pattern_id: pattern.id,
-      colours: saveData.colours
+      colours: saveData.colours,
+      image_url: saveData.image_url
     };
     axios
       .post("api/checkpoints", reqData)
       .then(res => {
         setCheckpoint(res.data);
-        // console.log("this is current checkpoint in state", checkpoint)
       })
       .catch(error => {
         return alert("Could not update because: ", error);
       });
   }
 
-  // This decides what the save button does on it's click handler
-  // function saveHandler(data) {
-  //   if (pattern && checkpoint) {
-  //     createCheckpoint(data);
-
-  //     getCheckpointHistory();
-  //   } else {
-  //     createPattern(data);
-  //     // getCheckpointHistory()
-  //   }
-  // }
-
   function saveHandler(data) {
-    console.log("what is pattern?", pattern);
-    console.log("what is checkpoint?", checkpoint);
     if (pattern && checkpoint) {
       createCheckpoint(data);
-      console.log("data here from save handler", data);
-      // createPattern(data);
       getCheckpointHistory();
     } else {
-      console.log("data in the else", data);
+      // console.log("data in the else", data);
       createPattern(data);
       // getCheckpointHistory()
     }
@@ -135,12 +114,20 @@ export default function App() {
         })
         let currentViewOnPage = currentView[currentView.length - 1]
         setClickedView(currentViewOnPage)
+        setCheckpoint(currentViewOnPage)
       }).catch((err) => {
         console.log("current view for checkpoint failed because", err)
       })
   }
-  // console.log("this is state for clickedView", clickedView)
 
+  //gets pattern object for checkpoint so it can be passed to the backend when editing existing patterns
+  function getPattern() {
+    return patternCards.map((item) => {
+      if (item.id === checkpoint.pattern_id) {
+        setPattern(item)
+      }
+    })
+  }
   //renders either homepage, view page or grid based on click
   if (page === "home") {
     showPage = <Patterns
@@ -149,14 +136,29 @@ export default function App() {
     showPage = <Edit
       saveHandler={saveHandler}
       checkpointHistory={history}
+      setClickedView={clickedView}
+
+      setPage={page}
     />
   } else if (page === "view") {
     showPage = <View
       currentPattern={pattern}
+      checkpointHistory={history}
       currentCheckpoint={checkpoint}
       setClickedView={clickedView}
+      setPage={setPage}
+      getCheckpointHistory={getCheckpointHistory}
+      getPattern={getPattern}
     />
 
+  }
+  else if (page === "edit") {
+    showPage = <Edit
+      saveHandler={saveHandler}
+      checkpointHistory={history}
+      setClickedView={clickedView}
+      setPage={page}
+    />
   }
   else {
     showPage = <div></div>
@@ -172,21 +174,8 @@ export default function App() {
 
     />;
   }
-  // if (showMenu === false) {
-  //   content = <div></div>;
-  // } else {
-  //   content = <PatternList />
-  //   // content = [<FavouritesList allPatterns={patternCards} />];
-  // }
 
-  // if (sideMenuState === false) {
-  //   content = <div></div>;
-  // } else if (sideMenuState === "action/3.1") {
-  //   // content = [<PatternList />, <FavouritesList />];
-  //   content = [<PatternList patterns={patterns} />];
-  // } else if (sideMenuState === "#action/3.2") {
-  //   content = [<FavouritesList allPatterns={patterns} />];
-  // }
+
 
   //closes side menu when you click away
   function clickOffMenu() {
@@ -195,6 +184,8 @@ export default function App() {
     }
   }
 
+  console.log("this is current pattern in state", pattern)
+  console.log("this is current checkpoint in state", checkpoint)
   //clears pattern and resets state when create button is clicked
   //TODO does not yet reset grid bc grid state lives in sub component
   function clearAndSetCreate() {
