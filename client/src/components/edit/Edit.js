@@ -98,7 +98,9 @@ export default function Edit(props) {
   if (history === "hide") {
     historyTab = <div></div>;
   } else {
-    historyTab = <History history={props.checkpointHistory} />;
+    historyTab = <History
+      // setPage={props.setPage}
+      history={props.checkpointHistory} />;
   }
 
   function createImage() {
@@ -144,7 +146,6 @@ export default function Edit(props) {
   } else if (props.setPage === "edit") {
     // updatePattern(props.setClickedView.colours)
     renderGrid = <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} />
-    console.log("pattern object", props.paternObj)
   }
   // console.log("this is pattern id", pattern.id)
   //edits and creates anoher checkpoint "version" in the database when

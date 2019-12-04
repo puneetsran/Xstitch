@@ -132,6 +132,7 @@ export default function Pattern(props) {
       </>
     );
   }
+
   const [showImage, setShowImage] = useState("show");
   let imageDiv;
   if (showImage === "show") {
@@ -166,7 +167,7 @@ export default function Pattern(props) {
           <IoIosHeart
             className={`heart ${
               isFavourited ? "is-favourited" : "is-not-favourited"
-            }`}
+              }`}
             onClick={() => {
               // console.log("heart clicked - isFavourited:", isFavourited);
               if (isFavourited) {

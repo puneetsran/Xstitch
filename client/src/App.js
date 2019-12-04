@@ -137,7 +137,6 @@ export default function App() {
       saveHandler={saveHandler}
       checkpointHistory={history}
       setClickedView={clickedView}
-
       setPage={page}
     />
   } else if (page === "view") {
@@ -156,8 +155,10 @@ export default function App() {
     showPage = <Edit
       saveHandler={saveHandler}
       checkpointHistory={history}
+      currentPattern={pattern}
       setClickedView={clickedView}
-      setPage={page}
+      // setPage={setPage}
+      renderSavedPattern={renderSavedPattern}
     />
   }
   else {
@@ -185,7 +186,7 @@ export default function App() {
   }
 
   console.log("this is current pattern in state", pattern)
-  console.log("this is current checkpoint in state", checkpoint)
+  console.log("this is current checkpointHistory in state", history)
   //clears pattern and resets state when create button is clicked
   //TODO does not yet reset grid bc grid state lives in sub component
   function clearAndSetCreate() {
