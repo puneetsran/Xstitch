@@ -59,7 +59,8 @@ export default function App() {
       user_id: currentUser,
       description: patternData.description,
       title: patternData.title,
-      colours: patternData.colours
+      colours: patternData.colours,
+      image_url: patternData.image_url
     }
 
     axios.post("api/patterns", reqData)
@@ -82,7 +83,8 @@ export default function App() {
     }
     let reqData = {
       pattern_id: pattern.id,
-      colours: saveData.colours
+      colours: saveData.colours,
+      image_url: saveData.image_url
     }
     axios.post("api/checkpoints", reqData)
       .then((res) => {
