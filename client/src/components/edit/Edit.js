@@ -7,15 +7,9 @@ import History from "./History";
 import "./Edit.css";
 import { Button } from "semantic-ui-react";
 import html2canvas from "html2canvas";
+import PixelSizeButtons from "./PixelSizeButtons";
 
 //default array for rendering grid
-const blankPattern = [];
-for (let i = 0; i < 25; i++) {
-  blankPattern.push([]);
-  for (let j = 0; j < 25; j++) {
-    blankPattern[i].push("#fff");
-  }
-}
 
 //fake history array for testing cards
 // const fakeHistory = [
@@ -38,8 +32,19 @@ for (let i = 0; i < 25; i++) {
 // ];
 
 export default function Edit(props) {
-  const [color, setColor] = useState("#000000");
+  const blankPattern = [];
+  const [color, setColor] = useState("#9B9B9B");
   const [pattern, updatePattern] = useState(blankPattern);
+  const [pixelSize, setPixelSize] = useState("medium");
+
+  for (let i = 0; i < 25; i++) {
+    blankPattern.push([]);
+    for (let j = 0; j < 25; j++) {
+      blankPattern[i].push("#fff");
+    }
+  }
+  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
   // const [image, setImage] = useState(null)
 
   // used to show/hide the history tab
@@ -125,32 +130,87 @@ export default function Edit(props) {
     });
   }
 
-  //creates new pattern or checkpoint in the database when save is clicked
-  function save() {
+  function save(title, description) {
     let saveData = {
-      description: "derp",
-      title: "is very derp",
+      title: title,
+      description: description,
       colours: pattern
-    }
-    props.saveHandler(saveData)
+    };
+    props.saveHandler(saveData);
     // props.getCheckpointHistory()
+  }
+
+  function setSize(input) {
+    setPixelSize(input);
+  }
+
+  function handleTitleChange(event) {
+    setTitle(event.target.value);
+    // console.log("title here", event.target.value);
+  }
+
+  function handleDescriptionChange(event) {
+    setDescription(event.target.value);
+    // console.log("description here", event.target.value);
   }
 
   //edits and creates anoher checkpoint "version" in the database when
   return (
     <section className="edit">
       <div className="grid-history">
-        <Grid pattern={pattern} updateColor={updateColor} />
+        <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} />
         {historyTab}
       </div>
-      <div className="controls">
+      <div className="controls" style={{ backgroundColor: color }}>
+        <div className="input-group">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              Title
+            </span>
+          </div>
+          <input
+            // o={title}
+            type="text"
+            className="form-control"
+            aria-label="Title"
+            aria-describedby="basic-addon1"
+            onChange={handleTitleChange}
+          ></input>
+        </div>
+        <div className="input-group">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              Description
+            </span>
+          </div>
+          <input
+            // value={form.description}
+            type="text"
+            className="form-control"
+            aria-label="Description"
+            aria-describedby="basic-addon1"
+            onChange={handleDescriptionChange}
+          ></input>
+        </div>
         <ColorPicker color={color} onChangeComplete={handleChangeComplete} />
-        <RowButtons addRow={addRow} deleteRow={deleteRow} />
-        <ColumnButtons addColumn={addColumn} deleteColumn={deleteColumn} />
+        <div className="size-controls">
+          <RowButtons addRow={addRow} deleteRow={deleteRow} />
+          <ColumnButtons addColumn={addColumn} deleteColumn={deleteColumn} />
+        </div>
+        <PixelSizeButtons setSize={setSize} />
         <Button content="Version history" onClick={toggleHistory} />
         <Button content="Create image" onClick={createImage} />
-        <Button onClick={(() => { save() })}>Save</Button>
+
+        <Button
+          onClick={() => {
+            console.log("props within save", props);
+            save(title, description);
+          }}
+        >
+          Save
+        </Button>
       </div>
+      {/* </div> */}
     </section>
   );
 }

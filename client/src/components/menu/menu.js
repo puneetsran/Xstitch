@@ -15,15 +15,20 @@ import PatternList from "./patternList";
 
 export default function Menu(props) {
   // const [user, setUser] = useState([])
+  const [isLoggedIn, setIsLoggedIn] = useState(undefined);
 
   function getUser() {
-    axios.get('/api/users')
-      .then((res) => {
-        props.setUser(res.data[0])
-        let userObj = JSON.stringify(res.data[0])
-        window.localStorage.setItem('user', userObj)
-      }).catch((err) => {
-        console.log(err)
+    axios
+      .get("/api/users")
+      .then(res => {
+        props.setUser(res.data[0]);
+        setIsLoggedIn(true);
+        // console.lo
+        let userObj = JSON.stringify(res.data[0]);
+        window.localStorage.setItem("user", userObj);
+      })
+      .catch(err => {
+        console.log(err);
       });
     // .catch(err => {
     //   console.log(err);
@@ -34,10 +39,13 @@ export default function Menu(props) {
     <Navbar
       expand="lg"
       style={{
-        background: "radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)",
+        background:
+          "radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)",
         height: "100px"
-      }}>
-      <Navbar.Brand href="#home"
+      }}
+    >
+      <Navbar.Brand
+        href="#home"
         style={{
           fontSize: "3.00rem",
           fontWeight: "bolder",
@@ -53,11 +61,17 @@ export default function Menu(props) {
           style={{
             fontSize: "1.5em",
             paddingTop: "25px"
-          }}>
-          <Nav.Link href="#home" onClick={() => props.setPage("home")}>Home</Nav.Link>
-          <Nav.Link href="#link" onClick={() => props.clearAndSetCreate()}>Create</Nav.Link>
+          }}
+        >
+          <Nav.Link href="#home" onClick={() => props.setPage("home")}>
+            Home
+          </Nav.Link>
+          <Nav.Link href="#link" onClick={() => props.clearAndSetCreate()}>
+            Create
+          </Nav.Link>
           <NavDropdown title="Menu" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1"
+            <NavDropdown.Item
+              href="#action/3.1"
               onClick={() => props.setShowMenu(true)}
               style={{
                 marginTop: "none",
@@ -69,7 +83,8 @@ export default function Menu(props) {
               {/* Need to ad functionality to open and close side menu */}
               My Patterns
             </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2"
+            <NavDropdown.Item
+              href="#action/3.2"
               // onClick needs to show favourites for specific user
               // is currently showing all patterns
               onClick={() => props.setShowMenu(true)}
@@ -86,7 +101,7 @@ export default function Menu(props) {
           </NavDropdown>
         </Nav>
 
-        <Button
+        {/* <Button
           variant="outline-success"
           style={{
             color: "powderblue",
@@ -100,20 +115,27 @@ export default function Menu(props) {
           }}
         >
           Sign Up
-        </Button>
+        </Button> */}
+
+        {/* <IoIosHeart
+          className={`heart ${
+            isFavourited ? "is-favourited" : "is-not-favourited"
+          }`}
+          onClick={() => {
+            // console.log("heart clicked - isFavourited:", isFavourited);
+            if (isFavourited) {
+              removeFromFavourites(isFavourited);
+            } else {
+              addToFavourites(pattern);
+            }
+          }}
+        ></IoIosHeart> */}
         <Button
+          className={`logged-in ${
+            isLoggedIn ? "is-loggedin" : "is-not-loggedin"
+          }`}
           variant="outline-success"
           onClick={getUser}
-          style={{
-            color: "powderblue",
-            background: "#2884a7",
-            padding: "5px",
-            margin: "10px",
-            fontSize: "20px",
-            fontWeight: "bolder",
-            marginTop: "40px",
-            borderColor: "none"
-          }}
         >
           Login
         </Button>
