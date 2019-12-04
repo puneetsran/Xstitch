@@ -109,22 +109,21 @@ export default function App() {
   }
 
   let [clickedView, setClickedView] = useState({})
-
+  //this function is fired from patternlist item , sets the state for clickedView which is 
+  //passed to the View component
   function renderSavedPattern(patternId) {
-
     axios.get("api/checkpoints")
       .then((res) => {
         let currentView = res.data.filter((item) => {
           return item.pattern_id === patternId
         })
         let currentViewOnPage = currentView[currentView.length - 1]
-        console.log("this is current view", currentViewOnPage)
         setClickedView(currentViewOnPage)
       }).catch((err) => {
         console.log("current view for checkpoint failed because", err)
       })
   }
-  console.log("this is state for clickedView", clickedView)
+  // console.log("this is state for clickedView", clickedView)
 
   //renders either homepage or grid based on click
   if (page === "home") {
@@ -140,9 +139,7 @@ export default function App() {
       currentPattern={pattern}
       currentCheckpoint={checkpoint}
       setClickedView={clickedView}
-    // renderSavedPattern={renderSavedPattern}
     />
-    // console.log("this is checkpoint", history)
 
   }
   else {

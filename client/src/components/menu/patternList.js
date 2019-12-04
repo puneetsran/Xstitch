@@ -5,7 +5,6 @@ import "./styles.css";
 
 export default function PatternList(props) {
   const [patterns, setPatterns] = useState([]);
-  const [renderView, setRenderView] = useState([])
 
   useEffect(() => {
     axios.get("/api/patterns")

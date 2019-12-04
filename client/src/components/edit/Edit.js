@@ -127,6 +127,7 @@ export default function Edit(props) {
 
   //creates new pattern or checkpoint in the database when save is clicked
   function save() {
+    createImage()
     let saveData = {
       description: "derp",
       title: "is very derp",
