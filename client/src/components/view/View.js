@@ -15,8 +15,8 @@ export default function View(props) {
   let colours = props.setClickedView.colours
 
 
-  console.log("state inside view", props.setClickedView)
-  console.log("this is colours", colours)
+  // console.log("state inside view", props.setClickedView)
+  // console.log("this is colours", colours)
 
 
 
@@ -26,6 +26,9 @@ export default function View(props) {
     gridView = <ViewGrid pattern={colours} />
   }
 
+  function goToEditpage() {
+    props.setPage("edit")
+  }
 
   return (
     <section className="view">
@@ -44,7 +47,7 @@ export default function View(props) {
             <Icon name="image" />
             Save
           </Button>
-          <Button icon color="blue" labelPosition="left" floated="right">
+          <Button icon color="blue" labelPosition="left" floated="right" onClick={goToEditpage}>
             Edit
             <Icon name="edit" />
           </Button>

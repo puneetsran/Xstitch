@@ -154,11 +154,20 @@ export default function Edit(props) {
     // console.log("description here", event.target.value);
   }
 
+  let renderGrid;
+
+  if (props.setPage === "create") {
+    renderGrid = <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} />
+  } else if (props.setPage === "edit") {
+    renderGrid = <Grid pattern={props.setClickedView.colours} updateColor={updateColor} size={pixelSize} />
+  }
+  // console.log("this is pattern id", pattern.id)
   //edits and creates anoher checkpoint "version" in the database when
   return (
     <section className="edit">
       <div className="grid-history">
-        <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} />
+        {renderGrid}
+        {/* <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} /> */}
         {historyTab}
       </div>
       <div className="controls" style={{ backgroundColor: color }}>

@@ -140,7 +140,9 @@ export default function App() {
       })
   }
   // console.log("this is state for clickedView", clickedView)
+  // function editPage() {
 
+  // }
   //renders either homepage, view page or grid based on click
   if (page === "home") {
     showPage = <Patterns
@@ -149,14 +151,23 @@ export default function App() {
     showPage = <Edit
       saveHandler={saveHandler}
       checkpointHistory={history}
+      setPage={page}
     />
   } else if (page === "view") {
     showPage = <View
       currentPattern={pattern}
       currentCheckpoint={checkpoint}
       setClickedView={clickedView}
+      setPage={setPage}
     />
 
+  } else if (page === "edit") {
+    showPage = <Edit
+      saveHandler={saveHandler}
+      checkpointHistory={history}
+      setClickedView={clickedView}
+      setPage={page}
+    />
   }
   else {
     showPage = <div></div>
@@ -172,21 +183,7 @@ export default function App() {
 
     />;
   }
-  // if (showMenu === false) {
-  //   content = <div></div>;
-  // } else {
-  //   content = <PatternList />
-  //   // content = [<FavouritesList allPatterns={patternCards} />];
-  // }
 
-  // if (sideMenuState === false) {
-  //   content = <div></div>;
-  // } else if (sideMenuState === "action/3.1") {
-  //   // content = [<PatternList />, <FavouritesList />];
-  //   content = [<PatternList patterns={patterns} />];
-  // } else if (sideMenuState === "#action/3.2") {
-  //   content = [<FavouritesList allPatterns={patterns} />];
-  // }
 
   //closes side menu when you click away
   function clickOffMenu() {
