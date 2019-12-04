@@ -32,9 +32,10 @@
 .history {
   width: 100%;
   overflow-x: scroll;
-  height: 350px;
+  height: 300px;
   display: flex;
   flex-direction: row;
+  align-items: center
 }
 
 .history::-webkit-scrollbar {
@@ -43,7 +44,18 @@
 
 .history-card {
   width: 150px;
-  padding: 10px;
+  height: 200px;
+  padding: 10px
+}
+
+.ui.card {
+  box-shadow: 2px 2px 5px #888;
+}
+
+.history-image {
+  height: 130px;
+  width: 130px;
+  overflow: hidden;
 }
 
 .extra.content {

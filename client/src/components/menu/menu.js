@@ -14,25 +14,31 @@ import FavouritesList from "./FavouritesList";
 import PatternList from "./patternList";
 
 export default function Menu(props) {
-  // const [user, setUser] = useState([])
+  const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(undefined);
+  const [showUser, setShowUser] = useState(undefined);
 
   function getUser() {
     axios
       .get("/api/users")
       .then(res => {
         props.setUser(res.data[0]);
+
+        setCurrentUser(res.data[0].name);
         setIsLoggedIn(true);
-        // console.lo
+        setShowUser(true);
+
         let userObj = JSON.stringify(res.data[0]);
         window.localStorage.setItem("user", userObj);
       })
       .catch(err => {
         console.log(err);
       });
-    // .catch(err => {
-    //   console.log(err);
-    // });
+  }
+
+  let userDiv;
+  if (showUser) {
+    userDiv = <div> Logged in as {currentUser}!</div>;
   }
 
   return (
@@ -100,36 +106,7 @@ export default function Menu(props) {
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
-
-        {/* <Button
-          variant="outline-success"
-          style={{
-            color: "powderblue",
-            background: "#2884a7",
-            padding: "5px",
-            margin: "10px",
-            fontSize: "20px",
-            fontWeight: "bolder",
-            marginTop: "40px",
-            borderColor: "none"
-          }}
-        >
-          Sign Up
-        </Button> */}
-
-        {/* <IoIosHeart
-          className={`heart ${
-            isFavourited ? "is-favourited" : "is-not-favourited"
-          }`}
-          onClick={() => {
-            // console.log("heart clicked - isFavourited:", isFavourited);
-            if (isFavourited) {
-              removeFromFavourites(isFavourited);
-            } else {
-              addToFavourites(pattern);
-            }
-          }}
-        ></IoIosHeart> */}
+        {userDiv}
         <Button
           className={`logged-in ${
             isLoggedIn ? "is-loggedin" : "is-not-loggedin"
