@@ -18,26 +18,6 @@ for (let i = 0; i < 25; i++) {
   }
 }
 
-//fake history array for testing cards
-// const fakeHistory = [
-//   {
-//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-//     dateCreated: "couple days ago"
-//   },
-//   {
-//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-//     dateCreated: "second card"
-//   },
-//   {
-//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-//     dateCreated: "couple days ago"
-//   },
-//   {
-//     img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg",
-//     dateCreated: "couple days ago"
-//   }
-// ];
-
 export default function Edit(props) {
   const [color, setColor] = useState("#9B9B9B");
   const [pattern, updatePattern] = useState(blankPattern);
@@ -118,24 +98,25 @@ export default function Edit(props) {
   }
 
   function createImage() {
-    const input = document.getElementById("capture");
-    html2canvas(input, {
+    let input = document.getElementById("capture");
+    return html2canvas(input, {
       backgroundColor: "grey"
     }).then(canvas => {
-      const imgData = canvas.toDataURL("image/png");
-      console.log(imgData);
+      return canvas.toDataURL("image/png");
     });
   }
 
   //creates new pattern or checkpoint in the database when save is clicked
   function save() {
-    let saveData = {
-      description: "derp",
-      title: "is very derp",
-      colours: pattern
-    };
-    props.saveHandler(saveData);
-    // props.getCheckpointHistory()
+    return createImage().then(image => {
+      let saveData = {
+        description: "derp",
+        title: "is very derp",
+        colours: pattern,
+        image_url: image
+      };
+      props.saveHandler(saveData);
+    });
   }
 
   function setSize(input) {
