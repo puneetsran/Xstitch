@@ -30,7 +30,8 @@ class Api::PatternsController < ApplicationController
       user_id: params[:user_id],
       title: params[:title],
       description: params[:description]
-    )    
+    )
+    # byebug    
     if @pattern.save
       @checkpoint = Checkpoint.create(
         pattern_id: @pattern.id,
@@ -40,7 +41,7 @@ class Api::PatternsController < ApplicationController
       if @checkpoint.save 
         render json: { pattern: @pattern, checkpoint: @checkpoint}, status: 200 and return
       else
-        puts "Failed save"
+        puts "Failed saveee"
         puts @checkpoint.errors
         render json: { error: @checkpoint.errors}, status: 500
       end

@@ -26,103 +26,112 @@ export default function App() {
   //sets current checkpoint in state
   const [checkpoint, setCheckpoint] = useState({});
   //sets current version history in state
-  const [history, setHistory] = useState([])
-
-
+  const [history, setHistory] = useState([]);
 
   function getCheckpointHistory() {
-
-    axios.get("api/checkpoints")
-      .then((res) => {
-        console.log("this is res from get CP", res.data)
-        const checkpointHistory = res.data.filter((item) => {
+    axios
+      .get("api/checkpoints")
+      .then(res => {
+        console.log("this is res from get CP", res.data);
+        const checkpointHistory = res.data.filter(item => {
           // console.log("this is item", item.patterns_id)
           // console.log("this is current cp pattern_id", checkpoint.patterns_id)
-          return item.pattern_id === checkpoint.pattern_id
-        })
-        console.log("this is cp history", checkpointHistory)
-        setHistory([...checkpointHistory])
+          return item.pattern_id === checkpoint.pattern_id;
+        });
+        console.log("this is cp history", checkpointHistory);
+        setHistory([...checkpointHistory]);
       })
-      .catch((err) => {
-        console.log("CPhitsory get failed because", err)
-      })
+      .catch(err => {
+        console.log("CPhitsory get failed because", err);
+      });
   }
 
   // console.log("this is user", user)
   //puts initial pattern and checkpoint in the database
   function createPattern(patternData) {
-    let currentUser = user.id
+    let currentUser = user.id;
     if (!currentUser) {
-      return alert("You must log in")
+      return alert("You must log in");
     }
     let reqData = {
       user_id: currentUser,
       description: patternData.description,
       title: patternData.title,
       colours: patternData.colours
-    }
+    };
+    console.log("reqData here", reqData);
 
-    axios.post("api/patterns", reqData)
-      .then((res) => {
-        setPattern(res.data.pattern)
-        setCheckpoint(res.data.checkpoint)
-      }).catch((error) => {
-        return alert("Could not save pattern because: ", error)
+    axios
+      .post("api/patterns", reqData)
+      .then(res => {
+        setPattern(res.data.pattern);
+        setCheckpoint(res.data.checkpoint);
+        setPatternCards([...patternCards, res.data.pattern]);
       })
+      .catch(error => {
+        console.log("error here", error);
+        return alert("Could not save pattern", error);
+      });
   }
 
-
   function createCheckpoint(saveData) {
-    let currentPattern = pattern.id
+    let currentPattern = pattern.id;
     if (!currentPattern) {
-      return alert("You must choose an existing pattern to edit")
+      return alert("You must choose an existing pattern to edit");
     }
     if (user.id !== pattern.user_id) {
-      return alert("You must fork a pattern before editing!")
+      return alert("You must fork a pattern before editing!");
     }
     let reqData = {
       pattern_id: pattern.id,
       colours: saveData.colours
-    }
-    axios.post("api/checkpoints", reqData)
-      .then((res) => {
-        setCheckpoint(res.data)
+    };
+    axios
+      .post("api/checkpoints", reqData)
+      .then(res => {
+        setCheckpoint(res.data);
         // console.log("this is current checkpoint in state", checkpoint)
-
-      }).catch((error) => {
-        return alert("Could not update because: ", error)
       })
+      .catch(error => {
+        return alert("Could not update because: ", error);
+      });
   }
-
 
   // This decides what the save button does on it's click handler
+  // function saveHandler(data) {
+  //   if (pattern && checkpoint) {
+  //     createCheckpoint(data);
+
+  //     getCheckpointHistory();
+  //   } else {
+  //     createPattern(data);
+  //     // getCheckpointHistory()
+  //   }
+  // }
+
   function saveHandler(data) {
+    console.log("what is pattern?", pattern);
+    console.log("what is checkpoint?", checkpoint);
     if (pattern && checkpoint) {
-      createCheckpoint(data)
-      getCheckpointHistory()
-
+      createCheckpoint(data);
+      console.log("data here from save handler", data);
+      createPattern(data);
+      getCheckpointHistory();
     } else {
-      createPattern(data)
+      console.log("data in the else", data);
+      createPattern(data);
       // getCheckpointHistory()
-
     }
   }
-
 
   //renders either homepage or grid based on click
   if (page === "home") {
-    showPage = <Patterns patterns={patternCards} />
+    showPage = <Patterns patterns={patternCards} />;
   } else if (page === "create") {
-    showPage = <Edit
-      saveHandler={saveHandler}
-      checkpointHistory={history}
-    />
+    showPage = <Edit saveHandler={saveHandler} checkpointHistory={history} />;
+  } else {
+    showPage = <div></div>;
   }
-  else {
-    showPage = <div></div>
-  }
-
-
 
   //opens side menu
   if (showMenu === false) {
@@ -156,15 +165,12 @@ export default function App() {
   //clears pattern and resets state when create button is clicked
   //TODO does not yet reset grid bc grid state lives in sub component
   function clearAndSetCreate() {
-    setPattern(null)
-    setCheckpoint({})
-    setPage("create")
+    setPattern(null);
+    setCheckpoint({});
+    setPage("create");
   }
 
-
-
   useEffect(() => {
-
     axios.get("/api/patterns").then(response => setPatternCards(response.data));
   }, []);
 

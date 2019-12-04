@@ -34,17 +34,32 @@ export default function Pattern(props) {
     };
   }
 
-  // function getColours(pattern) {
-  //   // return () => {
-  //   return axios
-  //     .get(`/api/checkpoints/${pattern.id}`)
-  //     .then(({ data: { checkpoint } }) => {
-  //       setImageURL(checkpoint.image_url);
-  //       // console.log()
-  //       // console.log("res from within get colours", checkpoint);
-  //     });
-  //   // };
-  // }
+  // axios.get("api/checkpoints")
+  // .then((res) => {
+  //   console.log("this is res from get CP", res.data)
+  //   const checkpointHistory = res.data.filter((item) => {
+  //     // console.log("this is item", item.patterns_id)
+  //     // console.log("this is current cp pattern_id", checkpoint.patterns_id)
+  //     return item.pattern_id === checkpoint.pattern_id
+  //   })
+  //   console.log("this is cp history", checkpointHistory)
+  //   setHistory([...checkpointHistory])
+  // })
+
+  function getColours(pattern) {
+    // return () => {
+    return axios.get(`/api/checkpoints/`).then(res => {
+      console.log("res within get colours", res.data);
+      setImageURL(res.data.image_url);
+    });
+
+    // .then(({ data: { checkpoint } }) => {
+    // setImageURL(checkpoint.image_url);
+    // console.log()
+    // console.log("res from within get colours", checkpoint);
+    // });
+    // };
+  }
 
   // function getImageUrl(pattern) {
   //   // return () => {
@@ -117,57 +132,57 @@ export default function Pattern(props) {
       </>
     );
   }
-  // const [showImage, setShowImage] = useState("show");
-  // let imageDiv;
-  // if (showImage === "show") {
-  //   getColours(props.pattern);
-  //   imageDiv = (
-  //     <div>
-  //       <img src={imageURL} alt=""></img>
-  //     </div>
-  //   );
-  // }
+  const [showImage, setShowImage] = useState("show");
+  let imageDiv;
+  if (showImage === "show") {
+    // getColours(props.pattern);
+    imageDiv = (
+      <div>
+        <img src={imageURL} alt=""></img>
+      </div>
+    );
+  }
 
   const pattern = props.pattern;
   console.log("imageURL", imageURL);
   // console.log("isFavourited:", isFavourited);
   return (
-    <li className="card-deck" key={pattern.id}>
-      <div className="card">
-        <div className="card-body">
-          <p
-          // className="view-pattern"
-          // onClick={() => {
-          //   // console.log("inside view pattern click");
-          //   getColours(pattern);
-          // }}
-          >
-            {/* {imageDiv} */}
-          </p>
-          <h5 className="card-title">{pattern.title}</h5>
-          <p className="card-text">{pattern.description}</p>
-          <div className="card-footer bg-transparent text-right">
-            {/* <GoRepoForked className="fork-pattern"></GoRepoForked> */}
-            <IoIosHeart
-              className={`heart ${
-                isFavourited ? "is-favourited" : "is-not-favourited"
-                }`}
-              onClick={() => {
-                // console.log("heart clicked - isFavourited:", isFavourited);
-                if (isFavourited) {
-                  removeFromFavourites(isFavourited);
-                } else {
-                  addToFavourites(pattern);
-                }
-              }}
-            ></IoIosHeart>
-            <IoIosShareAlt
+    // <div className="card-deck" key={pattern.id}>
+    <div className="card">
+      <div className="card-body">
+        <p
+          className="view-pattern"
+          onClick={() => {
+            console.log("inside view pattern click");
+            getColours(pattern);
+          }}
+        >
+          {imageDiv}
+        </p>
+        <h5 className="card-title">{pattern.title}</h5>
+        <p className="card-text">{pattern.description}</p>
+        <div className="card-footer bg-transparent text-right">
+          {/* <GoRepoForked className="fork-pattern"></GoRepoForked> */}
+          <IoIosHeart
+            className={`heart ${
+              isFavourited ? "is-favourited" : "is-not-favourited"
+            }`}
+            onClick={() => {
+              // console.log("heart clicked - isFavourited:", isFavourited);
+              if (isFavourited) {
+                removeFromFavourites(isFavourited);
+              } else {
+                addToFavourites(pattern);
+              }
+            }}
+          ></IoIosHeart>
+          {/* <IoIosShareAlt
               className="share"
-            // onClick={sharePattern()}
-            ></IoIosShareAlt>
-          </div>
+              // onClick={sharePattern()}
+            ></IoIosShareAlt> */}
         </div>
       </div>
-    </li>
+    </div>
+    // </div>
   );
 }

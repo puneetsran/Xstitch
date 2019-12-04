@@ -11,7 +11,10 @@ export default function Patterns(props) {
   });
   return (
     <div className="pattern-container">
-      <div className="patterns">{patterns}</div>
+      <div className="patterns">
+        {patterns}
+        {/* <div className="pattern-row"></div> */}
+      </div>
     </div>
   );
 }
