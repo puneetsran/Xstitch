@@ -115,7 +115,7 @@ export default function App() {
     if (pattern && checkpoint) {
       createCheckpoint(data);
       console.log("data here from save handler", data);
-      createPattern(data);
+      // createPattern(data);
       getCheckpointHistory();
     } else {
       console.log("data in the else", data);
@@ -124,20 +124,53 @@ export default function App() {
     }
   }
 
-  //renders either homepage or grid based on click
+  let [clickedView, setClickedView] = useState({})
+  //this function is fired from patternlist item , sets the state for clickedView which is 
+  //passed to the View component
+  function renderSavedPattern(patternId) {
+    axios.get("api/checkpoints")
+      .then((res) => {
+        let currentView = res.data.filter((item) => {
+          return item.pattern_id === patternId
+        })
+        let currentViewOnPage = currentView[currentView.length - 1]
+        setClickedView(currentViewOnPage)
+      }).catch((err) => {
+        console.log("current view for checkpoint failed because", err)
+      })
+  }
+  // console.log("this is state for clickedView", clickedView)
+
+  //renders either homepage, view page or grid based on click
   if (page === "home") {
-    showPage = <Patterns patterns={patternCards} />;
+    showPage = <Patterns
+      patterns={patternCards} />
   } else if (page === "create") {
-    showPage = <Edit saveHandler={saveHandler} checkpointHistory={history} />;
-  } else {
-    showPage = <div></div>;
+    showPage = <Edit
+      saveHandler={saveHandler}
+      checkpointHistory={history}
+    />
+  } else if (page === "view") {
+    showPage = <View
+      currentPattern={pattern}
+      currentCheckpoint={checkpoint}
+      setClickedView={clickedView}
+    />
+
+  }
+  else {
+    showPage = <div></div>
   }
 
   //opens side menu
   if (showMenu === false) {
     content = <div></div>;
   } else {
-    content = <PatternList />;
+    content = <PatternList
+      setPage={setPage}
+      renderSavedPattern={renderSavedPattern}
+
+    />;
   }
   // if (showMenu === false) {
   //   content = <div></div>;
