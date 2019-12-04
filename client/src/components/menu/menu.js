@@ -44,16 +44,11 @@ export default function Menu(props) {
   return (
     <Navbar
       expand="lg"
-      style={{
-        background:
-          "radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)",
-        height: "100px"
-      }}
     >
       <Navbar.Brand
         href="#home"
         style={{
-          fontSize: "3.00rem",
+          fontSize: "2.00rem",
           fontWeight: "bolder",
           fontFamily: "'Press Start 2P', 'cursive'"
         }}
@@ -66,7 +61,7 @@ export default function Menu(props) {
           className="mr-auto"
           style={{
             fontSize: "1.5em",
-            paddingTop: "25px"
+            // paddingTop: "25px"
           }}
         >
           <Nav.Link href="#home" onClick={() => props.setPage("home")}>
