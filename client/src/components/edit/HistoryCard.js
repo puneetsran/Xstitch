@@ -8,7 +8,7 @@ export default function HistoryCard(props) {
         <Image src={props.img} size="small" />
         <Card.Content extra>
           <Icon name="clock outline" />
-          {/* {props.dateCreated} */}
+          {props.created_at}
         </Card.Content>
         <Button basic size="small" content="View" />
       </Card>

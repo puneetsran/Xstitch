@@ -3,7 +3,7 @@ import HistoryCard from "./HistoryCard";
 
 export default function History(props) {
   const cards = props.history.map((card, index) => {
-    return <HistoryCard key={index} img={card.image_url}  />;
+    return <HistoryCard key={index} img={card.image_url} created_at={card.created_at} />;
   });
 
   return <div className="history">{cards}</div>;
