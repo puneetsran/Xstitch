@@ -9,7 +9,6 @@ import FavouritesList from "./components/menu/FavouritesList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Edit from "./components/edit/Edit";
 import View from "./components/view/View";
-import HistoryCard from "./components/edit/HistoryCard";
 
 export default function App() {
   let content;
@@ -27,6 +26,10 @@ export default function App() {
   const [checkpoint, setCheckpoint] = useState({});
   //sets current version history in state
   const [history, setHistory] = useState([]);
+
+  //gets all checkpoints in history
+  const [checkpoints, setCheckpoints] = useState([]);
+  const [patternImages, setPatternImages] = useState([]);
 
   function getCheckpointHistory() {
     axios
@@ -126,53 +129,57 @@ export default function App() {
     }
   }
 
-  let [clickedView, setClickedView] = useState({})
-  //this function is fired from patternlist item , sets the state for clickedView which is 
+  let [clickedView, setClickedView] = useState({});
+  //this function is fired from patternlist item , sets the state for clickedView which is
   //passed to the View component
   function renderSavedPattern(patternId) {
-    axios.get("api/checkpoints")
-      .then((res) => {
-        let currentView = res.data.filter((item) => {
-          return item.pattern_id === patternId
-        })
-        let currentViewOnPage = currentView[currentView.length - 1]
-        setClickedView(currentViewOnPage)
-      }).catch((err) => {
-        console.log("current view for checkpoint failed because", err)
+    axios
+      .get("api/checkpoints")
+      .then(res => {
+        let currentView = res.data.filter(item => {
+          return item.pattern_id === patternId;
+        });
+        let currentViewOnPage = currentView[currentView.length - 1];
+        setClickedView(currentViewOnPage);
       })
+      .catch(err => {
+        console.log("current view for checkpoint failed because", err);
+      });
   }
   // console.log("this is state for clickedView", clickedView)
 
   //renders either homepage, view page or grid based on click
   if (page === "home") {
-    showPage = <Patterns
-      patterns={patternCards} />
+    showPage = (
+      <Patterns
+        patterns={patternCards}
+        checkpoints={checkpoints}
+        patternImages={patternImages}
+        setPage={setPage}
+        renderSavedPattern={renderSavedPattern}
+      />
+    );
   } else if (page === "create") {
-    showPage = <Edit
-      saveHandler={saveHandler}
-      checkpointHistory={history}
-    />
+    showPage = <Edit saveHandler={saveHandler} checkpointHistory={history} />;
   } else if (page === "view") {
-    showPage = <View
-      currentPattern={pattern}
-      currentCheckpoint={checkpoint}
-      setClickedView={clickedView}
-    />
-
-  }
-  else {
-    showPage = <div></div>
+    showPage = (
+      <View
+        currentPattern={pattern}
+        currentCheckpoint={checkpoint}
+        setClickedView={clickedView}
+      />
+    );
+  } else {
+    showPage = <div></div>;
   }
 
   //opens side menu
   if (showMenu === false) {
     content = <div></div>;
   } else {
-    content = <PatternList
-      setPage={setPage}
-      renderSavedPattern={renderSavedPattern}
-
-    />;
+    content = (
+      <PatternList setPage={setPage} renderSavedPattern={renderSavedPattern} />
+    );
   }
   // if (showMenu === false) {
   //   content = <div></div>;
@@ -205,8 +212,29 @@ export default function App() {
     setPage("create");
   }
 
+  function getPatternImages(patterns, checkpoints) {
+    console.log("inside patterns, checkpoints is", checkpoints);
+    return patterns.map(pattern => {
+      let matchingCheckpoints = checkpoints.filter(checkpoint => {
+        return checkpoint.pattern_id === pattern.id;
+      });
+      let mostRecentCheckpoint =
+        matchingCheckpoints[matchingCheckpoints.length - 1];
+      if (mostRecentCheckpoint) {
+        pattern.image_url = mostRecentCheckpoint.image_url;
+        return pattern;
+      } else {
+        pattern.image_url = null;
+        return pattern;
+      }
+    });
+  }
+
   useEffect(() => {
     axios.get("/api/patterns").then(response => setPatternCards(response.data));
+    axios
+      .get("/api/checkpoints")
+      .then(response => setCheckpoints(response.data));
   }, []);
 
   return (
