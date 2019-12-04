@@ -34,7 +34,7 @@ import PixelSizeButtons from "./PixelSizeButtons";
 export default function Edit(props) {
   const blankPattern = [];
   const [color, setColor] = useState("#9B9B9B");
-  const [pattern, updatePattern] = useState(blankPattern);
+  const [pattern, updatePattern] = useState(props.setClickedView.colours || blankPattern);
   const [pixelSize, setPixelSize] = useState("medium");
 
   for (let i = 0; i < 25; i++) {
@@ -52,6 +52,7 @@ export default function Edit(props) {
   let historyTab;
 
   function updateColor(input) {
+    console.log("oh hey i'm here")
     const newPattern = pattern.map((row, rowIndex) => {
       if (rowIndex === input[0]) {
         return row.map((pixel, pixelIndex) => {
@@ -159,7 +160,9 @@ export default function Edit(props) {
   if (props.setPage === "create") {
     renderGrid = <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} />
   } else if (props.setPage === "edit") {
-    renderGrid = <Grid pattern={props.setClickedView.colours} updateColor={updateColor} size={pixelSize} />
+    // updatePattern(props.setClickedView.colours)
+    renderGrid = <Grid pattern={pattern} updateColor={updateColor} size={pixelSize} />
+    console.log("pattern object", props.paternObj)
   }
   // console.log("this is pattern id", pattern.id)
   //edits and creates anoher checkpoint "version" in the database when

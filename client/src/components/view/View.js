@@ -14,12 +14,6 @@ export default function View(props) {
 
   let colours = props.setClickedView.colours
 
-
-  // console.log("state inside view", props.setClickedView)
-  // console.log("this is colours", colours)
-
-
-
   let gridView = <ViewGrid pattern={blankPattern} />
 
   if (colours) {
@@ -28,6 +22,8 @@ export default function View(props) {
 
   function goToEditpage() {
     props.setPage("edit")
+    props.getCheckpointHistory()
+    props.getPattern()
   }
 
   return (
