@@ -1,16 +1,14 @@
 import React from "react";
-import { Card, Icon, Image, Button } from "semantic-ui-react";
+import { Card, Image, Button } from "semantic-ui-react";
 
 export default function HistoryCard(props) {
   return (
     <div className="history-card">
       <Card>
-        <Image src={props.img} size="small" />
-        <Card.Content extra>
-          <Icon name="clock outline" />
-          {props.created_at}
-        </Card.Content>
-        <Button basic size="small" content="View" />
+        <div className="history-image">
+          <Image src={props.img} size="small" />
+        </div>
+        <Button basic content="View" />
       </Card>
     </div>
   );
