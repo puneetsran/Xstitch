@@ -5,6 +5,7 @@ import "./styles.css";
 
 export default function PatternList(props) {
   const [patterns, setPatterns] = useState([]);
+  const [renderView, setRenderView] = useState([])
 
   useEffect(() => {
     axios.get("/api/patterns")
@@ -13,14 +14,19 @@ export default function PatternList(props) {
       })
   }, []);
 
+
   // removed filter function for now
   let patternCards = patterns.map((item => {
     return (
       <PatternListItem
         key={item.id}
+
+        id={item.id}
         title={item.title}
         description={item.description}
         viewPage={props.setPage}
+        renderSavedPattern={props.renderSavedPattern}
+
       />
     )
   }))

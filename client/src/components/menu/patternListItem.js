@@ -14,8 +14,27 @@ function getColours(pattern) {
 }
 
 export default function PatternListItem(props) {
+
+  // let [clickedView, setClickedView] = useState([])
+
+  // function renderSavedPattern() {
+
+  //   axios.get("api/checkpoints")
+  //     .then((res) => {
+  //       let currentView = res.data.filter((item) => {
+  //         return item.pattern_id === props.id
+  //       })
+  //       let currentViewOnPage = currentView.length - 1
+  //       setClickedView(currentViewOnPage)
+  //     }).catch((err) => {
+  //       console.log("current view for checkpoint failed because", err)
+  //     })
+  // }
   function getViewpage() {
     props.viewPage("view")
+    props.renderSavedPattern(props.id)
+    // renderSavedPattern()
+
   }
   return (
     <Card style={{ width: "20rem", postition: "absolute" }}>
@@ -28,6 +47,7 @@ export default function PatternListItem(props) {
         }}
       >
         <div>
+          <h2>{props.id}</h2>
           <h2>{props.title}</h2>
           <h3>{props.description}</h3>
         </div>

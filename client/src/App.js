@@ -108,9 +108,23 @@ export default function App() {
     }
   }
 
-  // function renderSavedPattern () {
-  //   axios
-  // }
+  let [clickedView, setClickedView] = useState({})
+
+  function renderSavedPattern(patternId) {
+
+    axios.get("api/checkpoints")
+      .then((res) => {
+        let currentView = res.data.filter((item) => {
+          return item.pattern_id === patternId
+        })
+        let currentViewOnPage = currentView[currentView.length - 1]
+        console.log("this is current view", currentViewOnPage)
+        setClickedView(currentViewOnPage)
+      }).catch((err) => {
+        console.log("current view for checkpoint failed because", err)
+      })
+  }
+  console.log("this is state for clickedView", clickedView)
 
   //renders either homepage or grid based on click
   if (page === "home") {
@@ -123,8 +137,13 @@ export default function App() {
     />
   } else if (page === "view") {
     showPage = <View
-    // setPage={setPage}
+      currentPattern={pattern}
+      currentCheckpoint={checkpoint}
+      setClickedView={clickedView}
+    // renderSavedPattern={renderSavedPattern}
     />
+    // console.log("this is checkpoint", history)
+
   }
   else {
     showPage = <div></div>
@@ -138,6 +157,8 @@ export default function App() {
   } else {
     content = <PatternList
       setPage={setPage}
+      renderSavedPattern={renderSavedPattern}
+
     />;
   }
   // if (showMenu === false) {
