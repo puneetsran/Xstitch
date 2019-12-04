@@ -4,7 +4,9 @@
   z-index: 1;
   top: 11em;
   left: 0em;
-  position: fixed;
+  height: 100%;
+  width: 100;
+  /* position: fixed; */
 }
 
 logged-in {
