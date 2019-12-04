@@ -12,12 +12,12 @@
     margin-bottom: 2em;
   }
 
-  .pattern-container {
-    /* display: flex; */
+  /* .pattern-container {
+    display: flex;
     justify-content: center;
     margin: 2em;
-    /* column-count: 3; */
-  }
+    column-count: 3;
+  } */
 
   .card-deck {
     margin-bottom: 1em;
@@ -121,6 +121,10 @@
   }
 
   .card-deck {
+    margin-bottom: 2em;
+  }
+
+  .card {
     margin-bottom: 2em;
   }
 
