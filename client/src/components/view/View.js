@@ -2,22 +2,34 @@ import React, { useState } from "react";
 import ViewGrid from "./ViewGrid";
 import "./View.css";
 import { Button, Icon } from "semantic-ui-react";
+import axios from "axios";
 
 //default array for rendering grid
 // will need to change to be props.pattern
-const blankPattern = [];
-for (let i = 0; i < 20; i++) {
-  blankPattern.push([]);
-  for (let j = 0; j < 20; j++) {
-    blankPattern[i].push("#fff");
-  }
-}
+
+
 
 export default function View(props) {
+  const blankPattern = [];
+
+  let colours = props.setClickedView.colours
+
+
+  console.log("state inside view", props.setClickedView)
+  console.log("this is colours", colours)
+
+
+
+  let gridView = <ViewGrid pattern={blankPattern} />
+
+  if (colours) {
+    gridView = <ViewGrid pattern={colours} />
+  }
+
 
   return (
     <section className="view">
-      <ViewGrid pattern={blankPattern} />
+      {gridView}
       <div className="view-buttons">
         <Button.Group vertical>
           <Button icon labelPosition="left" onClick={props.addColumn}>
