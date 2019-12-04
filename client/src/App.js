@@ -155,10 +155,10 @@ export default function App() {
     showPage = <Edit
       saveHandler={saveHandler}
       checkpointHistory={history}
-      currentPattern={pattern}
+      // currentPattern={pattern}
       setClickedView={clickedView}
       setPage={setPage}
-      renderSavedPattern={renderSavedPattern}
+    // renderSavedPattern={renderSavedPattern}
     />
   }
   else {
