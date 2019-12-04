@@ -8,6 +8,10 @@
     -webkit-column-break-inside: avoid;
   }
 
+  .card {
+    margin-bottom: 2em;
+  }
+
   .pattern-container {
     /* display: flex; */
     justify-content: center;
