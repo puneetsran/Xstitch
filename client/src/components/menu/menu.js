@@ -133,7 +133,7 @@ export default function Menu(props) {
         <Button
           className={`logged-in ${
             isLoggedIn ? "is-loggedin" : "is-not-loggedin"
-          }`}
+            }`}
           variant="outline-success"
           onClick={getUser}
         >
