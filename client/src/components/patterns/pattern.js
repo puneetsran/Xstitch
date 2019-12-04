@@ -96,6 +96,7 @@ export default function Pattern(props) {
     // console.log("removing from favourites:", favouriteID);
     return axios.delete(`/api/favourites/${favouriteID}`).then(response => {
       setIsFavourited(undefined);
+      addedToFavourite("Removed from favourites!");
     });
   }
 
