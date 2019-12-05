@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import "./styles.css";
 import "./patterns.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, Icon, Image } from "semantic-ui-react";
-
 import Pattern from "./pattern";
 import beeImage from "./bee.jpg";
 
@@ -31,8 +27,6 @@ export default function Patterns(props) {
     setPatternData(getPatternImages(props.patterns, props.checkpoints));
   }, [props.patterns, props.checkpoints]);
 
-  // getPatternImages(props.patterns, props.checkpoints);
-
   const patterns = patternData.map(pattern => {
     return (
       <Pattern
@@ -46,13 +40,8 @@ export default function Patterns(props) {
   return (
     <div className="pattern-main-container">
       <div className="hero-text">Welcome to Xstitch</div>
-      <img src={beeImage} className="bee-image" />
-      <div className="pattern-container">
-        {/* <div className="patterns"> */}
-        {patterns}
-        {/* <div className="pattern-row"></div> */}
-        {/* </div> */}
-      </div>
+      <img src={beeImage} alt="cross stitch of a bee" className="bee-image" />
+      <div className="pattern-container">{patterns}</div>
     </div>
   );
 }

@@ -32,7 +32,6 @@ export default function Edit(props) {
   let historyTab;
 
   function updateColor(input) {
-    console.log("oh hey i'm here")
     const newPattern = pattern.map((row, rowIndex) => {
       if (rowIndex === input[0]) {
         return row.map((pixel, pixelIndex) => {
@@ -197,8 +196,6 @@ export default function Edit(props) {
         </div>
         <PixelSizeButtons setSize={setSize} />
         <Button content="Version history" onClick={toggleHistory} />
-        <Button content="Create image" onClick={createImage} />
-
         <Button
           onClick={() => {
             console.log("props within save", props);

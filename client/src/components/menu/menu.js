@@ -1,17 +1,8 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Nav,
-  Navbar,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button
-} from "react-bootstrap";
+import { Nav, Navbar, Button } from "react-bootstrap";
 import axios from "axios";
-import FavouritesList from "./FavouritesList";
-import PatternList from "./patternList";
 
 export default function Menu(props) {
   const [currentUser, setCurrentUser] = useState(null);
@@ -42,9 +33,7 @@ export default function Menu(props) {
   }
 
   return (
-    <Navbar
-      expand="lg"
-    >
+    <Navbar expand="lg">
       <Navbar.Brand
         href="#home"
         style={{
@@ -57,55 +46,22 @@ export default function Menu(props) {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav
-          className="mr-auto"
-          style={{
-            fontSize: "1.5em",
-            // paddingTop: "25px"
-          }}
-        >
+        <Nav className="mr-auto" style={{ fontSize: "1.5em" }}>
           <Nav.Link href="#home" onClick={() => props.setPage("home")}>
             Home
           </Nav.Link>
           <Nav.Link href="#link" onClick={() => props.clearAndSetCreate()}>
             Create
           </Nav.Link>
-          <NavDropdown title="Menu" id="basic-nav-dropdown">
-            <NavDropdown.Item
-              href="#action/3.1"
-              onClick={() => props.setShowMenu(true)}
-              style={{
-                marginTop: "none",
-                fontSize: "20px",
-                padding: "15px",
-                fontFamily: "'Press Start 2P', 'cursive'"
-              }}
-            >
-              {/* Need to ad functionality to open and close side menu */}
-              My Patterns
-            </NavDropdown.Item>
-            <NavDropdown.Item
-              href="#action/3.2"
-              // onClick needs to show favourites for specific user
-              // is currently showing all patterns
-              onClick={() => props.setShowMenu(true)}
-              style={{
-                marginBottom: "none",
-                fontSize: "20px",
-                padding: "15px",
-                fontFamily: "'Press Start 2P', 'cursive'"
-              }}
-            >
-              {/* Need to ad functionality to open and close side menu */}
-              My Favourites
-            </NavDropdown.Item>
-          </NavDropdown>
+          <Nav.Link href="#action/3.1" onClick={() => props.setShowMenu(true)}>
+            My Patterns
+          </Nav.Link>
         </Nav>
         {userDiv}
         <Button
           className={`logged-in ${
             isLoggedIn ? "is-loggedin" : "is-not-loggedin"
-            }`}
+          }`}
           variant="outline-success"
           onClick={getUser}
         >
