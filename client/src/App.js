@@ -26,6 +26,7 @@ export default function App() {
   const [checkpoint, setCheckpoint] = useState({});
   //sets current version history in state
   const [history, setHistory] = useState([]);
+  const [historyView, setHistoryView] = useState(null)
 
   //gets all checkpoints in history
   const [checkpoints, setCheckpoints] = useState([]);
@@ -57,7 +58,7 @@ export default function App() {
       colours: patternData.colours,
       image_url: patternData.image_url
     };
-    console.log("reqData here", reqData);
+    // console.log("reqData here", reqData);
 
     axios
       .post("api/patterns", reqData)
@@ -126,6 +127,7 @@ export default function App() {
       });
   }
 
+
   //gets pattern object for checkpoint so it can be passed to the backend when editing existing patterns
   function getPattern() {
     return patternCards.map((item) => {
@@ -156,21 +158,24 @@ export default function App() {
     showPage = <View
       currentPattern={pattern}
       checkpointHistory={history}
+      // setCheckpoint={setCheckpoint}
       currentCheckpoint={checkpoint}
       setClickedView={clickedView}
       setPage={setPage}
       getCheckpointHistory={getCheckpointHistory}
       getPattern={getPattern}
+      historyView={historyView}
     />
 
-  }
-  else if (page === "edit") {
+  } else if (page === "edit") {
     showPage = <Edit
       saveHandler={saveHandler}
       checkpointHistory={history}
+      setCheckpoint={setCheckpoint}
       // currentPattern={pattern}
       setClickedView={clickedView}
       setPage={setPage}
+      setHistoryView={setHistoryView}
     // renderSavedPattern={renderSavedPattern}
     />
   }
@@ -197,7 +202,7 @@ export default function App() {
   }
 
   console.log("this is current pattern in state", pattern)
-  console.log("this is current checkpointHistory in state", history)
+  console.log("this is current checkpoint in state", checkpoint)
   //clears pattern and resets state when create button is clicked
   //TODO does not yet reset grid bc grid state lives in sub component
   function clearAndSetCreate() {
@@ -207,7 +212,7 @@ export default function App() {
   }
 
   function getPatternImages(patterns, checkpoints) {
-    console.log("inside patterns, checkpoints is", checkpoints);
+    // console.log("inside patterns, checkpoints is", checkpoints);
     return patterns.map(pattern => {
       let matchingCheckpoints = checkpoints.filter(checkpoint => {
         return checkpoint.pattern_id === pattern.id;

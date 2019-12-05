@@ -99,8 +99,11 @@ export default function Edit(props) {
     historyTab = <div></div>;
   } else {
     historyTab = <History
-      // setPage={props.setPage}
-      history={props.checkpointHistory} />;
+      setPage={props.setPage}
+      setCheckpoint={props.setCheckpoint}
+      setHistoryView={props.setHistoryView}
+      history={props.checkpointHistory}
+    />;
   }
 
   function createImage() {

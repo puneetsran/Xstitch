@@ -11,8 +11,15 @@ import axios from "axios";
 
 export default function View(props) {
   const blankPattern = [];
+  let colours;
 
-  let colours = props.setClickedView.colours
+  if (props.historyView === "version") {
+    colours = props.currentCheckpoint.colours
+  } else {
+    colours = props.setClickedView.colours
+  }
+
+  // let colours = props.setClickedView.colours
 
   let gridView = <ViewGrid pattern={blankPattern} />
 
