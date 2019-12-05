@@ -38,7 +38,7 @@ export default function Menu(props) {
 
   let userDiv;
   if (showUser) {
-    userDiv = <div> Logged in as {currentUser}!</div>;
+    userDiv = <div style={{ marginRight: "14px", fontWeight: "bold" }}> Logged in as Mel!</div>;
   }
 
   return (
