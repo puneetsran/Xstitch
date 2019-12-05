@@ -1,12 +1,12 @@
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  z-index: 1;
-  top: 11em;
-  left: 0em;
+  width: 360px;
   height: 100%;
-  width: 100;
-  /* position: fixed; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: baseline;
+  text-align: initial
 }
 
 logged-in {

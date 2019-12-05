@@ -4,11 +4,6 @@ import "./View.css";
 import { Button, Icon } from "semantic-ui-react";
 import axios from "axios";
 
-//default array for rendering grid
-// will need to change to be props.pattern
-
-
-
 export default function View(props) {
   const blankPattern = [];
 
