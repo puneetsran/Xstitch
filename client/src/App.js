@@ -26,12 +26,13 @@ export default function App() {
   const [checkpoint, setCheckpoint] = useState({});
   //sets current version history in state
   const [history, setHistory] = useState([]);
+  //renders version history grid when set to version in HistoryCards component
   const [historyView, setHistoryView] = useState(null)
-
   //gets all checkpoints in history
   const [checkpoints, setCheckpoints] = useState([]);
   const [patternImages, setPatternImages] = useState([]);
 
+  //gets history of all checkpoints for a pattern and sets it in state
   function getCheckpointHistory() {
     axios
       .get("api/checkpoints")
@@ -58,7 +59,6 @@ export default function App() {
       colours: patternData.colours,
       image_url: patternData.image_url
     };
-    // console.log("reqData here", reqData);
 
     axios
       .post("api/patterns", reqData)
@@ -68,7 +68,6 @@ export default function App() {
         setPatternCards([...patternCards, res.data.pattern]);
       })
       .catch(error => {
-        console.log("error here", error);
         return alert("Could not save pattern", error);
       });
   }
@@ -101,7 +100,6 @@ export default function App() {
       createCheckpoint(data);
       getCheckpointHistory();
     } else {
-      // console.log("data in the else", data);
       createPattern(data);
       // getCheckpointHistory()
     }
@@ -158,7 +156,6 @@ export default function App() {
     showPage = <View
       currentPattern={pattern}
       checkpointHistory={history}
-      // setCheckpoint={setCheckpoint}
       currentCheckpoint={checkpoint}
       setClickedView={clickedView}
       setPage={setPage}
@@ -172,11 +169,9 @@ export default function App() {
       saveHandler={saveHandler}
       checkpointHistory={history}
       setCheckpoint={setCheckpoint}
-      // currentPattern={pattern}
       setClickedView={clickedView}
       setPage={setPage}
       setHistoryView={setHistoryView}
-    // renderSavedPattern={renderSavedPattern}
     />
   }
   else {
@@ -192,8 +187,6 @@ export default function App() {
     );
   }
 
-
-
   //closes side menu when you click away
   function clickOffMenu() {
     if (showMenu === true) {
@@ -201,8 +194,9 @@ export default function App() {
     }
   }
 
-  console.log("this is current pattern in state", pattern)
-  console.log("this is current checkpoint in state", checkpoint)
+  // console.log("this is current pattern in state", pattern)
+  // console.log("this is current checkpoint in state", checkpoint)
+
   //clears pattern and resets state when create button is clicked
   //TODO does not yet reset grid bc grid state lives in sub component
   function clearAndSetCreate() {

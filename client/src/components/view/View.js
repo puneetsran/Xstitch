@@ -19,8 +19,6 @@ export default function View(props) {
     colours = props.setClickedView.colours
   }
 
-  // let colours = props.setClickedView.colours
-
   let gridView = <ViewGrid pattern={blankPattern} />
 
   if (colours) {
