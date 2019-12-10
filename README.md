@@ -6,7 +6,7 @@ Xstitch is an application for cross stich enthusiasts wanting to create patterns
 
 !['Home Page'](https://github.com/user956/Xstitch/blob/master/docs/home-page.png?raw=true)
 !['Pattern Creation'](https://github.com/user956/Xstitch/blob/master/docs/pattern-creation.png?raw=true)
-!['Home Page 2'](https://github.com/user956/Xstitch/blob/master/docs/home-page-2.png?raw=true)
+!['Home Page 2'](https://github.com/user956/Xstitch/blob/master/docs/home-page-with-new-pattern.png?raw=true)
 !['Version History'](https://github.com/user956/Xstitch/blob/master/docs/version-history.png?raw=true)
 
 ## Getting Started
