@@ -1,14 +1,8 @@
-# React + Rails No-Fluff Boilerplate
+# Xstitch (pronounced cross stitch)
 
-A boilerplate project for anyone interested in making a project that uses React and Rails.
+Xstitch is an application for cross stich enthusiasts wanting to create patterns, with the ability to see previous versions of the same pattern.
 
-Note! This boilerplate has _no fluff_! That means that there's nothing set up for you to do authentication stuff, there's no Redux stuff, and there's no React Router stuff.
-
-The main important bit is that the React project has `proxy` set to `localhost:3001` in the `package.json` file. Take a look!
-
-## Hall of Fame
-
-Here are some projects that have been built using this boilerplate.
+## Screenshots
 
 - [latercart](https://github.com/bonitac/latercart)
 - [Cards-Against-the-Internet](https://github.com/csx773/Cards-Against-the-Internet)
@@ -17,9 +11,7 @@ Here are some projects that have been built using this boilerplate.
 - [StartDuck](https://github.com/JerChuang/StartDuck)
 - [Change-App](https://github.com/ZHShang/Change-App)
 
-## Using the boilerplate
-
-First, fork this boilerplate so you get your own copy of it. Once you have done that, you can clone your new repo to your machine, and get started.
+## Getting Started
 
 You need **TWO** terminals for this.
 
@@ -75,7 +67,7 @@ Once it's deployed, you can run the following commands to manage your app:
 
 There are other commands, but these are good to get you started!
 
-To make your app work properly with React Router (if you end up using it) on Heroku, I've added a special route to the `routes.rb` file (`get '*path' ... `).
+To make your app work properly with React Router (if you end up using it) on Heroku, I've added a special route to the `routes.rb` file (`get '*path' ...`).
 
 ## Contact
 
