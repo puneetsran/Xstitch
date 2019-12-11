@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import ViewGrid from "./ViewGrid";
 import "./View.css";
 import { Button, Icon } from "semantic-ui-react";
-import axios from "axios";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
